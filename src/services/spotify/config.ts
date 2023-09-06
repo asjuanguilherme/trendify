@@ -1,6 +1,9 @@
 import axios from 'axios'
+import { GetServerSidePropsContext } from 'next'
 import * as utils from 'utils'
+import { setCookie } from 'nookies'
 
+export const SPOTIFY_API_URL = 'https://api.spotify.com/'
 export const SPOTIFY_ACCOUNTS_URL = 'https://accounts.spotify.com/'
 export const SPOTIFY_ACCOUNTS_API_URL = SPOTIFY_ACCOUNTS_URL + 'api/'
 export const SPOTIFY_LOGIN_REDIRECT_URL =
@@ -18,3 +21,38 @@ if (!SPOTIFY_LOGIN_REDIRECT_URL)
 export const spotifyAccountApi = axios.create({
   baseURL: SPOTIFY_ACCOUNTS_API_URL
 })
+
+export const spotifyApi = axios.create({
+  baseURL: SPOTIFY_API_URL
+})
+
+const AUTH_COOKIE_KEY = 'ACCESS_TOKEN'
+
+export const setAuthenticationCookie = (
+  accessToken: string,
+  ctx?: GetServerSidePropsContext
+) => {
+  setCookie(ctx, AUTH_COOKIE_KEY, accessToken, {
+    maxAge: 60 * 60 * 24 * 30,
+    path: '/'
+  })
+}
+
+export const destroyAuthenticationCookie = (
+  ctx?: GetServerSidePropsContext
+) => {
+  setCookie(ctx, AUTH_COOKIE_KEY, '', {
+    maxAge: 0,
+    path: '/'
+  })
+}
+
+export const setAuthenticationHeader = (accessToken: string) => {
+  spotifyAccountApi.defaults.headers.common[
+    'Authorization'
+  ] = `Bearer ${accessToken}`
+}
+
+export const removeAuthenticationHeader = () => {
+  spotifyAccountApi.defaults.headers.common['Authorization'] = ''
+}

@@ -1,2 +1,1 @@
-export * from './getAccountApiToken'
-export * from './requestUserAuthorization'
+export * from './authenticateSpotifyUser'

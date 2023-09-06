@@ -1,11 +1,11 @@
-'use-client'
+'use client'
 
 import React from 'react'
 import Section from 'components/shared/Section'
 import SpotifyLogo from 'components/shared/icons/SpotifyLogo'
 import ButtonLink from 'components/shared/ButtonLink'
 
-const page = () => {
+const RootPage = async () => {
   return (
     <div>
       <Section title="Descubra seu topify">
@@ -19,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default RootPage

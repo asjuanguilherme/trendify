@@ -15,6 +15,7 @@
     "axios": "^1.4.0",
     "js-cookie": "latest",
     "next": "latest",
+    "nookies": "^2.5.2",
     "polished": "^4.2.2",
     "react": "latest",
     "react-dom": "latest",
