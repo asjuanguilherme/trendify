@@ -1,7 +1,8 @@
 import axios from 'axios'
 import * as utils from 'utils'
 
-export const SPOTIFY_ACCOUNTS_API_URL = 'https://accounts.spotify.com/api/'
+export const SPOTIFY_ACCOUNTS_URL = 'https://accounts.spotify.com/'
+export const SPOTIFY_ACCOUNTS_API_URL = SPOTIFY_ACCOUNTS_URL + 'api/'
 export const SPOTIFY_LOGIN_REDIRECT_URL =
   process.env.NEXT_PUBLIC_SPOTIFY_LOGIN_REDIRECT_URL
 export const SPOTIFY_APP_CLIENT_ID =
