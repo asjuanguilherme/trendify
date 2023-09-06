@@ -17,7 +17,7 @@ const ButtonLink = ({ href, isExternal, ...props }: ButtonLinkProps) => {
       target={isExternal ? '_blank' : '_self'}
       rel={isExternal ? 'noopener noreferrer' : undefined}
     >
-      <Button {...props} as="a" />
+      <Button {...props} as="span" />
     </S.LinkWrapper>
   )
 }
