@@ -7,26 +7,18 @@ const light: DefaultTheme = {
   title: 'Light',
   icon: <Sun />,
   colors: {
-    title: '#1B1B1B',
-    text: '#676767',
-    detail: '#7e7e7e',
+    title: '#0D1816',
+    text: '#121D1B',
+    detail: '#192422',
     main: mainColors,
     layers: {
       0: {
-        background: '#F2F2F2',
-        border: '#EAEAEA'
+        background: '#E3F6EA',
+        border: '#DCEEE3'
       },
       1: {
-        background: '#FFFFFF',
-        border: '#F0F0F0'
-      },
-      2: {
-        background: '#F2F2F2',
-        border: '#EAEAEA'
-      },
-      3: {
-        background: '#FFFFFF',
-        border: '#F0F0F0'
+        background: '#D7E9DE',
+        border: '#D0E2D7'
       }
     }
   }

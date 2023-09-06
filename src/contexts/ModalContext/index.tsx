@@ -1,3 +1,5 @@
+'use client'
+
 import { ModalComponentProps } from 'components/shared/Modal'
 import dynamic from 'next/dynamic'
 import {
@@ -9,9 +11,7 @@ import {
   useState
 } from 'react'
 
-const Modal = dynamic(() => import('components/shared/Modal'), {
-  ssr: false
-})
+import Modal from 'components/shared/Modal'
 
 export type ModalContextItemProps = Partial<ModalComponentProps> & {
   identifier: string

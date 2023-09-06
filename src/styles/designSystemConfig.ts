@@ -1,3 +1,4 @@
+import { gothamFont } from 'fonts/gotham/config'
 import { breakpoints } from 'styles/screens'
 
 export const layout = {
@@ -24,7 +25,7 @@ export const spacing = {
 
 export const font = {
   family: {
-    poppins: 'Poppins, sans-serif'
+    gotham: gothamFont.style.fontFamily
   },
   sizes: {
     smaller: '.75rem',
@@ -36,10 +37,10 @@ export const font = {
     xxlarger: '2.5rem'
   },
   weight: {
-    regular: 400,
+    light: 300,
+    book: 400,
     medium: 500,
-    semibold: 600,
-    bold: 700
+    bold: 600
   }
 } as const
 

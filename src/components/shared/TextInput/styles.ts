@@ -59,7 +59,7 @@ export const Input = styled.input<{
   color: ${props => props.theme.colors.title};
 
   &::placeholder {
-    font-weight: ${font.weight.regular};
+    font-weight: ${font.weight.book};
     color: ${props => props.theme.colors.detail};
   }
 `

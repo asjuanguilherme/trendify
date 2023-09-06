@@ -2,7 +2,7 @@ import 'styled-components'
 import mainColors from 'styles/mainColors'
 import dark from 'styles/themes/dark'
 
-export type LayerIndex = 0 | 1 | 2 | 3
+export type LayerIndex = 0 | 1
 
 export type MainColorsKeys = keyof typeof mainColors
 

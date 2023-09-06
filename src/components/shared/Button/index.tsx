@@ -1,21 +1,14 @@
-import {
-  CSSProperties,
-  MouseEvent,
-  MutableRefObject,
-  ReactNode,
-  useMemo
-} from 'react'
+'use client'
+
 import * as S from './styles'
+import { CSSProperties, MouseEvent, MutableRefObject, ReactNode } from 'react'
 import { MainColorsKeys, LayerIndex } from '../../../../styled'
-import Link from 'next/link'
 
 export type ButtonSize = 'smaller' | 'small' | 'default'
 
 export type ButtonVariants = 'filled' | 'outlined' | 'basic' | 'white'
 
 export type ButtonProps = {
-  href?: string
-  isExternalHref?: boolean
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
   onlyIcon?: boolean
   children?: ReactNode
@@ -30,6 +23,7 @@ export type ButtonProps = {
   disabled?: boolean
   type?: 'button' | 'submit'
   badge?: string | number
+  as?: string
 }
 
 const Button = ({
@@ -41,40 +35,26 @@ const Button = ({
   layer = 1,
   setRef,
   badge,
+  fillWidth,
+  onlyIcon,
   ...props
 }: ButtonProps) => {
-  const ButtonComponent = useMemo(() => {
-    return (
-      <S.Wrapper
-        ref={setRef}
-        as={props.href ? 'a' : 'button'}
-        color={color}
-        size={size}
-        variant={variant}
-        layer={layer}
-        {...props}
-        badge={badge}
-        rel={props.isExternalHref ? 'noopener noreferrer' : undefined}
-        type={type}
-      >
-        {children}
-      </S.Wrapper>
-    )
-  }, [setRef, props, color, size, variant, layer, badge, type, children])
-
-  if (props.href)
-    return (
-      <Link
-        href={props.href}
-        target={props.isExternalHref ? '_blank' : '_self'}
-        passHref
-        legacyBehavior
-      >
-        {ButtonComponent}
-      </Link>
-    )
-
-  return ButtonComponent
+  return (
+    <S.Wrapper
+      ref={setRef}
+      $color={color}
+      $size={size}
+      $variant={variant}
+      $layer={layer}
+      $badge={badge}
+      type={type}
+      $fillWidth={fillWidth}
+      $onlyIcon={onlyIcon}
+      {...props}
+    >
+      {children}
+    </S.Wrapper>
+  )
 }
 
 export default Button

@@ -1,24 +1,20 @@
-const mainColors = {
+const brandColors = {
   primary: {
-    light: '#9480ff',
-    normal: '#6D39FF',
-    dark: '#4D21CA'
+    light: '#48e07d',
+    normal: '#1DB954',
+    dark: '#13823b'
   },
   secondary: {
-    light: '#ffcaa9',
-    normal: '#FF9960',
-    dark: '#fe7439'
-  },
-  error: {
-    light: '#FF5656',
-    normal: '#ef4444',
-    dark: '#CF2222'
-  },
-  success: {
-    light: '#30DE70',
-    normal: '#22c55e',
-    dark: '#15803d'
+    light: '#ffa8a2',
+    normal: '#FD5E54',
+    dark: '#e32b1f'
   }
+}
+
+const mainColors = {
+  ...brandColors,
+  error: brandColors.secondary,
+  success: brandColors.primary
 } as const
 
 export default mainColors

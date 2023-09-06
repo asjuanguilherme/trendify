@@ -9,7 +9,7 @@ module.exports = plop => {
       {
         type: 'list',
         name: 'category',
-        choices: ['shared', 'views', 'layout', 'infra'],
+        choices: ['shared', 'layout', 'infra', 'pattern'],
         message: 'Select a category for the component'
       },
       {
@@ -38,6 +38,12 @@ module.exports = plop => {
           type: 'input',
           name: 'name',
           message: 'Insert a name for the icon'
+        },
+        {
+          type: 'input',
+          name: 'viewbox',
+          message: 'Insert the viewbox: ',
+          default: '0 0 0 0'
         }
       ],
       actions: [

@@ -11,19 +11,19 @@ import { MainColorsKeys, LayerIndex } from '../../../../styled'
 import { rem } from 'polished'
 
 type WrapperProps = {
-  size: ButtonSize
-  onlyIcon?: boolean
-  fillWidth?: boolean
-  color: MainColorsKeys
-  variant: ButtonVariants
-  layer: LayerIndex
-  badge?: string | number
+  $size: ButtonSize
+  $onlyIcon?: boolean
+  $fillWidth?: boolean
+  $color: MainColorsKeys
+  $variant: ButtonVariants
+  $layer: LayerIndex
+  $badge?: string | number
 }
 
 export const Wrapper = styled.button<WrapperProps>`
   flex-shrink: 0;
-  display: ${props => (props.fillWidth ? 'flex' : 'inline-flex')};
-  width: ${props => (props.fillWidth ? '100%' : 'max-content')};
+  display: ${props => (props.$fillWidth ? 'flex' : 'inline-flex')};
+  width: ${props => (props.$fillWidth ? '100%' : 'max-content')};
   align-items: center;
   justify-content: center;
   font-weight: ${font.weight.medium};
@@ -42,11 +42,11 @@ export const Wrapper = styled.button<WrapperProps>`
 
   // Badge
   position: relative;
-  ${({ theme, badge }) =>
-    badge !== undefined &&
+  ${({ theme, $badge }) =>
+    $badge !== undefined &&
     css`
       &::after {
-        content: '${badge}';
+        content: '${$badge}';
         display: flex;
         align-items: center;
         justify-content: center;
@@ -64,19 +64,19 @@ export const Wrapper = styled.button<WrapperProps>`
     `}
 
   // Handle with colors by variant
-  ${({ theme, color, variant, layer }) => {
-    switch (variant) {
+  ${({ theme, $color, $variant, $layer }) => {
+    switch ($variant) {
       case 'filled':
         return css`
-          background-color: ${theme.colors.main[color].normal};
+          background-color: ${theme.colors.main[$color].normal};
           color: white;
 
           &:hover:not(:disabled) {
-            background-color: ${theme.colors.main[color].light};
+            background-color: ${theme.colors.main[$color].light};
           }
 
           &:active:not(:disabled) {
-            background-color: ${theme.colors.main[color].dark};
+            background-color: ${theme.colors.main[$color].dark};
           }
 
           &:disabled {
@@ -87,31 +87,31 @@ export const Wrapper = styled.button<WrapperProps>`
       case 'basic':
         return css`
           color: ${theme.colors.text};
-          background-color: ${theme.colors.layers[layer].background};
-          border: 1px solid ${theme.colors.layers[layer].border};
+          background-color: ${theme.colors.layers[$layer].background};
+          border: 1px solid ${theme.colors.layers[$layer].border};
 
           &:hover {
-            color: ${theme.colors.main[color].normal};
-            border-color: ${theme.colors.main[color].light}40;
+            color: ${theme.colors.main[$color].normal};
+            border-color: ${theme.colors.main[$color].light}40;
           }
 
           &:active {
-            border-color: ${theme.colors.main[color].dark};
-            background-color: ${theme.colors.main[color].dark};
+            border-color: ${theme.colors.main[$color].dark};
+            background-color: ${theme.colors.main[$color].dark};
             color: white;
           }
 
           &:disabled {
-            background-color: ${theme.colors.layers[layer].background}80;
-            border: 1px solid ${theme.colors.layers[layer].border}80;
+            background-color: ${theme.colors.layers[$layer].background}80;
+            border: 1px solid ${theme.colors.layers[$layer].border}80;
             color: ${theme.colors.text}80;
           }
         `
       case 'outlined':
         return css`
-          color: ${theme.colors.main[color].normal};
-          border: 1px solid ${theme.colors.main[color].normal};
-          background-color: ${theme.colors.layers[layer].background};
+          color: ${theme.colors.main[$color].normal};
+          border: 1px solid ${theme.colors.main[$color].normal};
+          background-color: ${theme.colors.layers[$layer].background};
         `
       case 'white':
         return css`
@@ -122,11 +122,11 @@ export const Wrapper = styled.button<WrapperProps>`
   }}
 
   // Handle with sizing
-  ${({ size, onlyIcon }) => {
-    switch (size) {
+  ${({ $size, $onlyIcon }) => {
+    switch ($size) {
       case 'smaller':
         return css`
-          ${onlyIcon
+          ${$onlyIcon
             ? css`
                 width: ${buttonSizes.smaller};
               `
@@ -140,7 +140,7 @@ export const Wrapper = styled.button<WrapperProps>`
         `
       case 'small':
         return css`
-          ${onlyIcon
+          ${$onlyIcon
             ? css`
                 width: ${buttonSizes.small};
                 font-size: ${font.sizes.default};
@@ -155,7 +155,7 @@ export const Wrapper = styled.button<WrapperProps>`
         `
       case 'default':
         return css`
-          ${onlyIcon
+          ${$onlyIcon
             ? css`
                 width: ${buttonSizes.default};
                 font-size: ${font.sizes.large};

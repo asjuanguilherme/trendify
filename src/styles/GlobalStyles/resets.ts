@@ -1,6 +1,5 @@
 import { css } from 'styled-components'
 import { font } from 'styles/designSystemConfig'
-import { screens } from 'styles/screens'
 
 const resets = css`
   * {
@@ -11,13 +10,8 @@ const resets = css`
     user-select: none;
     scroll-behavior: smooth;
     box-sizing: border-box;
-    font-weight: ${font.weight.regular};
-    font-family: ${font.family.poppins};
-  }
-
-  ::selection {
-    color: white;
-    background-color: ${props => props.theme.colors.main.primary.normal};
+    font-weight: ${font.weight.book};
+    font-family: ${font.family.gotham};
   }
 
   a {
@@ -27,15 +21,7 @@ const resets = css`
   html {
     color: ${props => props.theme.colors.title};
     background-color: ${props => props.theme.colors.layers[0].background};
-    font-size: 12px;
-
-    ${screens.mobileM} {
-      font-size: 14px;
-    }
-
-    ${screens.tablet} {
-      font-size: 16px;
-    }
+    font-size: 16px;
   }
 
   html,

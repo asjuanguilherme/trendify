@@ -7,26 +7,18 @@ const dark: DefaultTheme = {
   title: 'Dark',
   icon: <Moon />,
   colors: {
-    title: '#FFFFFF',
-    text: '#FFFFFF90',
-    detail: '#FFFFFF80',
+    title: '#E3F6EA',
+    text: '#D7E9DE',
+    detail: '#CCDDD3',
     main: mainColors,
     layers: {
       0: {
-        background: '#000000',
-        border: '#141414'
+        background: '#0D1816',
+        border: '#151F1D'
       },
       1: {
-        background: '#191919',
-        border: '#2E2E2E'
-      },
-      2: {
-        background: '#303030',
-        border: '#404040'
-      },
-      3: {
-        background: '#444444',
-        border: '#535353'
+        background: '#192422',
+        border: '#202B29'
       }
     }
   }
