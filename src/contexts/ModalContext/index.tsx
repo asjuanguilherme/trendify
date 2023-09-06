@@ -1,7 +1,6 @@
 'use client'
 
 import { ModalComponentProps } from 'components/shared/Modal'
-import dynamic from 'next/dynamic'
 import {
   createContext,
   ReactNode,

@@ -1,3 +1,5 @@
+'use client'
+
 import * as S from './styles'
 import Button, { ButtonProps } from '../Button'
 
@@ -12,6 +14,7 @@ const ButtonLink = ({ href, isExternal, ...props }: ButtonLinkProps) => {
   return (
     <S.LinkWrapper
       href={href}
+      target={isExternal ? '_blank' : '_self'}
       rel={isExternal ? 'noopener noreferrer' : undefined}
     >
       <Button {...props} as="a" />
