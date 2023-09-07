@@ -3,10 +3,9 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 // Types
 import { SpotifyTrack } from 'services/spotify/types/Track'
+import { SpotifyUserProfile } from 'services/spotify/types'
 
 // Utils
-import ModalIdentifiers from 'contexts/ModalContext/identifiers'
-import { useModal } from 'contexts/ModalContext'
 import html2canvas from 'html2canvas'
 import dark from 'styles/themes/dark'
 
@@ -21,7 +20,6 @@ import Spinner from 'components/shared/Spinner'
 import Container from 'components/shared/Container'
 import Logo from 'components/shared/Logo'
 import Button from 'components/shared/Button'
-import GearIcon from 'components/shared/icons/Gear'
 import DownloadIcon from 'components/shared/icons/Download'
 import TrackItem, { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
@@ -30,6 +28,7 @@ import Switch from 'components/shared/Switch'
 
 export type TopTracksViewProps = {
   items: SpotifyTrack[]
+  userData: SpotifyUserProfile
 }
 
 const limitOptions = [3, 5, 10]
@@ -73,7 +72,10 @@ const generatedStyleOptions = [
   }
 ]
 
-const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
+const TopTracksView = ({
+  items: initialItems,
+  userData
+}: TopTracksViewProps) => {
   const [items, setItems] = useState(initialItems)
   const [loading, setLoading] = useState(false)
   const [limit, setLimit] = useState(5)
@@ -84,6 +86,8 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
   const [color, setColor] = useState<string>(dark.colors.layers[1].background)
   const [enableBackgroundImage, setEnableBackgroundImage] = useState(true)
   const [enableGradient, setEnableGradient] = useState(true)
+  const [enableBlur, setEnableBlur] = useState(true)
+  const [showProfileInfo, setShowProfileInfo] = useState(true)
 
   const saveAsImage = async () => {
     if (!boxRef.current) return
@@ -92,7 +96,8 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
       windowWidth: 475,
       useCORS: true
     })
-    const generatedImageURL = canvas.toDataURL('image/png', 1.3)
+
+    const generatedImageURL = canvas.toDataURL('image/png', 3)
 
     const downloadLink = document.createElement('a')
     downloadLink.href = generatedImageURL
@@ -112,48 +117,6 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
       }
     })()
   }, [limit, timeRange])
-
-  const settingsContent = useMemo(() => {
-    if (loading)
-      return (
-        <S.LoadingBoard>
-          <Spinner />
-        </S.LoadingBoard>
-      )
-
-    return (
-      <S.SettingsForm>
-        <S.SettingsFormSection>
-          <S.SettingsFormSectionTitle>Estilo</S.SettingsFormSectionTitle>
-          <Dropdown
-            options={generatedStyleOptions}
-            selectedOptionValue={generatedStyle}
-            onValueChange={value => setGeneratedStyle(value as 'spotify')}
-            boxOptionsConfig={{
-              closeAfterSelectOption: true
-            }}
-            fillWidth
-          />
-        </S.SettingsFormSection>
-      </S.SettingsForm>
-    )
-  }, [generatedStyle, loading])
-
-  const topTracksSettingsModal = useModal(
-    ModalIdentifiers.TOP_TRACKS_SETTINGS,
-    {
-      title: 'Gerar Top Músicas',
-      opened: false,
-      content: settingsContent
-    }
-  )
-
-  useEffect(() => {
-    topTracksSettingsModal.update({
-      content: settingsContent
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [settingsContent])
 
   return (
     <S.Wrapper>
@@ -194,40 +157,43 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
               ))}
             </S.LimitButtons>
           </S.SettingsFormSection>
-          <S.SettingsFormSection>
-            <S.SettingsFormSectionTitle>Cor</S.SettingsFormSectionTitle>
-            <ColorPicker value={color} onChange={setColor} />
-          </S.SettingsFormSection>
-          <S.SettingsFormSection>
-            <S.SettingsFormSectionTitle>
-              Usar imagem de plano de fundo
-            </S.SettingsFormSectionTitle>
+          <S.StyleOptions>
+            <Dropdown
+              label="Estilo dos Itens"
+              options={generatedStyleOptions}
+              selectedOptionValue={generatedStyle}
+              onValueChange={value => setGeneratedStyle(value as 'spotify')}
+              boxOptionsConfig={{
+                closeAfterSelectOption: true
+              }}
+              fillWidth
+            />
+            <ColorPicker label="Cor" value={color} onChange={setColor} />
             <Switch
+              label="Exibir imagem de plano de fundo"
               checked={enableBackgroundImage}
               onChange={() => setEnableBackgroundImage(state => !state)}
             />
-          </S.SettingsFormSection>
-          <S.SettingsFormSection>
-            <S.SettingsFormSectionTitle>
-              Usar gradiente
-            </S.SettingsFormSectionTitle>
             <Switch
+              label="Habilitar gradiente"
               checked={enableGradient}
               onChange={() => setEnableGradient(state => !state)}
             />
-          </S.SettingsFormSection>
+            <Switch
+              label="Desfocar plano de fundo"
+              checked={enableBlur}
+              onChange={() => setEnableBlur(state => !state)}
+            />
+            <Switch
+              label="Exibir perfil"
+              checked={showProfileInfo}
+              onChange={() => setShowProfileInfo(state => !state)}
+            />
+          </S.StyleOptions>
         </S.SettingsForm>
         <S.ActionButtons>
-          <Button
-            variant="basic"
-            fillWidth
-            onClick={topTracksSettingsModal.open}
-            size="small"
-          >
-            Configurar <GearIcon />
-          </Button>
           <Button variant="basic" fillWidth onClick={saveAsImage} size="small">
-            Salvar <DownloadIcon />
+            Salvar Imagem <DownloadIcon />
           </Button>
         </S.ActionButtons>
       </Container>
@@ -237,6 +203,7 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
             ref={boxRef}
             $color={color}
             $enableGradient={enableGradient}
+            $enableBlur={enableBlur}
           >
             {loading && (
               <S.LoadingBoard>
@@ -246,10 +213,16 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
             {!loading && (
               <>
                 {enableBackgroundImage && (
-                  <S.GeneratedBoxImage src={items[0].album.images[0].url} />
+                  <S.GeneratedBoxImage $src={items[0].album.images[0].url} />
+                )}
+                {showProfileInfo && (
+                  <S.Profile>
+                    <S.ProfileImage src={userData.images[0].url} alt="" />
+                    <S.ProfileName>{userData.display_name}</S.ProfileName>
+                  </S.Profile>
                 )}
                 <S.Title>
-                  Seu top {limit}{' '}
+                  Top {limit}{' '}
                   {
                     timeRangeOptions.filter(item => item.value === timeRange)[0]
                       .generatedText

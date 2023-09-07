@@ -150,7 +150,8 @@ export const Button = styled(DefaultButton)`
 `
 
 export const Label = styled.span`
-  font-size: ${font.sizes.small};
+  display: inline-flex;
+  font-size: ${font.sizes.default};
   font-weight: ${font.weight.medium};
   padding-left: ${spacing.components.smaller};
   padding-bottom: ${spacing.components.small};

@@ -1,5 +1,5 @@
 import { TrackItemStyle } from 'components/shared/TrackItem'
-import { darken, lighten, opacify, readableColor } from 'polished'
+import { readableColor, rem } from 'polished'
 import styled, { keyframes } from 'styled-components'
 import { css } from 'styled-components'
 import {
@@ -8,6 +8,31 @@ import {
   spacing,
   transition
 } from 'styles/designSystemConfig'
+
+export const StyleOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.components.medium};
+`
+
+export const ProfileName = styled.span`
+  font-size: ${font.sizes.large};
+  font-weight: ${font.weight.bold};
+`
+
+export const ProfileImage = styled.img`
+  width: ${rem(32)};
+  height: ${rem(32)};
+  border-radius: ${borderRadius.circle};
+`
+
+export const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${spacing.components.small};
+  margin-bottom: ${spacing.components.medium};
+  padding-bottom: ${spacing.components.medium};
+`
 
 export const LoadingBoard = styled.div`
   display: flex;
@@ -53,7 +78,6 @@ export const CreatedBy = styled.span`
 
   svg {
     position: relative;
-    bottom: 0.125rem;
     font-size: 1.3rem;
   }
 `
@@ -86,20 +110,21 @@ export const Date = styled.span`
 `
 
 export const Title = styled.h2`
-  font-size: ${font.sizes.large};
+  font-size: ${font.sizes.larger};
   font-weight: ${font.weight.bold};
   margin-bottom: ${spacing.components.small};
 `
 
-export const GeneratedBoxImage = styled.img`
+export const GeneratedBoxImage = styled.span<{ $src: string }>`
   position: absolute;
   height: 100%;
   width: 100%;
   left: 0;
   top: 0;
   z-index: -1;
-  object-fit: cover;
-  object-position: center;
+  background-image: url(${props => props.$src});
+  background-size: cover;
+  background-position: center;
   opacity: 0.2;
   animation: ${keyframes`
           from {
@@ -112,6 +137,7 @@ export const GeneratedBoxImage = styled.img`
 export const GeneratedBox = styled.div<{
   $color: string
   $enableGradient: boolean
+  $enableBlur: boolean
 }>`
   background: ${props => props.$color};
   padding: ${spacing.components.medium};
@@ -133,6 +159,7 @@ export const GeneratedBox = styled.div<{
       ${props => readableColor(props.$color, '#00000070', '#ffffff70')}
     );
     opacity: 0;
+    backdrop-filter: ${props => (props.$enableBlur ? 'blur(5px)' : 'initial')};
   }
 
   ${props =>
