@@ -3,7 +3,7 @@ import * as spotifyServiceConfig from 'services/spotify/config'
 import * as utils from 'utils'
 
 const spotifyAuthURL =
-  spotifyServiceConfig.SPOTIFY_ACCOUNTS_API_URL +
+  spotifyServiceConfig.SPOTIFY_ACCOUNTS_URL +
   'authorize?' +
   utils.objectToQuerystring({
     response_type: 'code',
