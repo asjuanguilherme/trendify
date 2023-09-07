@@ -1,8 +1,13 @@
 import { TrackItemStyle } from 'components/shared/TrackItem'
-import { darken, readableColor } from 'polished'
-import styled from 'styled-components'
+import { darken, lighten, opacify, readableColor } from 'polished'
+import styled, { keyframes } from 'styled-components'
 import { css } from 'styled-components'
-import { borderRadius, font, spacing } from 'styles/designSystemConfig'
+import {
+  borderRadius,
+  font,
+  spacing,
+  transition
+} from 'styles/designSystemConfig'
 
 export const LoadingBoard = styled.div`
   display: flex;
@@ -44,6 +49,7 @@ export const CreatedBy = styled.span`
   justify-content: center;
   gap: ${spacing.components.smaller};
   margin-top: ${spacing.components.medium};
+  font-weight: ${font.weight.medium};
 
   svg {
     position: relative;
@@ -85,30 +91,61 @@ export const Title = styled.h2`
   margin-bottom: ${spacing.components.small};
 `
 
-export const GeneratedBox = styled.div<{ $color: string; $bgImageUrl: string }>`
-  background: linear-gradient(
-    ${props => props.$color},
-    ${props => darken(0.15, props.$color)}
-  );
+export const GeneratedBoxImage = styled.img`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.2;
+  animation: ${keyframes`
+          from {
+            opacity: 0;
+            transform: scale(1.5);
+          }
+        `} ${transition.default} ease;
+`
 
+export const GeneratedBox = styled.div<{
+  $color: string
+  $enableGradient: boolean
+}>`
+  background: ${props => props.$color};
   padding: ${spacing.components.medium};
-  color: ${props => readableColor(props.$color, 'black', 'white')};
+  color: ${props => readableColor(props.$color, '#000000', 'white')};
   position: relative;
   z-index: 1;
 
   &::after {
     content: '';
     position: absolute;
-    height: 100%;
-    width: 100%;
     left: 0;
     top: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
-    background-image: url(${props => props.$bgImageUrl});
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
+    transition: ${transition.default};
+    background: linear-gradient(
+      transparent,
+      ${props => readableColor(props.$color, '#00000070', '#ffffff70')}
+    );
+    opacity: 0;
   }
+
+  ${props =>
+    props.$enableGradient &&
+    css`
+      ${CreatedBy} {
+        color: white;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    `}
 `
 
 export const Board = styled.div`

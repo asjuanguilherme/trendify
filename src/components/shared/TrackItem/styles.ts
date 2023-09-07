@@ -31,11 +31,12 @@ const configBySize: Record<
 export const ArtistName = styled.span<{ $size: TrackItemSize }>`
   font-size: ${props => configBySize[props.$size].artistNameFontSize};
   opacity: 0.75;
+  font-weight: ${font.weight.medium};
 `
 
 export const Title = styled.span<{ $size: TrackItemSize }>`
   font-size: ${props => configBySize[props.$size].titleFontSize};
-  font-weight: ${font.weight.medium};
+  font-weight: ${font.weight.bold};
 `
 
 export const Info = styled.div<{

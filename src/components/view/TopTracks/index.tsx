@@ -26,6 +26,7 @@ import DownloadIcon from 'components/shared/icons/Download'
 import TrackItem, { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
 import ColorPicker from 'components/shared/ColorPicker'
+import Switch from 'components/shared/Switch'
 
 export type TopTracksViewProps = {
   items: SpotifyTrack[]
@@ -81,6 +82,8 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
     useState<TrackItemStyle>('default')
   const boxRef = useRef<HTMLDivElement | null>(null)
   const [color, setColor] = useState<string>(dark.colors.layers[1].background)
+  const [enableBackgroundImage, setEnableBackgroundImage] = useState(true)
+  const [enableGradient, setEnableGradient] = useState(true)
 
   const saveAsImage = async () => {
     if (!boxRef.current) return
@@ -195,6 +198,24 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
             <S.SettingsFormSectionTitle>Cor</S.SettingsFormSectionTitle>
             <ColorPicker value={color} onChange={setColor} />
           </S.SettingsFormSection>
+          <S.SettingsFormSection>
+            <S.SettingsFormSectionTitle>
+              Usar imagem de plano de fundo
+            </S.SettingsFormSectionTitle>
+            <Switch
+              checked={enableBackgroundImage}
+              onChange={() => setEnableBackgroundImage(state => !state)}
+            />
+          </S.SettingsFormSection>
+          <S.SettingsFormSection>
+            <S.SettingsFormSectionTitle>
+              Usar gradiente
+            </S.SettingsFormSectionTitle>
+            <Switch
+              checked={enableGradient}
+              onChange={() => setEnableGradient(state => !state)}
+            />
+          </S.SettingsFormSection>
         </S.SettingsForm>
         <S.ActionButtons>
           <Button
@@ -215,7 +236,7 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
           <S.GeneratedBox
             ref={boxRef}
             $color={color}
-            $bgImageUrl={items[0].album.images[0].url}
+            $enableGradient={enableGradient}
           >
             {loading && (
               <S.LoadingBoard>
@@ -224,6 +245,9 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
             )}
             {!loading && (
               <>
+                {enableBackgroundImage && (
+                  <S.GeneratedBoxImage src={items[0].album.images[0].url} />
+                )}
                 <S.Title>
                   Seu top {limit}{' '}
                   {
