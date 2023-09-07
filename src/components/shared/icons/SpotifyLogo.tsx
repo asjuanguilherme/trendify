@@ -1,5 +1,3 @@
-'use-client'
-
 import createIconComponent from './utils/createIconComponent'
 
 const SpotifyLogo = createIconComponent({

@@ -1,5 +1,3 @@
-'use client'
-
 import * as S from './styles'
 import { ReactNode } from 'react'
 import XMarkIcon from 'components/shared/icons/Xmark'

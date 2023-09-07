@@ -1,5 +1,3 @@
-'use client'
-
 import { ModalComponentProps } from 'components/shared/Modal'
 import {
   createContext,

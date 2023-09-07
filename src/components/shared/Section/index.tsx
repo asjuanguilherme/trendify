@@ -1,5 +1,3 @@
-'use client'
-
 import { ReactNode } from 'react'
 import * as S from './styles'
 import Container from '../Container'

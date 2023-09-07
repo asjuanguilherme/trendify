@@ -1,4 +1,3 @@
-'use-client'
 import * as S from './styles'
 import Logo from 'components/shared/Logo'
 import EllipsisIcon from 'components/shared/icons/Ellipsis'
