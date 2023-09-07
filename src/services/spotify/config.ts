@@ -26,7 +26,7 @@ export const SPOTIFY_USER_AUTH_COOKIE_KEY = 'ACCESS_TOKEN'
 
 export const setAuthenticationCookie = (
   accessToken: string,
-  ctx?: GetServerSidePropsContext
+  ctx: GetServerSidePropsContext | null
 ) => {
   setCookie(ctx, SPOTIFY_USER_AUTH_COOKIE_KEY, accessToken, {
     maxAge: 60 * 60 * 24 * 30,

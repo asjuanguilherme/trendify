@@ -3,7 +3,7 @@ import * as spotifyAPIConfig from 'services/spotify/config'
 
 export type GetAuthenticateSpotifyUser = {
   code: string
-  ctx?: GetServerSidePropsContext
+  ctx: GetServerSidePropsContext | null
 }
 
 export const authenticateSpotifyUser = async ({
@@ -36,7 +36,7 @@ export const authenticateSpotifyUser = async ({
     spotifyAPIConfig.setAuthenticationCookie(data.access_token, ctx)
     return data
   } catch (err) {
-    spotifyAPIConfig.destroyAuthenticationCookie()
+    spotifyAPIConfig.destroyAuthenticationCookie(ctx)
     throw err
   }
 }
