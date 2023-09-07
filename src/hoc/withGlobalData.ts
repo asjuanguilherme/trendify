@@ -21,15 +21,14 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
   return async (
     ctx: GetServerSidePropsContext
   ): Promise<GetServerSidePropsResult<P & { global: AppGlobalProps }>> => {
-    const accessToken = getAuthenticationCookie()
-    let userData = null
-
-    if (accessToken) {
-      userData = await getCurrentUserProfile(ctx).catch(() => {
-        destroyAuthenticationCookie()
-        return null
-      })
-    }
+    const accessToken = getAuthenticationCookie(ctx)
+    const userData = accessToken
+      ? await getCurrentUserProfile(ctx).catch(() => {
+          destroyAuthenticationCookie(ctx)
+          console.log('ERRO')
+          return null
+        })
+      : null
 
     const callbackProps = await callback(ctx)
 
@@ -37,6 +36,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
       userData,
       theme: getThemeCookie(ctx)
     }
+
     return {
       ...callbackProps,
       props: {

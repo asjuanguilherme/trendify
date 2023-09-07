@@ -34,13 +34,15 @@ export const setAuthenticationCookie = (
   })
 }
 
-export const getAuthenticationCookie = (ctx?: GetServerSidePropsContext) => {
+export const getAuthenticationCookie = (
+  ctx: GetServerSidePropsContext | null
+) => {
   const cookies = parseCookies(ctx)
   return cookies[SPOTIFY_USER_AUTH_COOKIE_KEY]
 }
 
 export const destroyAuthenticationCookie = (
-  ctx?: GetServerSidePropsContext
+  ctx: GetServerSidePropsContext | null
 ) => {
   setCookie(ctx, SPOTIFY_USER_AUTH_COOKIE_KEY, '', {
     maxAge: 0,
@@ -48,7 +50,9 @@ export const destroyAuthenticationCookie = (
   })
 }
 
-export const setupSpotifyApiClient = (ctx?: GetServerSidePropsContext) => {
+export const setupSpotifyApiClient = (
+  ctx: GetServerSidePropsContext | null
+) => {
   const accessToken = getAuthenticationCookie(ctx)
 
   const spotifyApiClient = axios.create({

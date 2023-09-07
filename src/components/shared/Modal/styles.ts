@@ -13,7 +13,7 @@ import { screens } from 'styles/screens'
 export const BoxContent = styled.div`
   flex: 1;
   overflow: auto;
-  padding: ${spacing.components.medium};
+  padding: ${spacing.components.larger};
   padding-top: 0;
   line-height: 1.8em;
   font-size: ${font.sizes.small};
@@ -25,7 +25,6 @@ export const BoxContent = styled.div`
 
 export const Title = styled.h2`
   display: inline-flex;
-  padding-left: ${spacing.components.large};
   font-size: ${font.sizes.large};
   font-weight: ${font.weight.bold};
 `

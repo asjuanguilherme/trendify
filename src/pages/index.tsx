@@ -1,7 +1,16 @@
+import AuthenticatedHomeView from 'components/view/AuthenticatedHome'
 import UnauthenticatedViewHome from 'components/view/UnauthenticatedHome'
 import { withGlobalData } from 'hoc/withGlobalData'
+import { AppGlobalProps } from 'types'
 
-const IndexPage = () => {
+export type IndexPageProps = {
+  global: AppGlobalProps
+}
+
+const IndexPage = ({ global }: IndexPageProps) => {
+  if (global.userData)
+    return <AuthenticatedHomeView userData={global.userData!} />
+
   return <UnauthenticatedViewHome />
 }
 
