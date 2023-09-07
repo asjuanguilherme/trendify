@@ -2,7 +2,12 @@ import { appLayoutConfig } from '../styles'
 import Link from 'next/link'
 import { rem } from 'polished'
 import styled from 'styled-components'
-import { borderRadius, font, transition } from 'styles/designSystemConfig'
+import {
+  borderRadius,
+  font,
+  transition,
+  zIndex
+} from 'styles/designSystemConfig'
 import DefaultContainer from 'components/shared/Container'
 
 export const MenuButton = styled.button`
@@ -37,4 +42,8 @@ export const Wrapper = styled.header`
   top: 0;
   left: 0;
   width: 100%;
+  z-index: ${zIndex.navbar};
+  background: ${props => props.theme.colors.layers[0].background};
+  border-bottom: 1px solid ${props => props.theme.colors.layers[0].border};
+  border-radius: 0 0 ${borderRadius.medium} ${borderRadius.medium};
 `
