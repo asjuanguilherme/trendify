@@ -2,7 +2,7 @@ import { gothamFont } from 'fonts/gotham/config'
 import { breakpoints } from 'styles/screens'
 
 export const layout = {
-  containerMaxWidht: breakpoints.desktop + 'px',
+  containerMaxWidht: breakpoints.tabletS + 'px',
   gutter: '1.5rem'
 } as const
 
