@@ -1,5 +1,5 @@
 import * as S from './styles'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Types
 import { SpotifyTrack } from 'services/spotify/types/Track'
@@ -15,16 +15,16 @@ import {
   getMyTopTracks
 } from 'services/spotify/queries/getMyTopTracks'
 
-// Components
-import Spinner from 'components/shared/Spinner'
 import Container from 'components/shared/Container'
-import Logo from 'components/shared/Logo'
 import Button from 'components/shared/Button'
 import DownloadIcon from 'components/shared/icons/Download'
-import TrackItem, { TrackItemStyle } from 'components/shared/TrackItem'
+import { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
 import ColorPicker from 'components/shared/ColorPicker'
 import Switch from 'components/shared/Switch'
+import { timeRangeOptions } from 'components/shared/UserTopItemsBox/utils'
+import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
+import UserTopItemsBox from 'components/shared/UserTopItemsBox'
 
 export type TopTracksViewProps = {
   items: SpotifyTrack[]
@@ -32,45 +32,6 @@ export type TopTracksViewProps = {
 }
 
 const limitOptions = [3, 5, 10]
-
-const trackCardSizeByLimit = {
-  3: 'large',
-  5: 'medium',
-  10: 'small'
-}
-
-const timeRangeOptions: {
-  label: string
-  value: TimeRange
-  generatedText: string
-}[] = [
-  {
-    label: 'Último mês',
-    value: 'lastMonth',
-    generatedText: 'do último mês'
-  },
-  {
-    label: 'Último semestre',
-    value: 'lastSixMonths',
-    generatedText: 'do último semestre'
-  },
-  {
-    label: 'Todos os tempos',
-    value: 'allTime',
-    generatedText: 'de todos os tempos'
-  }
-]
-
-const generatedStyleOptions = [
-  {
-    label: 'Padrão',
-    value: 'default'
-  },
-  {
-    label: 'Spotify',
-    value: 'spotify'
-  }
-]
 
 const TopTracksView = ({
   items: initialItems,
@@ -80,7 +41,7 @@ const TopTracksView = ({
   const [loading, setLoading] = useState(false)
   const [limit, setLimit] = useState(5)
   const [timeRange, setTimeRange] = useState<TimeRange>('lastMonth')
-  const [generatedStyle, setGeneratedStyle] =
+  const [selectedItemsStyle, setSelectedItemsStyle] =
     useState<TrackItemStyle>('default')
   const boxRef = useRef<HTMLDivElement | null>(null)
   const [color, setColor] = useState<string>(dark.colors.layers[1].background)
@@ -93,11 +54,13 @@ const TopTracksView = ({
     if (!boxRef.current) return
 
     const canvas = await html2canvas(boxRef.current, {
-      windowWidth: 475,
-      useCORS: true
+      windowWidth: 350,
+      useCORS: true,
+      backgroundColor: 'transparent',
+      scale: 2
     })
 
-    const generatedImageURL = canvas.toDataURL('image/png', 3)
+    const generatedImageURL = canvas.toDataURL('image/png', 1)
 
     const downloadLink = document.createElement('a')
     downloadLink.href = generatedImageURL
@@ -160,9 +123,9 @@ const TopTracksView = ({
           <S.StyleOptions>
             <Dropdown
               label="Estilo dos Itens"
-              options={generatedStyleOptions}
-              selectedOptionValue={generatedStyle}
-              onValueChange={value => setGeneratedStyle(value as 'spotify')}
+              options={trackItemStyleVariantOptions}
+              selectedOptionValue={selectedItemsStyle}
+              onValueChange={value => setSelectedItemsStyle(value as 'spotify')}
               boxOptionsConfig={{
                 closeAfterSelectOption: true
               }}
@@ -199,57 +162,20 @@ const TopTracksView = ({
       </Container>
       <Container>
         <S.Board>
-          <S.GeneratedBox
-            ref={boxRef}
-            $color={color}
-            $enableGradient={enableGradient}
-            $enableBlur={enableBlur}
-          >
-            {loading && (
-              <S.LoadingBoard>
-                <Spinner />
-              </S.LoadingBoard>
-            )}
-            {!loading && (
-              <>
-                {enableBackgroundImage && (
-                  <S.GeneratedBoxImage $src={items[0].album.images[0].url} />
-                )}
-                {showProfileInfo && (
-                  <S.Profile>
-                    <S.ProfileImage src={userData.images[0].url} alt="" />
-                    <S.ProfileName>{userData.display_name}</S.ProfileName>
-                  </S.Profile>
-                )}
-                <S.Title>
-                  Top {limit}{' '}
-                  {
-                    timeRangeOptions.filter(item => item.value === timeRange)[0]
-                      .generatedText
-                  }
-                </S.Title>
-                <S.Date>
-                  {new Intl.DateTimeFormat('pt-BR', {
-                    dateStyle: 'long'
-                  }).format(new Date())}
-                </S.Date>
-                <S.ItemsList $style={generatedStyle}>
-                  {items.map(item => (
-                    <li key={item.id}>
-                      <TrackItem
-                        data={item}
-                        size={trackCardSizeByLimit[limit as 3] as 'small'}
-                        style={generatedStyle}
-                      />
-                    </li>
-                  ))}
-                </S.ItemsList>
-                <S.CreatedBy>
-                  Criado em <Logo />
-                </S.CreatedBy>
-              </>
-            )}
-          </S.GeneratedBox>
+          <UserTopItemsBox
+            type="tracks"
+            trackItems={items}
+            boxRef={boxRef}
+            color={color}
+            enableBackgroundImage={enableBackgroundImage}
+            enableBlur={enableBlur}
+            enableGradient={enableGradient}
+            limit={limit}
+            selectedItemsStyle={selectedItemsStyle}
+            showProfileInfo={showProfileInfo}
+            timeRange={timeRange}
+            userData={userData}
+          />
         </S.Board>
       </Container>
     </S.Wrapper>

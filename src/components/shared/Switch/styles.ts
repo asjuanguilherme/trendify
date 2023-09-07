@@ -1,4 +1,4 @@
-import { lighten } from 'polished'
+import { darken, lighten } from 'polished'
 import styled from 'styled-components'
 import {
   borderRadius,
@@ -38,7 +38,10 @@ export const Wrapper = styled.label`
     height: 1.5rem;
     width: 3rem;
     border-radius: ${borderRadius.pill};
-    background: ${props => lighten(0.15, props.theme.colors.layers[1].border)};
+    background: ${props =>
+      props.theme.name === 'dark'
+        ? lighten(0.15, props.theme.colors.layers[1].border)
+        : darken(0.15, props.theme.colors.layers[1].border)};
   }
 
   input:checked ~ ${SwitchTrack} {

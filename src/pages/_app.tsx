@@ -22,7 +22,7 @@ const App = ({
       >
         <ModalProvider>
           <GlobalStyles />
-          <AppLayout>
+          <AppLayout userData={pageProps.global?.userData! || null}>
             <Component {...pageProps} />
           </AppLayout>
         </ModalProvider>

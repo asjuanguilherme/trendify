@@ -1,9 +1,14 @@
 import { SpotifyAlbum } from './Album'
-import { SpotifyArtist } from './Artist'
 
 export type SpotifyTrack = {
   album: SpotifyAlbum
-  artists: SpotifyArtist[]
+  artists: {
+    href: string
+    id: string
+    name: string
+    type: string
+    uri: string
+  }[]
   available_markets: string[]
   disc_number: number
   duration_ms: number

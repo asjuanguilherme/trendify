@@ -4,7 +4,7 @@ import mainColors from 'styles/mainColors'
 
 const dark: DefaultTheme = {
   name: 'dark',
-  title: 'Dark',
+  title: 'Escuro',
   icon: <Moon />,
   colors: {
     title: '#E3F6EA',

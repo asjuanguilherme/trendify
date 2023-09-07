@@ -5,10 +5,42 @@ import styled from 'styled-components'
 import {
   borderRadius,
   font,
+  spacing,
   transition,
   zIndex
 } from 'styles/designSystemConfig'
 import DefaultContainer from 'components/shared/Container'
+
+export const ProfilePhoto = styled.img`
+  flex-shrink: 0;
+  height: ${rem(48)};
+  width: ${rem(48)};
+  border-radius: ${borderRadius.circle};
+`
+
+export const ProfileName = styled.span`
+  font-size: ${font.sizes.larger};
+  font-weight: ${font.weight.bold};
+`
+
+export const ProfileResume = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${spacing.components.small};
+  margin-bottom: ${spacing.sections.smaller};
+`
+
+export const MenuOptionsGroup = styled.div``
+
+export const MenuOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.components.small};
+
+  ${MenuOptionsGroup}:not(:last-child) {
+    border-bottom: 1px solid ${props => props.theme.colors.layers[1].border};
+  }
+`
 
 export const MenuButton = styled.button`
   width: ${rem(40)};

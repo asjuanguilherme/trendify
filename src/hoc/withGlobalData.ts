@@ -25,7 +25,6 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
     const userData = accessToken
       ? await getCurrentUserProfile(ctx).catch(() => {
           destroyAuthenticationCookie(ctx)
-          console.log('ERRO')
           return null
         })
       : null
@@ -34,7 +33,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
 
     const globalProps = {
       userData,
-      theme: getThemeCookie(ctx)
+      storedTheme: getThemeCookie(ctx)
     }
 
     return {
