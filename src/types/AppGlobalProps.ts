@@ -1,8 +1,7 @@
 import { ThemeName } from 'styles/themes'
+import { SpotifyUserProfile } from 'services/spotify/types'
 
-type AppGlobalProps = {
+export type AppGlobalProps = {
   storedTheme: ThemeName
-  authToken: string
+  userData: SpotifyUserProfile | null
 }
-
-export default AppGlobalProps

@@ -1,5 +1,5 @@
 import { rem } from 'polished'
-import { styled } from 'styled-components'
+import styled from 'styled-components'
 import { spacing } from 'styles/designSystemConfig'
 
 export const appLayoutConfig = {

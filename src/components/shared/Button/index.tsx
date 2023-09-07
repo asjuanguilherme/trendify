@@ -1,5 +1,3 @@
-'use client'
-
 import * as S from './styles'
 import { CSSProperties, MouseEvent, MutableRefObject, ReactNode } from 'react'
 import { MainColorsKeys, LayerIndex } from '../../../../styled'

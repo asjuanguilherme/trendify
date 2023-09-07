@@ -9,7 +9,7 @@ module.exports = plop => {
       {
         type: 'list',
         name: 'category',
-        choices: ['shared', 'layout', 'infra', 'pattern'],
+        choices: ['shared', 'layout', 'infra', 'pattern', 'view'],
         message: 'Select a category for the component'
       },
       {

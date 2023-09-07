@@ -6,7 +6,7 @@ const state = utils.generateRandomString(16)
 const scope = 'user-read-private user-read-email user-top-read'
 const redirect_uri = spotifyServiceConfig.SPOTIFY_LOGIN_REDIRECT_URL
 const spotifyAuthURL =
-  spotifyServiceConfig.SPOTIFY_ACCOUNTS_URL +
+  spotifyServiceConfig.SPOTIFY_ACCOUNTS_API_URL +
   'authorize?' +
   utils.objectToQuerystring({
     response_type: 'code',

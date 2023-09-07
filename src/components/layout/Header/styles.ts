@@ -1,4 +1,4 @@
-import { appLayoutConfig } from 'app/styles'
+import { appLayoutConfig } from '../styles'
 import Link from 'next/link'
 import { rem } from 'polished'
 import styled from 'styled-components'

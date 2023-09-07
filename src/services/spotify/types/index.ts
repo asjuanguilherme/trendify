@@ -1,1 +1,1 @@
-export * from './ExampleDTO'
+export * from './UserProfile'

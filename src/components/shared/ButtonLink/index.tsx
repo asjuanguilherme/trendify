@@ -1,5 +1,3 @@
-'use client'
-
 import * as S from './styles'
 import Button, { ButtonProps } from '../Button'
 

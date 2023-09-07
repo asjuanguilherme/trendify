@@ -1,22 +1,22 @@
-'use client'
-
-import React from 'react'
+import * as S from './styles'
 import Section from 'components/shared/Section'
-import SpotifyLogo from 'components/shared/icons/SpotifyLogo'
 import ButtonLink from 'components/shared/ButtonLink'
+import SpotifyLogo from 'components/shared/icons/SpotifyLogo'
 
-const RootPage = async () => {
+export type UnauthenticatedHomeViewProps = {}
+
+const UnauthenticatedViewHome = ({}: UnauthenticatedHomeViewProps) => {
   return (
-    <div>
+    <S.Wrapper>
       <Section title="Descubra seu topify">
-        <p>Suas músicas em destaque, de um jeito rápido, fácil elegante.</p>
+        <p>Suas músicas em destaque, de um jeito rápido, fácil e elegante.</p>
         <ButtonLink fillWidth style={{ marginTop: '1.5rem' }} href="/login">
           Entrar com
           <SpotifyLogo style={{ fontSize: '5rem', marginLeft: '-.5rem' }} />
         </ButtonLink>
       </Section>
-    </div>
+    </S.Wrapper>
   )
 }
 
-export default RootPage
+export default UnauthenticatedViewHome
