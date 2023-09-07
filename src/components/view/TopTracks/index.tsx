@@ -22,8 +22,8 @@ import Logo from 'components/shared/Logo'
 import Button from 'components/shared/Button'
 import GearIcon from 'components/shared/icons/Gear'
 import DownloadIcon from 'components/shared/icons/Download'
-import ButtonLink from 'components/shared/ButtonLink'
-import TrackItem from 'components/shared/TrackItem'
+import TrackItem, { TrackItemStyle } from 'components/shared/TrackItem'
+import Dropdown from 'components/shared/Dropdown'
 
 export type TopTracksViewProps = {
   items: SpotifyTrack[]
@@ -59,11 +59,24 @@ const timeRangeOptions: {
   }
 ]
 
+const generatedStyleOptions = [
+  {
+    label: 'Padrão',
+    value: 'default'
+  },
+  {
+    label: 'Spotify',
+    value: 'spotify'
+  }
+]
+
 const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
   const [items, setItems] = useState(initialItems)
   const [loading, setLoading] = useState(false)
   const [limit, setLimit] = useState(5)
   const [timeRange, setTimeRange] = useState<TimeRange>('lastMonth')
+  const [generatedStyle, setGeneratedStyle] =
+    useState<TrackItemStyle>('default')
   const boxRef = useRef<HTMLDivElement | null>(null)
 
   const saveAsImage = async () => {
@@ -105,44 +118,20 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
     return (
       <S.SettingsForm>
         <S.SettingsFormSection>
-          <S.SettingsFormSectionTitle>
-            Quantidade de Itens
-          </S.SettingsFormSectionTitle>
-          <S.LimitButtons>
-            {limitOptions.map(option => (
-              <Button
-                key={option}
-                onClick={() => setLimit(option)}
-                variant={option === limit ? 'filled' : 'outlined'}
-                onlyIcon
-                disabled={loading}
-              >
-                {option}
-              </Button>
-            ))}
-          </S.LimitButtons>
-        </S.SettingsFormSection>
-        <S.SettingsFormSection>
-          <S.SettingsFormSectionTitle>
-            Tempo de Referência
-          </S.SettingsFormSectionTitle>
-          <S.TimeRangeOptions>
-            {timeRangeOptions.map(option => (
-              <Button
-                key={option.value}
-                onClick={() => setTimeRange(option.value)}
-                fillWidth
-                variant={option.value == timeRange ? 'filled' : 'outlined'}
-                disabled={loading}
-              >
-                {option.label}
-              </Button>
-            ))}
-          </S.TimeRangeOptions>
+          <S.SettingsFormSectionTitle>Estilo</S.SettingsFormSectionTitle>
+          <Dropdown
+            options={generatedStyleOptions}
+            selectedOptionValue={generatedStyle}
+            onValueChange={value => setGeneratedStyle(value as 'spotify')}
+            boxOptionsConfig={{
+              closeAfterSelectOption: true
+            }}
+            fillWidth
+          />
         </S.SettingsFormSection>
       </S.SettingsForm>
     )
-  }, [limit, timeRange, loading])
+  }, [generatedStyle, loading])
 
   const topTracksSettingsModal = useModal(
     ModalIdentifiers.TOP_TRACKS_SETTINGS,
@@ -163,18 +152,53 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
   return (
     <S.Wrapper>
       <Container>
-        <ButtonLink color="secondary" fillWidth href="/my-top-artists">
-          Gerar Top Artistas
-        </ButtonLink>
+        <S.SettingsForm>
+          <S.SettingsFormSection>
+            <S.SettingsFormSectionTitle>
+              Tempo de Referência
+            </S.SettingsFormSectionTitle>
+            <S.TimeRangeOptions>
+              {timeRangeOptions.map(option => (
+                <Button
+                  key={option.value}
+                  onClick={() => setTimeRange(option.value)}
+                  variant={option.value == timeRange ? 'filled' : 'basic'}
+                  size="smaller"
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </S.TimeRangeOptions>
+          </S.SettingsFormSection>
+          <S.SettingsFormSection>
+            <S.SettingsFormSectionTitle>
+              Quantidade de Itens
+            </S.SettingsFormSectionTitle>
+            <S.LimitButtons>
+              {limitOptions.map(option => (
+                <Button
+                  key={option}
+                  onClick={() => setLimit(option)}
+                  variant={option === limit ? 'filled' : 'basic'}
+                  onlyIcon
+                  size="small"
+                >
+                  {option}
+                </Button>
+              ))}
+            </S.LimitButtons>
+          </S.SettingsFormSection>
+        </S.SettingsForm>
         <S.ActionButtons>
           <Button
             variant="basic"
             fillWidth
             onClick={topTracksSettingsModal.open}
+            size="small"
           >
             Configurar <GearIcon />
           </Button>
-          <Button variant="basic" fillWidth onClick={saveAsImage}>
+          <Button variant="basic" fillWidth onClick={saveAsImage} size="small">
             Salvar <DownloadIcon />
           </Button>
         </S.ActionButtons>
@@ -201,12 +225,13 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
                     dateStyle: 'long'
                   }).format(new Date())}
                 </S.Date>
-                <S.ItemsList>
+                <S.ItemsList $style={generatedStyle}>
                   {items.map(item => (
                     <li key={item.id}>
                       <TrackItem
                         data={item}
                         size={trackCardSizeByLimit[limit as 3] as 'small'}
+                        style={generatedStyle}
                       />
                     </li>
                   ))}

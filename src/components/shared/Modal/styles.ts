@@ -12,7 +12,7 @@ import { screens } from 'styles/screens'
 
 export const BoxContent = styled.div`
   flex: 1;
-  overflow: auto;
+  /* overflow: auto; */
   padding: ${spacing.components.larger};
   padding-top: 0;
   line-height: 1.8em;
@@ -60,7 +60,7 @@ export const Box = styled.div<{
   background: ${props => props.theme.colors.layers[1].background};
   border: 1px solid ${props => props.theme.colors.layers[1].border};
   border-radius: ${borderRadius.medium};
-  overflow: hidden;
+  /* overflow: hidden; */
   animation: ${appearBoxKeyframes} ${transition.default} ease-out;
   display: flex;
   flex-direction: column;

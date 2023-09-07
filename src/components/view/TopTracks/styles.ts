@@ -1,4 +1,6 @@
+import { TrackItemStyle } from 'components/shared/TrackItem'
 import styled from 'styled-components'
+import { css } from 'styled-components'
 import { borderRadius, font, spacing } from 'styles/designSystemConfig'
 
 export const LoadingBoard = styled.div`
@@ -11,7 +13,7 @@ export const LoadingBoard = styled.div`
 
 export const TimeRangeOptions = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: ${spacing.components.small};
 `
 
@@ -50,18 +52,31 @@ export const CreatedBy = styled.span`
   }
 `
 
-export const ItemsList = styled.ul`
+export const ItemsList = styled.ul<{ $style: TrackItemStyle }>`
   display: flex;
   flex-direction: column;
-  gap: ${spacing.components.smaller};
-  list-style: none;
+
+  ${({ $style }) => {
+    switch ($style) {
+      case 'spotify':
+        return css`
+          gap: ${spacing.components.small};
+          list-style: none;
+        `
+      default:
+        return css`
+          list-style: none;
+          gap: ${spacing.components.smaller};
+        `
+    }
+  }}
 `
 
 export const Date = styled.span`
   display: block;
   font-size: ${font.sizes.small};
   opacity: 0.75;
-  margin-bottom: ${spacing.components.medium};
+  margin-bottom: ${spacing.components.larger};
 `
 
 export const Title = styled.h2`
