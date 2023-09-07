@@ -49,6 +49,7 @@ const TopTracksView = ({
   const [enableGradient, setEnableGradient] = useState(true)
   const [enableBlur, setEnableBlur] = useState(true)
   const [showProfileInfo, setShowProfileInfo] = useState(true)
+  const [enableBadgeHightlights, setEnableBadgeHighlights] = useState(true)
 
   const saveAsImage = async () => {
     if (!boxRef.current) return
@@ -152,6 +153,11 @@ const TopTracksView = ({
               checked={showProfileInfo}
               onChange={() => setShowProfileInfo(state => !state)}
             />
+            <Switch
+              label="Exibir numeração no top 3"
+              checked={enableBadgeHightlights}
+              onChange={() => setEnableBadgeHighlights(state => !state)}
+            />
           </S.StyleOptions>
         </S.SettingsForm>
         <S.ActionButtons>
@@ -170,6 +176,7 @@ const TopTracksView = ({
             enableBackgroundImage={enableBackgroundImage}
             enableBlur={enableBlur}
             enableGradient={enableGradient}
+            enableBadgeHightlights={enableBadgeHightlights}
             limit={limit}
             selectedItemsStyle={selectedItemsStyle}
             showProfileInfo={showProfileInfo}

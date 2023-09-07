@@ -42,16 +42,28 @@ export const CreatedBy = styled.span`
   }
 `
 
-export const ItemsList = styled.ul<{ $style: TrackItemStyle }>`
+export const ItemsList = styled.ul<{
+  $style: TrackItemStyle
+  $backgroundColor: string
+}>`
   display: flex;
   flex-direction: column;
 
-  ${({ $style }) => {
+  ${({ $style, $backgroundColor }) => {
     switch ($style) {
       case 'spotify':
         return css`
           gap: ${spacing.components.small};
           list-style: none;
+        `
+      case 'apple-music':
+        return css`
+          list-style: none;
+
+          li:not(:last-child) {
+            border-bottom: 1px solid
+              ${readableColor($backgroundColor, '#00000020', '#ffffff20')};
+          }
         `
       default:
         return css`

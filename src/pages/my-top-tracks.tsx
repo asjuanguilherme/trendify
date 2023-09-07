@@ -1,6 +1,6 @@
+import React from 'react'
 import TopTracksView from 'components/view/TopTracks'
 import { withGlobalData } from 'hoc/withGlobalData'
-import React from 'react'
 import { getAuthenticationCookie } from 'services/spotify/config'
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
 import { SpotifyTrack } from 'services/spotify/types/Track'
@@ -12,7 +12,11 @@ export type MyTopTracksPageProps = {
 }
 
 const MyTopTracksPage = ({ items, global }: MyTopTracksPageProps) => {
-  return <TopTracksView items={items} userData={global.userData!} />
+  return (
+    <>
+      <TopTracksView items={items} userData={global.userData!} />
+    </>
+  )
 }
 
 export const getServerSideProps = withGlobalData(async ctx => {

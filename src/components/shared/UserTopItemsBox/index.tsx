@@ -28,6 +28,7 @@ export type UserTopItemsBoxProps = {
   userData: SpotifyUserProfile
   selectedItemsStyle: TrackItemStyle
   timeRange: TimeRange
+  enableBadgeHightlights: boolean
 }
 
 const trackItemsSizeByLimit = {
@@ -48,7 +49,8 @@ const UserTopItemsBox = ({
   trackItems,
   artistItems,
   timeRange,
-  selectedItemsStyle
+  selectedItemsStyle,
+  enableBadgeHightlights
 }: UserTopItemsBoxProps) => {
   if (!trackItems && !artistItems)
     throw new Error('You must define trackItems or artistItems prop.')
@@ -87,12 +89,20 @@ const UserTopItemsBox = ({
             dateStyle: 'long'
           }).format(new Date())}
         </S.Date>
-        <S.ItemsList $style={selectedItemsStyle}>
+        <S.ItemsList $style={selectedItemsStyle} $backgroundColor={color}>
           {trackItems &&
             trackItems.length > 0 &&
-            trackItems.map(item => (
+            trackItems.map((item, index) => (
               <li key={item.id}>
                 <TrackItem
+                  itemsBoxColor={color}
+                  badgeNumber={
+                    enableBadgeHightlights
+                      ? index > 2
+                        ? undefined
+                        : index + 1
+                      : undefined
+                  }
                   data={item}
                   size={trackItemsSizeByLimit[limit as 3] as 'small'}
                   style={selectedItemsStyle}

@@ -6,5 +6,9 @@ export const trackItemStyleVariantOptions = [
   {
     label: 'Spotify',
     value: 'spotify'
+  },
+  {
+    label: 'Apple Music',
+    value: 'apple-music'
   }
 ]
