@@ -34,13 +34,9 @@ export const authenticateSpotifyUser = async ({
     )
 
     spotifyAPIConfig.setAuthenticationCookie(data.access_token, ctx)
-    spotifyAPIConfig.setAuthenticationHeader(data.access_token)
-
     return data
   } catch (err) {
-    spotifyAPIConfig.removeAuthenticationHeader()
     spotifyAPIConfig.destroyAuthenticationCookie()
-
     throw err
   }
 }
