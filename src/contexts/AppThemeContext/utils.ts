@@ -14,7 +14,7 @@ export const storeThemeStateToCookies = (
   })
 }
 
-export const getThemeCookie = (ctx?: GetServerSidePropsContext) => {
+export const getThemeCookie = (ctx?: GetServerSidePropsContext): ThemeName => {
   const cookies = parseCookies(ctx)
   const storedTheme = cookies[APP_THEME_COOKIE_KEY]
 
@@ -24,5 +24,5 @@ export const getThemeCookie = (ctx?: GetServerSidePropsContext) => {
     return DEFAULT_THEME
   }
 
-  return storedTheme
+  return storedTheme as ThemeName
 }

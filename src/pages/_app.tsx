@@ -9,14 +9,17 @@ import { ModalProvider } from 'contexts/ModalContext'
 // Components
 import GlobalStyles from 'styles/GlobalStyles'
 import AppLayout from 'components/layout'
+import { getThemeCookie } from 'contexts/AppThemeContext/utils'
 
 const App = ({
   Component,
   pageProps
-}: AppProps<{ global: AppGlobalProps }>) => {
+}: AppProps<{ global?: AppGlobalProps }>) => {
   return (
     <>
-      <AppThemeProvider storedTheme={pageProps.global.storedTheme}>
+      <AppThemeProvider
+        storedTheme={pageProps.global?.storedTheme || getThemeCookie()}
+      >
         <ModalProvider>
           <GlobalStyles />
           <AppLayout>
