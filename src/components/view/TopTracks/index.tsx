@@ -70,7 +70,7 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
     if (!boxRef.current) return
 
     const canvas = await html2canvas(boxRef.current, {
-      windowWidth: 380,
+      windowWidth: 475,
       useCORS: true
     })
     const generatedImageURL = canvas.toDataURL('image/png', 1.3)

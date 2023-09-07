@@ -43,6 +43,9 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${spacing.components.smaller};
+  padding: ${spacing.components.smaller};
+  padding-top: ${rem(2)};
+  padding-left: 0;
 `
 
 export const AlbumImage = styled.img<{ $size: TrackItemSize }>`
@@ -54,7 +57,7 @@ export const AlbumImage = styled.img<{ $size: TrackItemSize }>`
 export const Wrapper = styled.div<{ $size: TrackItemSize }>`
   display: flex;
   gap: ${spacing.components.small};
-  padding: ${spacing.components.smaller};
+  padding: ${rem(2)};
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: ${borderRadius.small};
