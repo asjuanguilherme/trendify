@@ -1,10 +1,7 @@
 import { rem } from 'polished'
 import styled, { css } from 'styled-components'
 import { borderRadius, font, spacing } from 'styles/designSystemConfig'
-import {
-  TrackItemSize,
-  TrackItemStyle
-} from './src/components/shared/TrackItem'
+import { TrackItemSize, TrackItemStyle } from '.'
 
 const configBySize: Record<
   TrackItemSize,
@@ -39,7 +36,6 @@ export const ArtistName = styled.span<{ $size: TrackItemSize }>`
 export const Title = styled.span<{ $size: TrackItemSize }>`
   font-size: ${props => configBySize[props.$size].titleFontSize};
   font-weight: ${font.weight.medium};
-  color: ${props => props.theme.colors.title};
 `
 
 export const Info = styled.div<{

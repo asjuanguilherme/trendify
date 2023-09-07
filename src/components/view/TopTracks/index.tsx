@@ -8,6 +8,7 @@ import { SpotifyTrack } from 'services/spotify/types/Track'
 import ModalIdentifiers from 'contexts/ModalContext/identifiers'
 import { useModal } from 'contexts/ModalContext'
 import html2canvas from 'html2canvas'
+import dark from 'styles/themes/dark'
 
 // Services
 import {
@@ -24,6 +25,7 @@ import GearIcon from 'components/shared/icons/Gear'
 import DownloadIcon from 'components/shared/icons/Download'
 import TrackItem, { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
+import ColorPicker from 'components/shared/ColorPicker'
 
 export type TopTracksViewProps = {
   items: SpotifyTrack[]
@@ -78,6 +80,7 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
   const [generatedStyle, setGeneratedStyle] =
     useState<TrackItemStyle>('default')
   const boxRef = useRef<HTMLDivElement | null>(null)
+  const [color, setColor] = useState<string>(dark.colors.layers[1].background)
 
   const saveAsImage = async () => {
     if (!boxRef.current) return
@@ -188,6 +191,10 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
               ))}
             </S.LimitButtons>
           </S.SettingsFormSection>
+          <S.SettingsFormSection>
+            <S.SettingsFormSectionTitle>Cor</S.SettingsFormSectionTitle>
+            <ColorPicker value={color} onChange={setColor} />
+          </S.SettingsFormSection>
         </S.SettingsForm>
         <S.ActionButtons>
           <Button
@@ -205,7 +212,11 @@ const TopTracksView = ({ items: initialItems }: TopTracksViewProps) => {
       </Container>
       <Container>
         <S.Board>
-          <S.GeneratedBox ref={boxRef}>
+          <S.GeneratedBox
+            ref={boxRef}
+            $color={color}
+            $bgImageUrl={items[0].album.images[0].url}
+          >
             {loading && (
               <S.LoadingBoard>
                 <Spinner />

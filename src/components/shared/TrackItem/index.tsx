@@ -1,5 +1,5 @@
 import { SpotifyTrack } from 'services/spotify/types/Track'
-import * as S from '../../../../styles'
+import * as S from './styles'
 
 export type TrackItemSize = 'small' | 'medium' | 'large'
 

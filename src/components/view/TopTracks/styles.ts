@@ -1,4 +1,5 @@
 import { TrackItemStyle } from 'components/shared/TrackItem'
+import { darken, readableColor } from 'polished'
 import styled from 'styled-components'
 import { css } from 'styled-components'
 import { borderRadius, font, spacing } from 'styles/designSystemConfig'
@@ -38,7 +39,6 @@ export const SettingsForm = styled.div``
 
 export const CreatedBy = styled.span`
   font-size: ${font.sizes.smaller};
-  color: rgba(255, 255, 255, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,9 +85,30 @@ export const Title = styled.h2`
   margin-bottom: ${spacing.components.small};
 `
 
-export const GeneratedBox = styled.div`
-  background: ${props => props.theme.colors.layers[1].background};
+export const GeneratedBox = styled.div<{ $color: string; $bgImageUrl: string }>`
+  background: linear-gradient(
+    ${props => props.$color},
+    ${props => darken(0.15, props.$color)}
+  );
+
   padding: ${spacing.components.medium};
+  color: ${props => readableColor(props.$color, 'black', 'white')};
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background-image: url(${props => props.$bgImageUrl});
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+  }
 `
 
 export const Board = styled.div`
