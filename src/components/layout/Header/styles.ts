@@ -4,6 +4,7 @@ import { rem } from 'polished'
 import styled from 'styled-components'
 import {
   borderRadius,
+  buttonSizes,
   font,
   spacing,
   transition,
@@ -47,21 +48,26 @@ export const ProfileResume = styled.div`
   margin-bottom: ${spacing.sections.smaller};
 `
 
-export const MenuOptionsGroup = styled.div``
+export const MenuOptionsGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.components.smaller};
+`
 
 export const MenuOptions = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${spacing.components.small};
+  gap: ${spacing.components.medium};
 
   ${MenuOptionsGroup}:not(:last-child) {
+    padding-bottom: ${spacing.components.medium};
     border-bottom: 1px solid ${props => props.theme.colors.layers[1].border};
   }
 `
 
 export const MenuButton = styled.button`
-  width: ${rem(40)};
-  height: ${rem(40)};
+  width: ${buttonSizes.small};
+  height: ${buttonSizes.small};
   font-size: ${font.sizes.large};
   border-radius: ${borderRadius.circle};
   display: inline-flex;
@@ -69,7 +75,8 @@ export const MenuButton = styled.button`
   justify-content: center;
   cursor: pointer;
   transition: ${transition.fast};
-  color: black;
+  color: ${props => props.theme.colors.layers[0].background};
+  background: ${props => props.theme.colors.text};
 
   &:hover {
     color: ${props => props.theme.colors.main.secondary.normal};
@@ -77,7 +84,7 @@ export const MenuButton = styled.button`
 `
 
 export const LogoWrapper = styled(Link)`
-  font-size: 2.5rem;
+  font-size: 2rem;
 `
 
 export const Container = styled(DefaultContainer)`

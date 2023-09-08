@@ -31,7 +31,7 @@ const Header = ({ userData }: HeaderProps) => {
 
   const menuModal = useModal('APP_MENU', {
     opened: false,
-    title: 'Menu',
+    title: 'Opções',
     width: 400
   })
 
@@ -65,16 +65,37 @@ const Header = ({ userData }: HeaderProps) => {
                   )}
                   <S.ProfileName>{userData.display_name}</S.ProfileName>
                 </S.ProfileResume>{' '}
-                <Button onClick={logout} fillWidth variant="basic">
+                <Button
+                  onClick={logout}
+                  fillWidth
+                  color="secondary"
+                  size="smaller"
+                >
                   Sair da sua conta <RightFromBracketIcon />
                 </Button>
               </>
             )}
           </S.MenuOptionsGroup>
           <S.MenuOptionsGroup>
-            <Button onClick={theme.themeToggle} fillWidth variant="basic">
+            <Button
+              onClick={theme.themeToggle}
+              fillWidth
+              variant="basic"
+              layer={0}
+              size="small"
+            >
               Tema {theme.title} {theme.icon}
             </Button>
+            <ButtonLink
+              fillWidth
+              variant="basic"
+              layer={0}
+              size="small"
+              href="/my-top-tracks"
+              onClick={menuModal.close}
+            >
+              Gerar top músicas
+            </ButtonLink>
           </S.MenuOptionsGroup>
         </S.MenuOptions>
       )

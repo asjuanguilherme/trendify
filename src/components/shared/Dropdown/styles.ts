@@ -24,7 +24,7 @@ export const Option = styled.li<{ selected: boolean }>`
   padding: ${spacing.components.small} ${spacing.components.larger};
   border-radius: ${borderRadius.small};
   cursor: pointer;
-  font-size: ${font.sizes.small};
+  font-size: ${font.sizes.default};
   display: inline-flex;
   gap: ${spacing.components.small};
   align-items: center;
@@ -151,8 +151,7 @@ export const Button = styled(DefaultButton)`
 
 export const Label = styled.span`
   display: inline-flex;
-  font-size: ${font.sizes.default};
-  font-weight: ${font.weight.medium};
+  font-size: ${font.sizes.small};
   padding-left: ${spacing.components.smaller};
   padding-bottom: ${spacing.components.small};
 `

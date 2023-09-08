@@ -1,5 +1,5 @@
 import { readableColor, rem } from 'polished'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   borderRadius,
   buttonSizes,
@@ -7,7 +7,9 @@ import {
   transition
 } from 'styles/designSystemConfig'
 
-export const SelectedColor = styled.span<{ $color: string }>`
+export const SelectedColor = styled.span<{
+  $color: string
+}>`
   display: inline-block;
   height: ${buttonSizes.smaller};
   width: ${buttonSizes.smaller};

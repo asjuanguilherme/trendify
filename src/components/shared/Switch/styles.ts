@@ -6,6 +6,7 @@ import {
   spacing,
   transition
 } from 'styles/designSystemConfig'
+import { LayerIndex } from '../../../../styled'
 
 export const SwitchDot = styled.div`
   display: inline-block;
@@ -25,9 +26,8 @@ export const SwitchTrack = styled.span`
   position: relative;
 `
 
-export const Wrapper = styled.label`
-  font-size: ${font.sizes.default};
-  font-weight: ${font.weight.medium};
+export const Wrapper = styled.label<{ $layer: LayerIndex }>`
+  font-size: ${font.sizes.small};
   display: flex;
   align-items: center;
   gap: ${spacing.components.small};
@@ -40,8 +40,8 @@ export const Wrapper = styled.label`
     border-radius: ${borderRadius.pill};
     background: ${props =>
       props.theme.name === 'dark'
-        ? lighten(0.15, props.theme.colors.layers[1].border)
-        : darken(0.15, props.theme.colors.layers[1].border)};
+        ? lighten(0.1, props.theme.colors.layers[props.$layer].border)
+        : darken(0.1, props.theme.colors.layers[props.$layer].border)};
   }
 
   input:checked ~ ${SwitchTrack} {

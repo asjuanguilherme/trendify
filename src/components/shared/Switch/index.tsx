@@ -1,21 +1,24 @@
 import { ChangeEventHandler } from 'react'
 import * as S from './styles'
+import { LayerIndex } from '../../../../styled'
 
 export type SwitchProps = {
-  label?: string
-  labelPosition?: 'start' | 'end'
   checked: boolean
   onChange: ChangeEventHandler
+  label?: string
+  labelPosition?: 'start' | 'end'
+  layer?: LayerIndex
 }
 
 const Switch = ({
   label,
   labelPosition = 'end',
   checked,
-  onChange
+  onChange,
+  layer = 1
 }: SwitchProps) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper $layer={layer}>
       {labelPosition === 'start' && label}
       <input type="checkbox" checked={checked} onChange={onChange} hidden />
       <S.SwitchTrack>

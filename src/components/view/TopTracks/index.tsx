@@ -20,11 +20,13 @@ import Button from 'components/shared/Button'
 import DownloadIcon from 'components/shared/icons/Download'
 import { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
-import ColorPicker from 'components/shared/ColorPicker'
 import Switch from 'components/shared/Switch'
 import { timeRangeOptions } from 'components/shared/UserTopItemsBox/utils'
 import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
 import UserTopItemsBox from 'components/shared/UserTopItemsBox'
+import ColorPicker from 'components/shared/ColorPicker'
+import ColorOption from 'components/shared/ColorOption'
+import mainColors from 'styles/mainColors'
 
 export type TopTracksViewProps = {
   items: SpotifyTrack[]
@@ -32,6 +34,16 @@ export type TopTracksViewProps = {
 }
 
 const limitOptions = [3, 5, 10]
+
+const suggestedColors = [
+  mainColors.primary.normal,
+  mainColors.secondary.normal,
+  '#E5C02D',
+  '#2B2382',
+  '#E253EF',
+  '#000000',
+  '#ffffff'
+]
 
 const TopTracksView = ({
   items: initialItems,
@@ -50,6 +62,7 @@ const TopTracksView = ({
   const [enableBlur, setEnableBlur] = useState(true)
   const [showProfileInfo, setShowProfileInfo] = useState(true)
   const [enableBadgeHightlights, setEnableBadgeHighlights] = useState(true)
+  const [showAdvancedStyles, setShowAdvancedStyles] = useState(false)
 
   const saveAsImage = async () => {
     if (!boxRef.current) return
@@ -88,81 +101,123 @@ const TopTracksView = ({
         <S.SettingsForm>
           <S.SettingsFormSection>
             <S.SettingsFormSectionTitle>
-              Tempo de Referência
+              Gerar Top Músicas Ouvidas
             </S.SettingsFormSectionTitle>
-            <S.TimeRangeOptions>
-              {timeRangeOptions.map(option => (
-                <Button
-                  key={option.value}
-                  onClick={() => setTimeRange(option.value)}
-                  variant={option.value == timeRange ? 'filled' : 'basic'}
-                  size="smaller"
-                >
-                  {option.label}
-                </Button>
-              ))}
-            </S.TimeRangeOptions>
+            <S.SettingsFormSectionContent>
+              <S.SettingsFormGroup>
+                <S.SettingsFormGroupLabel>
+                  Tempo de Referência
+                </S.SettingsFormGroupLabel>
+                <S.TimeRangeOptions>
+                  {timeRangeOptions.map(option => (
+                    <Button
+                      key={option.value}
+                      onClick={() => setTimeRange(option.value)}
+                      variant={option.value == timeRange ? 'filled' : 'basic'}
+                      size="smaller"
+                      layer={0}
+                    >
+                      {option.label}
+                    </Button>
+                  ))}
+                </S.TimeRangeOptions>
+              </S.SettingsFormGroup>
+              <S.SettingsFormGroup>
+                <S.SettingsFormGroupLabel>
+                  Quantidade de Itens
+                </S.SettingsFormGroupLabel>
+                <S.LimitButtons>
+                  {limitOptions.map(option => (
+                    <Button
+                      key={option}
+                      onClick={() => setLimit(option)}
+                      variant={option === limit ? 'filled' : 'basic'}
+                      onlyIcon
+                      size="small"
+                      layer={0}
+                    >
+                      {option}
+                    </Button>
+                  ))}
+                </S.LimitButtons>
+              </S.SettingsFormGroup>
+            </S.SettingsFormSectionContent>
           </S.SettingsFormSection>
           <S.SettingsFormSection>
             <S.SettingsFormSectionTitle>
-              Quantidade de Itens
+              Ajuste de Estilos
             </S.SettingsFormSectionTitle>
-            <S.LimitButtons>
-              {limitOptions.map(option => (
-                <Button
-                  key={option}
-                  onClick={() => setLimit(option)}
-                  variant={option === limit ? 'filled' : 'basic'}
-                  onlyIcon
-                  size="small"
-                >
-                  {option}
-                </Button>
-              ))}
-            </S.LimitButtons>
+            {items && items.length > 0 && (
+              <S.StyleOptions>
+                <S.SuggestedColors>
+                  {suggestedColors.map(color => (
+                    <ColorOption
+                      key={color}
+                      hexColor={color}
+                      onClick={() => setColor(color)}
+                    />
+                  ))}
+                  <ColorPicker
+                    label="Personalizar"
+                    value={color}
+                    onChange={setColor}
+                  />
+                </S.SuggestedColors>
+                {showAdvancedStyles && (
+                  <>
+                    <Dropdown
+                      label="Estilo dos Itens"
+                      options={trackItemStyleVariantOptions}
+                      selectedOptionValue={selectedItemsStyle}
+                      onValueChange={value =>
+                        setSelectedItemsStyle(value as 'spotify')
+                      }
+                      boxOptionsConfig={{
+                        closeAfterSelectOption: true
+                      }}
+                      fillWidth
+                      layer={0}
+                    />
+                    <Switch
+                      label="Exibir imagem de plano de fundo"
+                      checked={enableBackgroundImage}
+                      onChange={() => setEnableBackgroundImage(state => !state)}
+                      layer={0}
+                    />
+                    <Switch
+                      label="Habilitar gradiente"
+                      checked={enableGradient}
+                      onChange={() => setEnableGradient(state => !state)}
+                      layer={0}
+                    />
+                    <Switch
+                      label="Desfocar plano de fundo"
+                      checked={enableBlur}
+                      onChange={() => setEnableBlur(state => !state)}
+                      layer={0}
+                    />
+                    <Switch
+                      label="Exibir perfil"
+                      checked={showProfileInfo}
+                      onChange={() => setShowProfileInfo(state => !state)}
+                      layer={0}
+                    />
+                    <Switch
+                      label="Exibir numeração no top 3"
+                      checked={enableBadgeHightlights}
+                      onChange={() => setEnableBadgeHighlights(state => !state)}
+                      layer={0}
+                    />
+                  </>
+                )}
+              </S.StyleOptions>
+            )}
+            <S.SettingsFormSectionCollapseButton
+              onClick={() => setShowAdvancedStyles(state => !state)}
+            >
+              {showAdvancedStyles ? 'Menos opções' : 'Mais opções'}
+            </S.SettingsFormSectionCollapseButton>
           </S.SettingsFormSection>
-          {items && items.length > 0 && (
-            <S.StyleOptions>
-              <Dropdown
-                label="Estilo dos Itens"
-                options={trackItemStyleVariantOptions}
-                selectedOptionValue={selectedItemsStyle}
-                onValueChange={value =>
-                  setSelectedItemsStyle(value as 'spotify')
-                }
-                boxOptionsConfig={{
-                  closeAfterSelectOption: true
-                }}
-                fillWidth
-              />
-              <ColorPicker label="Cor" value={color} onChange={setColor} />
-              <Switch
-                label="Exibir imagem de plano de fundo"
-                checked={enableBackgroundImage}
-                onChange={() => setEnableBackgroundImage(state => !state)}
-              />
-              <Switch
-                label="Habilitar gradiente"
-                checked={enableGradient}
-                onChange={() => setEnableGradient(state => !state)}
-              />
-              <Switch
-                label="Desfocar plano de fundo"
-                checked={enableBlur}
-                onChange={() => setEnableBlur(state => !state)}
-              />
-              <Switch
-                label="Exibir perfil"
-                checked={showProfileInfo}
-                onChange={() => setShowProfileInfo(state => !state)}
-              />
-              <Switch
-                label="Exibir numeração no top 3"
-                checked={enableBadgeHightlights}
-                onChange={() => setEnableBadgeHighlights(state => !state)}
-              />
-            </S.StyleOptions>
-          )}
         </S.SettingsForm>
         {items.length > 0 && (
           <S.ActionButtons>

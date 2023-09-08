@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { spacing } from 'styles/designSystemConfig'
 
 export const appLayoutConfig = {
-  headerHeight: rem(90)
+  headerHeight: rem(60)
 }
 
 export const Main = styled.main`
