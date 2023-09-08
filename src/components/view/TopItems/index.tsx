@@ -3,7 +3,6 @@ import {
   MutableRefObject,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState
 } from 'react'
@@ -17,49 +16,27 @@ import { toPng } from 'html-to-image'
 import dark from 'styles/themes/dark'
 
 // Services
-import {
-  TimeRange,
-  getMyTopTracks
-} from 'services/spotify/queries/getMyTopTracks'
+import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
 
 import Button, { ButtonProps } from 'components/shared/Button'
 import DownloadIcon from 'components/shared/icons/Download'
 import { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
 import Switch from 'components/shared/Switch'
-import { timeRangeOptions } from 'components/shared/UserTopItemsBox/utils'
 import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
 import UserTopItemsBox from 'components/shared/UserTopItemsBox'
 import ColorPicker from 'components/shared/ColorPicker'
 import ColorOption from 'components/shared/ColorOption'
-import mainColors from 'styles/mainColors'
 import useScreen from 'hooks/useScreen'
 import { breakpoints } from 'styles/screens'
-import { generatedImageConfig } from 'config/generatedImage'
-import ButtonLink from 'components/shared/ButtonLink'
+import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
 
-export type TopTracksViewProps = {
+export type TopItemsViewProps = {
   items: SpotifyTrack[]
   userData: SpotifyUserProfile
 }
 
-const limitOptions = [3, 5, 10]
-
-const suggestedColors = [
-  dark.colors.layers[1].background,
-  mainColors.primary.normal,
-  mainColors.secondary.normal,
-  '#E5C02D',
-  '#2B2382',
-  '#E253EF',
-  '#000000',
-  '#ffffff'
-]
-
-const TopTracksView = ({
-  items: initialItems,
-  userData
-}: TopTracksViewProps) => {
+const TopItemsView = ({ items: initialItems, userData }: TopItemsViewProps) => {
   const screen = useScreen()
   const isLaptopUp = screen.width > breakpoints.laptop
 
@@ -99,7 +76,7 @@ const TopTracksView = ({
 
     const dataUrl = await toPng(boxRef.current, {
       quality: 1,
-      canvasWidth: generatedImageConfig.width
+      canvasWidth: topItemsGeneratorConfig.boxWidth
     })
 
     const downloadLink = document.createElement('a')
@@ -180,17 +157,24 @@ const TopTracksView = ({
                   Tempo de Referência
                 </S.SettingsFormGroupLabel>
                 <S.TimeRangeOptions>
-                  {timeRangeOptions.map(option => (
-                    <Button
-                      key={option.value}
-                      onClick={() => setTimeRange(option.value)}
-                      variant={option.value == timeRange ? 'filled' : 'basic'}
-                      size="smaller"
-                      layer={0}
-                    >
-                      {option.label}
-                    </Button>
-                  ))}
+                  {Object.keys(topItemsGeneratorConfig.timeOptions).map(
+                    item => {
+                      const key = item as TimeRange
+                      const { label } = topItemsGeneratorConfig.timeOptions[key]
+
+                      return (
+                        <Button
+                          key={key}
+                          onClick={() => setTimeRange(key)}
+                          variant={key == timeRange ? 'filled' : 'basic'}
+                          size="smaller"
+                          layer={0}
+                        >
+                          {label}
+                        </Button>
+                      )
+                    }
+                  )}
                 </S.TimeRangeOptions>
               </S.SettingsFormGroup>
               <S.SettingsFormGroup>
@@ -198,7 +182,7 @@ const TopTracksView = ({
                   Quantidade de Itens
                 </S.SettingsFormGroupLabel>
                 <S.LimitButtons>
-                  {limitOptions.map(option => (
+                  {topItemsGeneratorConfig.limitOptions.map(option => (
                     <Button
                       key={option}
                       onClick={() => setLimit(option)}
@@ -221,7 +205,7 @@ const TopTracksView = ({
             {items && items.length > 0 && (
               <S.StyleOptions>
                 <S.SuggestedColors>
-                  {suggestedColors.map(color => (
+                  {topItemsGeneratorConfig.suggestedColorsOptions.map(color => (
                     <ColorOption
                       key={color}
                       hexColor={color}
@@ -301,4 +285,4 @@ const TopTracksView = ({
   )
 }
 
-export default TopTracksView
+export default TopItemsView

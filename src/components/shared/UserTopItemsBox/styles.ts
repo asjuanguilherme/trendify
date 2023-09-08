@@ -7,7 +7,7 @@ import {
   transition
 } from 'styles/designSystemConfig'
 import { TrackItemStyle } from '../TrackItem'
-import { generatedImageConfig } from 'config/generatedImage'
+import { topItemsGeneratorConfig } from 'config/topItemsGenerator'
 
 export const CreatedByLink = styled.span`
   display: flex;
@@ -211,7 +211,7 @@ export const Wrapper = styled.div<{
   z-index: 1;
   overflow: hidden;
   margin: 0 auto;
-  width: ${generatedImageConfig.width}px;
+  width: ${topItemsGeneratorConfig.boxWidth}px;
   border-radius: ${borderRadius.medium};
 
   &::after {

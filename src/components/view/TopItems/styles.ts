@@ -10,7 +10,7 @@ import {
 } from 'styles/designSystemConfig'
 import DefaultContainer from 'components/shared/Container'
 import { screens } from 'styles/screens'
-import { generatedImageConfig } from 'config/generatedImage'
+import { topItemsGeneratorConfig } from 'config/topItemsGenerator'
 
 export const VisibleTopItemsBox = styled.div`
   & > div {
@@ -31,7 +31,7 @@ export const VisibleTopItemsBox = styled.div`
 `
 
 export const HiddenTopItemsBox = styled.div`
-  width: ${generatedImageConfig.width}px;
+  width: ${topItemsGeneratorConfig.boxWidth}px;
   position: fixed;
   z-index: -1;
   left: -500%;
@@ -156,7 +156,7 @@ export const Container = styled(DefaultContainer)`
   ${screens.laptop} {
     display: grid;
     flex-direction: initial;
-    grid-template-columns: 1fr ${generatedImageConfig.width}px;
+    grid-template-columns: 1fr ${topItemsGeneratorConfig.boxWidth}px;
   }
 `
 

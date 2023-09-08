@@ -3,19 +3,12 @@ import { destroyAuthenticationCookie, setupSpotifyApiClient } from '../config'
 import { AxiosError } from 'axios'
 import { objectToQuerystring } from 'utils'
 import { SpotifyArtist } from '../types/Artist'
-
-export type TimeRange = 'lastMonth' | 'lastSixMonths' | 'allTime'
+import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
 
 export type GetMyTopArtistsParams = {
   timeRange: TimeRange
   limit: number
   ctx: GetServerSidePropsContext | null
-}
-
-const timeRangeByTime: Record<TimeRange, string> = {
-  lastMonth: 'short_term',
-  lastSixMonths: 'medium_term',
-  allTime: 'long_term'
 }
 
 export const getMyTopArtists = async ({
@@ -32,7 +25,7 @@ export const getMyTopArtists = async ({
     const { data } = await spotifyClient.get<{ items: SpotifyArtist[] }>(
       'v1/me/top/artists?' +
         objectToQuerystring({
-          time_range: timeRangeByTime[timeRange],
+          time_range: topItemsGeneratorConfig.timeOptions[timeRange],
           offset: 0,
           limit
         })

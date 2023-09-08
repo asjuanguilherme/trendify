@@ -5,10 +5,8 @@ import { MutableRefObject, useMemo } from 'react'
 import { SpotifyUserProfile } from 'services/spotify/types'
 import { SpotifyArtist } from 'services/spotify/types/Artist'
 import { SpotifyTrack } from 'services/spotify/types/Track'
-import { TimeRange } from 'services/spotify/queries/getMyTopArtists'
 
 // Utils
-import { timeRangeOptions } from './utils'
 import { WEBSITE_URL } from 'config/websiteUrl'
 
 // Components
@@ -17,6 +15,7 @@ import Logo from '../Logo'
 import UserIcon from '../icons/User'
 import TriangleExclamationIcon from '../icons/TriangleExclamation'
 import Spinner from '../Spinner'
+import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
 
 export type UserTopItemsBoxProps = {
   boxRef?: MutableRefObject<HTMLDivElement | null>
@@ -72,11 +71,6 @@ const UserTopItemsBox = ({
     return '/assets/images/photo_placeholder.png'
   })()
 
-  const titleSufix = useMemo(() => {
-    return timeRangeOptions.filter(item => item.value === timeRange)[0]
-      .generatedText
-  }, [timeRange])
-
   if (
     (type == 'tracks' && (!trackItems || trackItems.length === 0)) ||
     (type == 'artists' && (!artistItems || artistItems.length === 0))
@@ -117,7 +111,8 @@ const UserTopItemsBox = ({
             </S.Profile>
           )}
           <S.Title>
-            Top {limit} {titleSufix}
+            Top {limit}{' '}
+            {topItemsGeneratorConfig.timeOptions[timeRange].generatedText}
           </S.Title>
           <S.Date>
             {new Intl.DateTimeFormat('pt-BR', {

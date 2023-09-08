@@ -1,9 +1,8 @@
-import TopTracksView from 'components/view/TopTracks'
 import { withGlobalData } from 'hoc/withGlobalData'
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
 import { SpotifyTrack } from 'services/spotify/types/Track'
 import { AppGlobalProps } from 'types'
-import Head from 'next/head'
+import TopItemsView from 'components/view/TopItems'
 
 export type MyTopTracksPageProps = {
   global: AppGlobalProps
@@ -13,7 +12,7 @@ export type MyTopTracksPageProps = {
 const MyTopTracksPage = ({ items, global }: MyTopTracksPageProps) => {
   return (
     <>
-      <TopTracksView items={items} userData={global.userData!} />
+      <TopItemsView items={items} userData={global.userData!} />
     </>
   )
 }
