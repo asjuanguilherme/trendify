@@ -81,15 +81,6 @@ const Header = ({ userData }: HeaderProps) => {
             >
               Tema {theme.title} {theme.icon}
             </Button>
-            <ButtonLink
-              fillWidth
-              variant="basic"
-              size="small"
-              href="/my-top-tracks"
-              onClick={menuModal.close}
-            >
-              Gerar top músicas
-            </ButtonLink>
           </S.MenuOptionsGroup>
         </S.MenuOptions>
       )

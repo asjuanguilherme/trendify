@@ -31,6 +31,23 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
           })
         : null
 
+      if (!userData && ctx.resolvedUrl.includes('/my-top'))
+        return {
+          redirect: {
+            destination: '/',
+            permanent: true
+          }
+        }
+
+      if (userData && ctx.resolvedUrl.split('?')[0] === '/') {
+        return {
+          redirect: {
+            destination: '/my-top',
+            permanent: true
+          }
+        }
+      }
+
       const callbackProps = await callback(ctx)
 
       const globalProps = {

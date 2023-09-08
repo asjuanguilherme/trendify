@@ -3,13 +3,16 @@ import Section from 'components/shared/Section'
 import ButtonLink from 'components/shared/ButtonLink'
 import SpotifyLogo from 'components/shared/icons/SpotifyLogo'
 
-export type UnauthenticatedHomeViewProps = {}
+export type HomeViewProps = {}
 
-const UnauthenticatedViewHome = ({}: UnauthenticatedHomeViewProps) => {
+const HomeView = ({}: HomeViewProps) => {
   return (
     <S.Wrapper>
-      <Section title="Descubra seu topify">
-        <p>Suas músicas em destaque, de um jeito rápido, fácil e elegante.</p>
+      <Section title="Gere seu sTopify">
+        <p>
+          Descubra suas top músicas ou artistas ouvidos de um jeito fácil,
+          personalizável e elegante.
+        </p>
         <ButtonLink fillWidth style={{ marginTop: '1.5rem' }} href="/login">
           Entrar com
           <SpotifyLogo style={{ fontSize: '5rem', marginLeft: '-.5rem' }} />
@@ -19,4 +22,4 @@ const UnauthenticatedViewHome = ({}: UnauthenticatedHomeViewProps) => {
   )
 }
 
-export default UnauthenticatedViewHome
+export default HomeView
