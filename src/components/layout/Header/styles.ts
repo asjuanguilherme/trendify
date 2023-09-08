@@ -1,7 +1,7 @@
 import { appLayoutConfig } from '../styles'
 import Link from 'next/link'
 import { rem } from 'polished'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   borderRadius,
   buttonSizes,
@@ -100,7 +100,20 @@ export const Wrapper = styled.header`
   left: 0;
   width: 100%;
   z-index: ${zIndex.navbar};
-  background: ${props => props.theme.colors.layers[0].background};
-  border-bottom: 1px solid ${props => props.theme.colors.layers[0].border};
   border-radius: 0 0 ${borderRadius.medium} ${borderRadius.medium};
+
+  ${({ theme }) => {
+    switch (theme.name) {
+      case 'dark':
+        return css`
+          background: ${theme.colors.layers[0].background};
+          border-bottom: 1px solid ${theme.colors.layers[0].border};
+        `
+      default:
+        return css`
+          background: ${theme.colors.layers[1].background};
+          border-bottom: 1px solid ${theme.colors.layers[1].border};
+        `
+    }
+  }}
 `
