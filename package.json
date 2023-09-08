@@ -1,5 +1,10 @@
 {
   "private": true,
+  "author": {
+    "email": "asjuanguilherme@gmail.com",
+    "name": "Juan Guilherme",
+    "url": "https://juanguilher.me"
+  },
   "scripts": {
     "postinstall": "yarn prepare",
     "dev": "next",

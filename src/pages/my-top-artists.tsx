@@ -5,7 +5,6 @@ import { getAuthenticationCookie } from 'services/spotify/config'
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
 import { SpotifyTrack } from 'services/spotify/types/Track'
 import { AppGlobalProps } from 'types'
-import { AxiosError } from 'axios'
 
 export type MyTopTracksPageProps = {
   global: AppGlobalProps

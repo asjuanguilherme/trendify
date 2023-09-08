@@ -14,6 +14,7 @@ import {
   getAuthenticationCookie
 } from 'services/spotify/config'
 import { getCurrentUserProfile } from 'services/spotify/queries/getCurrentUserProfile'
+import { AxiosError } from 'axios'
 
 export const withGlobalData = <P extends { [key: string]: unknown }>(
   callback: GetServerSideProps<P>
@@ -21,28 +22,52 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
   return async (
     ctx: GetServerSidePropsContext
   ): Promise<GetServerSidePropsResult<P & { global: AppGlobalProps }>> => {
-    const accessToken = getAuthenticationCookie(ctx)
-    const userData = accessToken
-      ? await getCurrentUserProfile(ctx).catch(() => {
-          destroyAuthenticationCookie(ctx)
-          return null
-        })
-      : null
+    try {
+      const accessToken = getAuthenticationCookie(ctx)
+      const userData = accessToken
+        ? await getCurrentUserProfile(ctx).catch(() => {
+            destroyAuthenticationCookie(ctx)
+            return null
+          })
+        : null
 
-    const callbackProps = await callback(ctx)
+      const callbackProps = await callback(ctx)
 
-    const globalProps = {
-      userData,
-      storedTheme: getThemeCookie(ctx)
-    }
-
-    return {
-      ...callbackProps,
-      props: {
-        // @ts-ignore
-        ...callbackProps.props,
-        global: globalProps
+      const globalProps = {
+        userData,
+        storedTheme: getThemeCookie(ctx)
       }
+
+      return {
+        ...callbackProps,
+        props: {
+          // @ts-ignore
+          ...callbackProps.props,
+          global: globalProps
+        }
+      }
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        if (err.response?.status == 401) {
+          destroyAuthenticationCookie(ctx)
+          return {
+            redirect: {
+              destination: '/?unlogged',
+              permanent: true
+            }
+          }
+        }
+        if (err.response?.status == 403) {
+          destroyAuthenticationCookie(ctx)
+          return {
+            redirect: {
+              destination: '/?needs-permission',
+              permanent: true
+            }
+          }
+        }
+      }
+      throw err
     }
   }
 }

@@ -11,6 +11,23 @@ import {
 } from 'styles/designSystemConfig'
 import DefaultContainer from 'components/shared/Container'
 
+export const ProfilePhotoPlaceholder = styled.span`
+  display: inline-block;
+  flex-shrink: 0;
+  height: ${rem(48)};
+  width: ${rem(48)};
+  border-radius: ${borderRadius.circle};
+  background: ${props => props.theme.colors.layers[0].background};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    font-size: 1.3rem;
+    opacity: 0.2;
+  }
+`
+
 export const ProfilePhoto = styled.img`
   flex-shrink: 0;
   height: ${rem(48)};

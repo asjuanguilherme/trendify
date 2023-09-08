@@ -19,12 +19,20 @@ export const TimeRangeOptions = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: ${spacing.components.small};
+
+  button {
+    border-radius: ${borderRadius.pill} !important;
+  }
 `
 
 export const LimitButtons = styled.div`
   display: flex;
   gap: ${spacing.components.small};
   flex-wrap: wrap;
+
+  button {
+    border-radius: ${borderRadius.pill} !important;
+  }
 `
 
 export const SettingsFormSectionTitle = styled.span`

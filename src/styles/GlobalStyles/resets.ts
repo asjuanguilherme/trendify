@@ -22,6 +22,7 @@ const resets = css`
     color: ${props => props.theme.colors.title};
     background-color: ${props => props.theme.colors.layers[0].background};
     font-size: 16px;
+    font-smooth: always;
   }
 
   html,

@@ -40,10 +40,10 @@ export const getMyTopTracks = async ({
     return data.items
   } catch (err) {
     if (err instanceof AxiosError) {
-      if (Number(err.response?.status) >= 400) {
+      if (Number(err.response?.status) == 401) {
         destroyAuthenticationCookie(ctx)
-        throw err
       }
+      throw err
     }
     throw err
   }

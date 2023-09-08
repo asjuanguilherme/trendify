@@ -8,9 +8,41 @@ import {
 } from 'styles/designSystemConfig'
 import { TrackItemStyle } from '../TrackItem'
 
+export const EmptyText = styled.div``
+
+export const Empty = styled.div`
+  background-color: ${props => props.theme.colors.layers[1].background};
+  font-size: ${font.sizes.default};
+  opacity: 0.75;
+  line-height: 1.5em;
+  padding: ${spacing.components.large};
+  display: flex;
+  gap: ${spacing.components.medium};
+  align-items: center;
+
+  svg {
+    font-size: ${font.sizes.xxlarger};
+    opacity: 0.5;
+  }
+`
+
 export const ProfileName = styled.span`
   font-size: ${font.sizes.large};
   font-weight: ${font.weight.bold};
+`
+
+export const ProfileImagePlaceholder = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: ${rem(32)};
+  height: ${rem(32)};
+  border-radius: ${borderRadius.circle};
+  background-color: ${props => props.theme.colors.layers[0].background};
+
+  svg {
+    opacity: 0.5;
+  }
 `
 
 export const ProfileImage = styled.img`

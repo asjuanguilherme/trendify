@@ -13,6 +13,8 @@ import { timeRangeOptions } from './utils'
 // Components
 import TrackItem, { TrackItemStyle } from '../TrackItem'
 import Logo from '../Logo'
+import UserIcon from '../icons/User'
+import TriangleExclamationIcon from '../icons/TriangleExclamation'
 
 export type UserTopItemsBoxProps = {
   boxRef: MutableRefObject<HTMLDivElement | null>
@@ -39,6 +41,7 @@ const trackItemsSizeByLimit = {
 
 const UserTopItemsBox = ({
   boxRef,
+  type,
   color,
   limit,
   enableBlur,
@@ -55,14 +58,34 @@ const UserTopItemsBox = ({
   if (!trackItems && !artistItems)
     throw new Error('You must define trackItems or artistItems prop.')
 
-  const backgroundImage = trackItems
-    ? trackItems![0].album.images[0].url
-    : artistItems![0].images[0].url
+  const backgroundImage = (() => {
+    if (type === 'tracks' && trackItems && trackItems.length > 0)
+      return trackItems![0].album.images[0].url
+
+    if (type === 'artists' && artistItems && artistItems.length > 0)
+      return artistItems![0].images[0].url
+
+    return '/assets/images/photo_placeholder.png'
+  })()
 
   const titleSufix = useMemo(() => {
     return timeRangeOptions.filter(item => item.value === timeRange)[0]
       .generatedText
   }, [timeRange])
+
+  if (
+    (type == 'tracks' && (!trackItems || trackItems.length === 0)) ||
+    (type == 'artists' && (!artistItems || artistItems.length === 0))
+  )
+    return (
+      <S.Empty>
+        <TriangleExclamationIcon />
+        <S.EmptyText>
+          Não encontramos dados suficientes para gerar seu sTopify. Ouça músicas
+          e volte depois.
+        </S.EmptyText>
+      </S.Empty>
+    )
 
   return (
     <S.Wrapper
@@ -77,7 +100,13 @@ const UserTopItemsBox = ({
         )}
         {showProfileInfo && (
           <S.Profile>
-            <S.ProfileImage src={userData.images[0].url} alt="" />
+            {userData.images[0] ? (
+              <S.ProfileImage src={userData.images[0]?.url} alt="" />
+            ) : (
+              <S.ProfileImagePlaceholder>
+                <UserIcon />
+              </S.ProfileImagePlaceholder>
+            )}
             <S.ProfileName>{userData.display_name}</S.ProfileName>
           </S.Profile>
         )}

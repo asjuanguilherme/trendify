@@ -121,44 +121,48 @@ const TopTracksView = ({
               ))}
             </S.LimitButtons>
           </S.SettingsFormSection>
-          <S.StyleOptions>
-            <Dropdown
-              label="Estilo dos Itens"
-              options={trackItemStyleVariantOptions}
-              selectedOptionValue={selectedItemsStyle}
-              onValueChange={value => setSelectedItemsStyle(value as 'spotify')}
-              boxOptionsConfig={{
-                closeAfterSelectOption: true
-              }}
-              fillWidth
-            />
-            <ColorPicker label="Cor" value={color} onChange={setColor} />
-            <Switch
-              label="Exibir imagem de plano de fundo"
-              checked={enableBackgroundImage}
-              onChange={() => setEnableBackgroundImage(state => !state)}
-            />
-            <Switch
-              label="Habilitar gradiente"
-              checked={enableGradient}
-              onChange={() => setEnableGradient(state => !state)}
-            />
-            <Switch
-              label="Desfocar plano de fundo"
-              checked={enableBlur}
-              onChange={() => setEnableBlur(state => !state)}
-            />
-            <Switch
-              label="Exibir perfil"
-              checked={showProfileInfo}
-              onChange={() => setShowProfileInfo(state => !state)}
-            />
-            <Switch
-              label="Exibir numeração no top 3"
-              checked={enableBadgeHightlights}
-              onChange={() => setEnableBadgeHighlights(state => !state)}
-            />
-          </S.StyleOptions>
+          {items && items.length > 0 && (
+            <S.StyleOptions>
+              <Dropdown
+                label="Estilo dos Itens"
+                options={trackItemStyleVariantOptions}
+                selectedOptionValue={selectedItemsStyle}
+                onValueChange={value =>
+                  setSelectedItemsStyle(value as 'spotify')
+                }
+                boxOptionsConfig={{
+                  closeAfterSelectOption: true
+                }}
+                fillWidth
+              />
+              <ColorPicker label="Cor" value={color} onChange={setColor} />
+              <Switch
+                label="Exibir imagem de plano de fundo"
+                checked={enableBackgroundImage}
+                onChange={() => setEnableBackgroundImage(state => !state)}
+              />
+              <Switch
+                label="Habilitar gradiente"
+                checked={enableGradient}
+                onChange={() => setEnableGradient(state => !state)}
+              />
+              <Switch
+                label="Desfocar plano de fundo"
+                checked={enableBlur}
+                onChange={() => setEnableBlur(state => !state)}
+              />
+              <Switch
+                label="Exibir perfil"
+                checked={showProfileInfo}
+                onChange={() => setShowProfileInfo(state => !state)}
+              />
+              <Switch
+                label="Exibir numeração no top 3"
+                checked={enableBadgeHightlights}
+                onChange={() => setEnableBadgeHighlights(state => !state)}
+              />
+            </S.StyleOptions>
+          )}
         </S.SettingsForm>
         <S.ActionButtons>
           <Button variant="basic" fillWidth onClick={saveAsImage} size="small">

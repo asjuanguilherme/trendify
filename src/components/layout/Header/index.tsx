@@ -1,5 +1,5 @@
-import Button from 'components/shared/Button'
 import * as S from './styles'
+import Button from 'components/shared/Button'
 import Logo from 'components/shared/Logo'
 import EllipsisIcon from 'components/shared/icons/Ellipsis'
 import { useModal, useModals } from 'contexts/ModalContext'
@@ -11,6 +11,7 @@ import ButtonLink from 'components/shared/ButtonLink'
 import { useAppTheme } from 'contexts/AppThemeContext'
 import { useCallback, useEffect } from 'react'
 import RightFromBracketIcon from 'components/shared/icons/RightFromBracket'
+import UserIcon from 'components/shared/icons/User'
 
 export type HeaderProps = {
   userData?: SpotifyUserProfile
@@ -34,6 +35,11 @@ const Header = ({ userData }: HeaderProps) => {
     width: 400
   })
 
+  const userProfilePhoto =
+    userData && userData.images.length > 0
+      ? userData!.images[0]?.url
+      : undefined
+
   useEffect(() => {
     menuModal.update({
       content: (
@@ -47,10 +53,16 @@ const Header = ({ userData }: HeaderProps) => {
             {userData && (
               <>
                 <S.ProfileResume>
-                  <S.ProfilePhoto
-                    src={userData.images[0].url}
-                    alt="Foto de perfil do usuário"
-                  />
+                  {userProfilePhoto ? (
+                    <S.ProfilePhoto
+                      src={userProfilePhoto}
+                      alt="Foto de perfil do usuário"
+                    />
+                  ) : (
+                    <S.ProfilePhotoPlaceholder>
+                      <UserIcon />
+                    </S.ProfilePhotoPlaceholder>
+                  )}
                   <S.ProfileName>{userData.display_name}</S.ProfileName>
                 </S.ProfileResume>{' '}
                 <Button onClick={logout} fillWidth variant="basic">
