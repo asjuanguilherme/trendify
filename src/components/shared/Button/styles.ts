@@ -31,6 +31,7 @@ export const Wrapper = styled.button<WrapperProps>`
   transition: ${transition.fast};
   transition-property: color, background-color, border;
   text-decoration: none;
+  border-radius: ${borderRadius.pill};
 
   svg {
     font-size: inherit;
@@ -141,7 +142,6 @@ export const Wrapper = styled.button<WrapperProps>`
               `};
           height: ${buttonSizes.smaller};
           font-size: ${font.sizes.smaller};
-          border-radius: ${borderRadius.smaller};
           gap: ${spacing.components.small};
         `
       case 'small':
@@ -156,7 +156,6 @@ export const Wrapper = styled.button<WrapperProps>`
                 font-size: ${font.sizes.small};
               `};
           height: ${buttonSizes.small};
-          border-radius: ${borderRadius.small};
           gap: ${spacing.components.small};
         `
       case 'default':
@@ -171,7 +170,6 @@ export const Wrapper = styled.button<WrapperProps>`
                 font-size: ${font.sizes.default};
               `};
           height: ${buttonSizes.default};
-          border-radius: ${borderRadius.medium};
           gap: ${spacing.components.medium};
         `
     }

@@ -1,7 +1,7 @@
 import * as S from './styles'
 import Section from 'components/shared/Section'
 import ButtonLink from 'components/shared/ButtonLink'
-import SpotifyLogo from 'components/shared/icons/SpotifyLogo'
+import SpotifyLogo from 'components/shared/SpotifyLogo'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
@@ -23,7 +23,7 @@ const HomeView = ({}: HomeViewProps) => {
         </p>
         <ButtonLink fillWidth style={{ marginTop: '1.5rem' }} href="/login">
           Entrar com
-          <SpotifyLogo style={{ fontSize: '5rem', marginLeft: '-.5rem' }} />
+          <SpotifyLogo style={{ fontSize: '1.35rem', marginLeft: '-.3rem' }} />
         </ButtonLink>
       </Section>
     </S.Wrapper>

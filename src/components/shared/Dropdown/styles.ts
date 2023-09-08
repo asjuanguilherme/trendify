@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import DefaultButton from 'components/shared/Button'
 import { LayerIndex } from '../../../../styled'
 import { OptionsBoxConfig } from '.'
-import { breakpoints } from 'styles/screens'
+import { breakpoints, screens } from 'styles/screens'
 import {
   borderRadius,
   font,
@@ -25,9 +25,13 @@ export const Option = styled.li<{ selected: boolean }>`
   border-radius: ${borderRadius.small};
   cursor: pointer;
   font-size: ${font.sizes.default};
-  display: inline-flex;
   gap: ${spacing.components.small};
   align-items: center;
+
+  ${screens.tabletS} {
+    padding: ${spacing.components.small} ${spacing.components.larger};
+    font-size: ${font.sizes.small};
+  }
 
   ${props =>
     props.selected
@@ -147,7 +151,8 @@ export const DropdownLabelWrapper = styled.span`
 `
 
 export const Button = styled(DefaultButton)`
-  justify-content: space-between !important;
+  border-radius: ${borderRadius.medium} !important;
+  justify-content: space-between;
 `
 
 export const Label = styled.span`

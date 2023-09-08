@@ -16,6 +16,8 @@ import UserIcon from '../icons/User'
 import TriangleExclamationIcon from '../icons/TriangleExclamation'
 import Spinner from '../Spinner'
 import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
+import SpotifyLogo from 'components/shared/SpotifyLogo'
+import CalendarIcon from '../icons/Calendar'
 
 export type UserTopItemsBoxProps = {
   boxRef?: MutableRefObject<HTMLDivElement | null>
@@ -33,6 +35,8 @@ export type UserTopItemsBoxProps = {
   timeRange: TimeRange
   enableBadgeHightlights: boolean
   loading: boolean
+  titleType: 'short' | 'large'
+  roundedCorners: boolean
 }
 
 const trackItemsSizeByLimit = {
@@ -56,7 +60,9 @@ const UserTopItemsBox = ({
   timeRange,
   selectedItemsStyle,
   enableBadgeHightlights,
-  loading
+  loading,
+  titleType,
+  roundedCorners
 }: UserTopItemsBoxProps) => {
   if (!trackItems && !artistItems)
     throw new Error('You must define trackItems or artistItems prop.')
@@ -86,7 +92,12 @@ const UserTopItemsBox = ({
     )
 
   return (
-    <S.Wrapper ref={boxRef} $color={color} $enableGradient={enableGradient}>
+    <S.Wrapper
+      ref={boxRef}
+      $color={color}
+      $enableGradient={enableGradient}
+      $roundedCorners={roundedCorners}
+    >
       {loading && (
         <S.LoadingWrapper>
           <Spinner size="large" />
@@ -99,26 +110,38 @@ const UserTopItemsBox = ({
         )}
         <S.Header>
           {showProfileInfo && (
-            <S.Profile>
-              {userData.images[0] ? (
-                <S.ProfileImage src={userData.images[0]?.url} alt="" />
-              ) : (
-                <S.ProfileImagePlaceholder>
-                  <UserIcon />
-                </S.ProfileImagePlaceholder>
-              )}
-              <S.ProfileName>{userData.display_name}</S.ProfileName>
-            </S.Profile>
+            <S.SpotifyInfo>
+              <S.SpotifyInfoProfile>
+                {userData.images[0] ? (
+                  <S.SpotifyInfoProfileImage
+                    src={userData.images[0]?.url}
+                    alt=""
+                  />
+                ) : (
+                  <S.SpotifyInfoProfileImagePlaceholder>
+                    <UserIcon />
+                  </S.SpotifyInfoProfileImagePlaceholder>
+                )}
+                <S.SpotifyInfoProfileName>
+                  {userData.display_name}
+                </S.SpotifyInfoProfileName>
+              </S.SpotifyInfoProfile>
+            </S.SpotifyInfo>
           )}
           <S.Title>
-            Top {limit}{' '}
-            {topItemsGeneratorConfig.timeOptions[timeRange].generatedText}
+            {topItemsGeneratorConfig.timeOptions[timeRange].text.tracks[
+              titleType
+            ].replace('{{limit}}', limit + '')}
           </S.Title>
-          <S.Date>
-            {new Intl.DateTimeFormat('pt-BR', {
-              dateStyle: 'long'
-            }).format(new Date())}
-          </S.Date>
+          <S.HeaderInfoRow>
+            <SpotifyLogo />
+            <S.HeaderInfoRowItem>
+              <CalendarIcon size=".875rem" />
+              {new Intl.DateTimeFormat('pt-BR', {
+                dateStyle: 'full'
+              }).format(new Date())}
+            </S.HeaderInfoRowItem>
+          </S.HeaderInfoRow>
         </S.Header>
         <S.Main>
           <S.ItemsList
@@ -149,9 +172,11 @@ const UserTopItemsBox = ({
         </S.Main>
         <S.Footer>
           <S.CreatedByText $itemsBoxColor={color}>
-            Criado em <Logo />
+            <Logo />
           </S.CreatedByText>
-          <S.CreatedByLink>{new URL(WEBSITE_URL).hostname}</S.CreatedByLink>
+          <S.CreatedByLink>
+            Acesse {new URL(WEBSITE_URL).hostname}
+          </S.CreatedByLink>
         </S.Footer>
       </>
     </S.Wrapper>

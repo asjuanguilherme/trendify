@@ -1,11 +1,5 @@
 import * as S from './styles'
-import {
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 // Types
 import { SpotifyTrack } from 'services/spotify/types/Track'
@@ -24,7 +18,9 @@ import { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
 import Switch from 'components/shared/Switch'
 import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
-import UserTopItemsBox from 'components/shared/UserTopItemsBox'
+import UserTopItemsBox, {
+  UserTopItemsBoxProps
+} from 'components/shared/UserTopItemsBox'
 import ColorPicker from 'components/shared/ColorPicker'
 import ColorOption from 'components/shared/ColorOption'
 import useScreen from 'hooks/useScreen'
@@ -55,6 +51,9 @@ const TopItemsView = ({ items: initialItems, userData }: TopItemsViewProps) => {
   const [showProfileInfo, setShowProfileInfo] = useState(true)
   const [enableBadgeHightlights, setEnableBadgeHighlights] = useState(false)
   const [showAdvancedStyles, setShowAdvancedStyles] = useState(false)
+  const [titleType, setTitleType] =
+    useState<UserTopItemsBoxProps['titleType']>('large')
+  const [roundedCorners, setRoundedCorners] = useState(true)
 
   const boxRef = useRef<HTMLDivElement | null>(null)
 
@@ -99,47 +98,26 @@ const TopItemsView = ({ items: initialItems, userData }: TopItemsViewProps) => {
     [loadingData]
   )
 
-  const GeneratedTopItems = useCallback(
-    (props: { boxRef?: MutableRefObject<HTMLDivElement | null> }) => (
-      <UserTopItemsBox
-        boxRef={props?.boxRef}
-        type="tracks"
-        trackItems={items}
-        color={color}
-        enableBackgroundImage={enableBackgroundImage}
-        enableBlur={enableBlur}
-        enableGradient={enableGradient}
-        enableBadgeHightlights={enableBadgeHightlights}
-        limit={limit}
-        selectedItemsStyle={selectedItemsStyle}
-        showProfileInfo={showProfileInfo}
-        timeRange={timeRange}
-        userData={userData}
-        loading={loadingData}
-      />
-    ),
-    [
-      color,
-      enableBackgroundImage,
-      enableBadgeHightlights,
-      enableBlur,
-      enableGradient,
-      items,
-      limit,
-      selectedItemsStyle,
-      showProfileInfo,
-      timeRange,
-      userData,
-      loadingData
-    ]
-  )
+  const userTopItemsBoxProps: UserTopItemsBoxProps = {
+    type: 'tracks',
+    timeRange,
+    limit,
+    userData,
+    trackItems: items,
+    color,
+    loading: loadingData,
+    enableBackgroundImage,
+    enableBlur,
+    enableGradient,
+    enableBadgeHightlights,
+    selectedItemsStyle,
+    showProfileInfo,
+    titleType,
+    roundedCorners
+  }
 
   return (
     <S.Wrapper>
-      <S.HiddenTopItemsBox>
-        <GeneratedTopItems boxRef={boxRef} />
-      </S.HiddenTopItemsBox>
-
       {items.length > 0 && !isLaptopUp && (
         <S.FloatingSaveButton>
           <SaveButton />
@@ -203,21 +181,26 @@ const TopItemsView = ({ items: initialItems, userData }: TopItemsViewProps) => {
               Ajuste de Estilos
             </S.SettingsFormSectionTitle>
             {items && items.length > 0 && (
-              <S.StyleOptions>
-                <S.SuggestedColors>
-                  {topItemsGeneratorConfig.suggestedColorsOptions.map(color => (
-                    <ColorOption
-                      key={color}
-                      hexColor={color}
-                      onClick={() => setColor(color)}
+              <S.SettingsFormSectionContent>
+                <S.SettingsFormGroup>
+                  <S.SettingsFormGroupLabel>Cor</S.SettingsFormGroupLabel>
+                  <S.SuggestedColors>
+                    {topItemsGeneratorConfig.suggestedColorsOptions.map(
+                      color => (
+                        <ColorOption
+                          key={color}
+                          hexColor={color}
+                          onClick={() => setColor(color)}
+                        />
+                      )
+                    )}
+                    <ColorPicker
+                      label="Personalizar"
+                      value={color}
+                      onChange={setColor}
                     />
-                  ))}
-                  <ColorPicker
-                    label="Personalizar"
-                    value={color}
-                    onChange={setColor}
-                  />
-                </S.SuggestedColors>
+                  </S.SuggestedColors>
+                </S.SettingsFormGroup>
                 {showAdvancedStyles && (
                   <>
                     <Dropdown
@@ -233,39 +216,61 @@ const TopItemsView = ({ items: initialItems, userData }: TopItemsViewProps) => {
                       fillWidth
                       layer={0}
                     />
-                    <Switch
-                      label="Exibir imagem de plano de fundo"
-                      checked={enableBackgroundImage}
-                      onChange={() => setEnableBackgroundImage(state => !state)}
-                      layer={0}
-                    />
-                    <Switch
-                      label="Habilitar gradiente"
-                      checked={enableGradient}
-                      onChange={() => setEnableGradient(state => !state)}
-                      layer={0}
-                    />
-                    <Switch
-                      label="Desfocar plano de fundo"
-                      checked={enableBlur}
-                      onChange={() => setEnableBlur(state => !state)}
-                      layer={0}
-                    />
-                    <Switch
-                      label="Exibir perfil"
-                      checked={showProfileInfo}
-                      onChange={() => setShowProfileInfo(state => !state)}
-                      layer={0}
-                    />
-                    <Switch
-                      label="Exibir numeração no top 3 (Experimental)"
-                      checked={enableBadgeHightlights}
-                      onChange={() => setEnableBadgeHighlights(state => !state)}
-                      layer={0}
-                    />
+                    <S.Switches>
+                      <Switch
+                        label="Exibir imagem de plano de fundo"
+                        checked={enableBackgroundImage}
+                        onChange={() =>
+                          setEnableBackgroundImage(state => !state)
+                        }
+                        layer={0}
+                      />
+                      <Switch
+                        label="Habilitar gradiente"
+                        checked={enableGradient}
+                        onChange={() => setEnableGradient(state => !state)}
+                        layer={0}
+                      />
+                      <Switch
+                        label="Desfocar plano de fundo"
+                        checked={enableBlur}
+                        onChange={() => setEnableBlur(state => !state)}
+                        layer={0}
+                      />
+                      <Switch
+                        label="Exibir perfil"
+                        checked={showProfileInfo}
+                        onChange={() => setShowProfileInfo(state => !state)}
+                        layer={0}
+                      />
+                      <Switch
+                        label="Exibir título longo"
+                        checked={titleType === 'large'}
+                        onChange={() =>
+                          setTitleType(state =>
+                            state === 'short' ? 'large' : 'short'
+                          )
+                        }
+                        layer={0}
+                      />
+                      <Switch
+                        label="Arredondar cantos"
+                        checked={roundedCorners}
+                        onChange={() => setRoundedCorners(state => !state)}
+                        layer={0}
+                      />
+                      <Switch
+                        label="Exibir numeração no top 3 (Experimental)"
+                        checked={enableBadgeHightlights}
+                        onChange={() =>
+                          setEnableBadgeHighlights(state => !state)
+                        }
+                        layer={0}
+                      />
+                    </S.Switches>
                   </>
                 )}
-              </S.StyleOptions>
+              </S.SettingsFormSectionContent>
             )}
             <S.SettingsFormSectionCollapseButton
               onClick={() => setShowAdvancedStyles(state => !state)}
@@ -274,8 +279,11 @@ const TopItemsView = ({ items: initialItems, userData }: TopItemsViewProps) => {
             </S.SettingsFormSectionCollapseButton>
           </S.SettingsFormSection>
         </S.SettingsForm>
+        <S.HiddenTopItemsBox>
+          <UserTopItemsBox boxRef={boxRef} {...userTopItemsBoxProps} />
+        </S.HiddenTopItemsBox>
         <S.VisibleTopItemsBox>
-          <GeneratedTopItems />
+          <UserTopItemsBox {...userTopItemsBoxProps} />
           {items.length > 0 && isLaptopUp && (
             <SaveButton style={{ marginTop: '1rem' }} />
           )}

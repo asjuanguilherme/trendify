@@ -19,18 +19,33 @@ export const topItemsGeneratorConfig = {
   timeOptions: {
     lastMonth: {
       label: 'Último mês',
-      generatedText: 'do último mês',
-      value: 'short_term'
+      value: 'short_term',
+      text: {
+        tracks: {
+          short: 'Top {{limit}} no último mês',
+          large: 'Seu Top {{limit}} músicas mais ouvidas no último mês'
+        }
+      }
     },
     lastSixMonths: {
       value: 'medium_term',
       label: 'Último semestre',
-      generatedText: 'do último semestre'
+      text: {
+        tracks: {
+          short: 'Top {{limit}} do semestre',
+          large: 'Seu Top {{limit}} músicas mais ouvidas no último semestre'
+        }
+      }
     },
     allTime: {
-      label: 'Todos os tempos',
-      generatedText: 'de todos os tempos',
-      value: 'long_term'
+      label: 'Desde o início',
+      value: 'long_term',
+      text: {
+        tracks: {
+          short: 'Top {{limit}} até hoje',
+          large: 'Seu Top {{limit}} músicas mais ouvidas até hoje'
+        }
+      }
     }
   }
 } as const

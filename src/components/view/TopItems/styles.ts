@@ -47,6 +47,15 @@ export const FloatingSaveButton = styled.div`
   padding: ${layout.gutter};
 `
 
+export const Switches = styled.div`
+  display: grid;
+  gap: ${spacing.components.medium};
+
+  ${screens.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`
+
 export const SuggestedColors = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -59,12 +68,6 @@ export const SettingsFormGroupLabel = styled.span`
 `
 
 export const SettingsFormGroup = styled.div``
-
-export const StyleOptions = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${spacing.components.medium};
-`
 
 export const LoadingBoard = styled.div`
   display: flex;

@@ -6,7 +6,7 @@ import { useModal, useModals } from 'contexts/ModalContext'
 import { useRouter } from 'next/router'
 import { destroyAuthenticationCookie } from 'services/spotify/config'
 import { SpotifyUserProfile } from 'services/spotify/types'
-import SpotifyLogo from 'components/shared/icons/SpotifyLogo'
+import SpotifyLogo from 'components/shared/SpotifyLogo'
 import ButtonLink from 'components/shared/ButtonLink'
 import { useAppTheme } from 'contexts/AppThemeContext'
 import { useCallback, useEffect } from 'react'
@@ -49,7 +49,10 @@ const Header = ({ userData }: HeaderProps) => {
           <S.MenuOptionsGroup>
             {!userData && (
               <ButtonLink href="/login" fillWidth>
-                Entrar com <SpotifyLogo style={{ fontSize: '5rem' }} />
+                Entrar com{' '}
+                <SpotifyLogo
+                  style={{ fontSize: '1.35rem', marginLeft: '-.3rem' }}
+                />
               </ButtonLink>
             )}
             {userData && (

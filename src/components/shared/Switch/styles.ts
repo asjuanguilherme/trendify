@@ -24,6 +24,7 @@ export const SwitchDot = styled.div`
 export const SwitchTrack = styled.span`
   display: flex;
   position: relative;
+  flex-shrink: 0;
 `
 
 export const Wrapper = styled.label<{ $layer: LayerIndex }>`

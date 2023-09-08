@@ -75,12 +75,13 @@ export const Empty = styled.div`
   }
 `
 
-export const ProfileName = styled.span`
+export const SpotifyInfoProfileName = styled.span`
+  display: inline-flex;
   font-size: ${font.sizes.large};
   font-weight: ${font.weight.bold};
 `
 
-export const ProfileImagePlaceholder = styled.span`
+export const SpotifyInfoProfileImagePlaceholder = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -94,18 +95,32 @@ export const ProfileImagePlaceholder = styled.span`
   }
 `
 
-export const ProfileImage = styled.img`
+export const SpotifyInfoProfileImage = styled.img`
   width: ${rem(32)};
   height: ${rem(32)};
   border-radius: ${borderRadius.circle};
 `
 
-export const Profile = styled.div`
+export const SpotifyInfoProfile = styled.div`
   display: flex;
   align-items: center;
+  gap: ${spacing.components.medium};
+`
+
+export const SpotifyInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: ${spacing.components.small};
-  margin-bottom: ${spacing.components.medium};
-  padding-bottom: ${spacing.components.medium};
+  padding-bottom: ${spacing.components.large};
+  width: 100%;
+  flex-shrink: 0;
+
+  svg {
+    height: 1.5rem;
+    width: unset !important;
+    opacity: 0.75;
+  }
 `
 
 export const ItemsList = styled.ul<{
@@ -160,20 +175,36 @@ export const ItemsList = styled.ul<{
 
 export const Main = styled.main``
 
-export const Date = styled.span`
-  display: block;
+export const HeaderInfoRowItem = styled.span`
+  display: flex;
+  align-items: flex;
+  gap: ${spacing.components.smaller};
+`
+
+export const HeaderInfoRow = styled.div`
+  display: flex;
   font-size: ${font.sizes.small};
   opacity: 0.75;
+  align-items: flex-end;
+  gap: ${spacing.components.large};
+
+  svg {
+    font-size: ${font.sizes.large};
+  }
 `
 
 export const Title = styled.h2`
-  font-size: ${font.sizes.larger};
+  font-size: ${font.sizes.xlarger};
   font-weight: ${font.weight.bold};
-  margin-bottom: ${spacing.components.small};
+  width: max-content;
+  max-width: 100%;
 `
 
 export const Header = styled.header`
   margin-bottom: ${spacing.components.larger};
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.components.small};
 `
 
 export const GeneratedBoxImage = styled.img<{ $enableBlur: boolean }>`
@@ -203,16 +234,21 @@ export const GeneratedBoxImage = styled.img<{ $enableBlur: boolean }>`
 export const Wrapper = styled.div<{
   $color: string
   $enableGradient: boolean
+  $roundedCorners: boolean
 }>`
   background: ${props => props.$color};
-  padding: ${spacing.components.medium};
+  padding: ${spacing.components.larger};
   color: ${props => readableColor(props.$color, '#000000', 'white')};
   position: relative;
   z-index: 1;
   overflow: hidden;
   margin: 0 auto;
   width: ${topItemsGeneratorConfig.boxWidth}px;
-  border-radius: ${borderRadius.medium};
+  border-radius: ${props =>
+    props.$roundedCorners ? borderRadius.large : 'initial'};
+
+  transition: ${transition.default};
+  transition-property: background, border-radius;
 
   &::after {
     content: '';
