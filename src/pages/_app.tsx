@@ -10,6 +10,7 @@ import { ModalProvider } from 'contexts/ModalContext'
 import GlobalStyles from 'styles/GlobalStyles'
 import AppLayout from 'components/layout'
 import { getThemeCookie } from 'contexts/AppThemeContext/utils'
+import Head from 'next/head'
 
 const App = ({
   Component,
@@ -17,6 +18,9 @@ const App = ({
 }: AppProps<{ global?: AppGlobalProps }>) => {
   return (
     <>
+      <Head>
+        <title>Stopify</title>
+      </Head>
       <AppThemeProvider
         storedTheme={pageProps.global?.storedTheme || getThemeCookie()}
       >
