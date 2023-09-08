@@ -1,3 +1,4 @@
+import DevSign from 'components/shared/DevSign'
 import * as S from './styles'
 import Container from 'components/shared/Container'
 
@@ -7,12 +8,7 @@ const Footer = ({}: FooterProps) => {
   return (
     <S.Wrapper>
       <Container>
-        <S.DevSignText>
-          <S.DevSignPrefix>Desenvolvido por </S.DevSignPrefix>
-          <S.DevSignLink href="https://juanguilher.me" target="_blank">
-            juanguilher.me
-          </S.DevSignLink>
-        </S.DevSignText>
+        <DevSign />
       </Container>
     </S.Wrapper>
   )

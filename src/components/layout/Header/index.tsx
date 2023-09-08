@@ -12,6 +12,7 @@ import { useAppTheme } from 'contexts/AppThemeContext'
 import { useCallback, useEffect } from 'react'
 import RightFromBracketIcon from 'components/shared/icons/RightFromBracket'
 import UserIcon from 'components/shared/icons/User'
+import DevSign from 'components/shared/DevSign'
 
 export type HeaderProps = {
   userData?: SpotifyUserProfile
@@ -71,8 +72,6 @@ const Header = ({ userData }: HeaderProps) => {
                 </Button>
               </>
             )}
-          </S.MenuOptionsGroup>
-          <S.MenuOptionsGroup>
             <Button
               onClick={theme.themeToggle}
               fillWidth
@@ -82,6 +81,7 @@ const Header = ({ userData }: HeaderProps) => {
               Tema {theme.title} {theme.icon}
             </Button>
           </S.MenuOptionsGroup>
+          <DevSign />
         </S.MenuOptions>
       )
     })
