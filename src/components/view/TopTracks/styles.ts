@@ -9,6 +9,33 @@ import {
 } from 'styles/designSystemConfig'
 import DefaultContainer from 'components/shared/Container'
 import { screens } from 'styles/screens'
+import { generatedImageConfig } from 'config/generatedImage'
+
+export const VisibleTopItemsBox = styled.div`
+  & > div {
+    zoom: 0.6;
+  }
+
+  ${screens.mobileL} {
+    & > div {
+      zoom: 0.7;
+    }
+  }
+
+  ${screens.tabletS} {
+    & > div {
+      zoom: initial;
+    }
+  }
+`
+
+export const HiddenTopItemsBox = styled.div`
+  width: ${generatedImageConfig.width}px;
+  position: fixed;
+  z-index: -1;
+  left: -500%;
+  top: -500%;
+`
 
 export const FloatingSaveButton = styled.div`
   position: fixed;
@@ -114,12 +141,6 @@ export const SettingsForm = styled.div`
   gap: ${spacing.sections.smaller};
 `
 
-export const Board = styled.div`
-  border-radius: ${borderRadius.small};
-  overflow: hidden;
-  max-width: 360px;
-`
-
 export const ActionButtons = styled.div`
   display: flex;
   flex-direction: column;
@@ -134,7 +155,7 @@ export const Container = styled(DefaultContainer)`
   ${screens.laptop} {
     display: grid;
     flex-direction: initial;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr ${generatedImageConfig.width}px;
   }
 `
 

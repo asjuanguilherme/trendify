@@ -147,7 +147,7 @@ export const DropdownLabelWrapper = styled.span`
 `
 
 export const Button = styled(DefaultButton)`
-  justify-content: space-between;
+  justify-content: space-between !important;
 `
 
 export const Label = styled.span`

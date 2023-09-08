@@ -49,6 +49,7 @@ export const Title = styled.span<{
 }>`
   font-size: ${props => configBySize[props.$size].titleFontSize};
   font-weight: ${font.weight.bold};
+  text-overflow: ellipsis;
 
   ${props =>
     props.$nameLength > 35 &&
@@ -182,7 +183,7 @@ export const Wrapper = styled.div<{
     const backgroundColor = readableColor(
       $itemsBoxColor,
       rgba(0, 0, 0, 0.05),
-      rgba(255, 255, 255, 0.08)
+      rgba(255, 255, 255, 0.1)
     )
 
     switch ($style) {
@@ -194,9 +195,8 @@ export const Wrapper = styled.div<{
         `
       default:
         return css`
-          padding: ${rem(2)};
+          padding: ${rem(4)};
           background: ${backgroundColor};
-          border: 1px solid ${backgroundColor};
           border-radius: ${borderRadius.small};
         `
     }

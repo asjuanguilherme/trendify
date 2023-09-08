@@ -36,9 +36,11 @@ export const Wrapper = styled.button<WrapperProps>`
     font-size: inherit;
   }
 
-  &:disabled {
-    cursor: default;
-  }
+  ${props =>
+    props.disabled &&
+    css`
+      cursor: default;
+    `}
 
   // Badge
   position: relative;
@@ -64,25 +66,27 @@ export const Wrapper = styled.button<WrapperProps>`
     `}
 
   // Handle with colors by variant
-  ${({ theme, $color, $variant, $layer }) => {
+  ${({ theme, $color, $variant, $layer, disabled }) => {
     switch ($variant) {
       case 'filled':
         return css`
           background-color: ${theme.colors.main[$color].normal};
           color: white;
 
-          &:hover:not(:disabled) {
-            background-color: ${theme.colors.main[$color].light};
-          }
+          ${disabled
+            ? css`
+                background-color: ${theme.colors.layers[0].border};
+                color: ${theme.colors.detail};
+              `
+            : css`
+                &:hover {
+                  background-color: ${theme.colors.main[$color].light};
+                }
 
-          &:active:not(:disabled) {
-            background-color: ${theme.colors.main[$color].dark};
-          }
-
-          &:disabled {
-            background-color: ${theme.colors.layers[0].border};
-            color: ${theme.colors.detail};
-          }
+                &:active {
+                  background-color: ${theme.colors.main[$color].dark};
+                }
+              `}
         `
       case 'basic':
         return css`
@@ -90,22 +94,24 @@ export const Wrapper = styled.button<WrapperProps>`
           background-color: ${theme.colors.layers[$layer].background};
           border: 1px solid ${theme.colors.layers[$layer].border};
 
-          &:hover {
-            color: ${theme.colors.main[$color].normal};
-            border-color: ${theme.colors.main[$color].light}40;
-          }
+          ${disabled
+            ? css`
+                background-color: ${theme.colors.layers[$layer].background}80;
+                border: 1px solid ${theme.colors.layers[$layer].border}80;
+                color: ${theme.colors.text}80;
+              `
+            : css`
+                &:hover {
+                  color: ${theme.colors.main[$color].normal};
+                  border-color: ${theme.colors.main[$color].light}40;
+                }
 
-          &:active {
-            border-color: ${theme.colors.main[$color].dark};
-            background-color: ${theme.colors.main[$color].dark};
-            color: white;
-          }
-
-          &:disabled {
-            background-color: ${theme.colors.layers[$layer].background}80;
-            border: 1px solid ${theme.colors.layers[$layer].border}80;
-            color: ${theme.colors.text}80;
-          }
+                &:active {
+                  border-color: ${theme.colors.main[$color].dark};
+                  background-color: ${theme.colors.main[$color].dark};
+                  color: white;
+                }
+              `}
         `
       case 'outlined':
         return css`

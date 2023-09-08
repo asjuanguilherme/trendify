@@ -1,4 +1,4 @@
-import { readableColor, rem } from 'polished'
+import { opacify, readableColor, rem } from 'polished'
 import styled, { css, keyframes } from 'styled-components'
 import {
   borderRadius,
@@ -7,6 +7,55 @@ import {
   transition
 } from 'styles/designSystemConfig'
 import { TrackItemStyle } from '../TrackItem'
+import { generatedImageConfig } from 'config/generatedImage'
+
+export const CreatedByLink = styled.span`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: ${spacing.components.small};
+  font-size: ${font.sizes.smaller};
+`
+
+export const CreatedByText = styled.span<{ $itemsBoxColor: string }>`
+  font-size: ${font.sizes.smaller};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${spacing.components.smaller};
+  font-weight: ${font.weight.medium};
+
+  svg {
+    position: relative;
+    bottom: 0.2rem;
+    font-size: 1.3rem;
+
+    * {
+      fill: currentColor;
+    }
+  }
+`
+
+export const Footer = styled.footer`
+  margin-top: ${spacing.components.medium};
+`
+
+export const LoadingWrapper = styled.div`
+  padding: ${spacing.sections.larger} 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.theme.colors.layers[1].background};
+  border: 1px solid ${props => props.theme.colors.layers[1].border};
+  border-radius: ${borderRadius.small};
+  color: ${props => props.theme.colors.main.primary.normal};
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+`
 
 export const EmptyText = styled.div``
 
@@ -59,21 +108,6 @@ export const Profile = styled.div`
   padding-bottom: ${spacing.components.medium};
 `
 
-export const CreatedBy = styled.span`
-  font-size: ${font.sizes.smaller};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: ${spacing.components.smaller};
-  margin-top: ${spacing.components.medium};
-  font-weight: ${font.weight.medium};
-
-  svg {
-    position: relative;
-    font-size: 1.3rem;
-  }
-`
-
 export const ItemsList = styled.ul<{
   $style: TrackItemStyle
   $backgroundColor: string
@@ -101,10 +135,10 @@ export const ItemsList = styled.ul<{
               content: '';
               display: block;
               width: ${$itemsLength == 10
-                ? '83.5%'
+                ? '86.5%'
                 : $itemsLength == 5
-                ? '80%'
-                : '76%'};
+                ? '83%'
+                : '80%'};
               margin-left: auto;
               height: 1px;
               background: ${readableColor(
@@ -124,17 +158,22 @@ export const ItemsList = styled.ul<{
   }}
 `
 
+export const Main = styled.main``
+
 export const Date = styled.span`
   display: block;
   font-size: ${font.sizes.small};
   opacity: 0.75;
-  margin-bottom: ${spacing.components.larger};
 `
 
 export const Title = styled.h2`
   font-size: ${font.sizes.larger};
   font-weight: ${font.weight.bold};
   margin-bottom: ${spacing.components.small};
+`
+
+export const Header = styled.header`
+  margin-bottom: ${spacing.components.larger};
 `
 
 export const GeneratedBoxImage = styled.img<{ $enableBlur: boolean }>`
@@ -172,33 +211,22 @@ export const Wrapper = styled.div<{
   z-index: 1;
   overflow: hidden;
   margin: 0 auto;
-  width: 360px;
-
-  @media screen and (max-width: 390px) {
-    transform-origin: 30% top;
-    transform: scale(0.8);
-  }
-
-  @media screen and (max-width: 360px) {
-    transform-origin: 15% top;
-  }
-
-  @media screen and (max-width: 350px) {
-    transform-origin: 3% top;
-  }
+  width: ${generatedImageConfig.width}px;
+  border-radius: ${borderRadius.medium};
 
   &::after {
     content: '';
     position: absolute;
     left: 0;
-    top: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
     transition: ${transition.default};
     background: linear-gradient(
       transparent,
-      ${props => readableColor(props.$color, '#00000070', '#ffffff70')}
+      ${props =>
+        opacify(-0.7, readableColor(props.$color, '#ffffff', '#000000'))}
     );
     opacity: 0;
   }
@@ -206,7 +234,7 @@ export const Wrapper = styled.div<{
   ${props =>
     props.$enableGradient &&
     css`
-      ${CreatedBy} {
+      ${Footer} {
         color: white;
       }
 

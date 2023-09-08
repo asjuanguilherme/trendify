@@ -9,12 +9,14 @@ import { TimeRange } from 'services/spotify/queries/getMyTopArtists'
 
 // Utils
 import { timeRangeOptions } from './utils'
+import { WEBSITE_URL } from 'config/websiteUrl'
 
 // Components
 import TrackItem, { TrackItemStyle } from '../TrackItem'
 import Logo from '../Logo'
 import UserIcon from '../icons/User'
 import TriangleExclamationIcon from '../icons/TriangleExclamation'
+import Spinner from '../Spinner'
 
 export type UserTopItemsBoxProps = {
   boxRef: MutableRefObject<HTMLDivElement | null>
@@ -31,6 +33,7 @@ export type UserTopItemsBoxProps = {
   selectedItemsStyle: TrackItemStyle
   timeRange: TimeRange
   enableBadgeHightlights: boolean
+  loading: boolean
 }
 
 const trackItemsSizeByLimit = {
@@ -53,7 +56,8 @@ const UserTopItemsBox = ({
   artistItems,
   timeRange,
   selectedItemsStyle,
-  enableBadgeHightlights
+  enableBadgeHightlights,
+  loading
 }: UserTopItemsBoxProps) => {
   if (!trackItems && !artistItems)
     throw new Error('You must define trackItems or artistItems prop.')
@@ -89,58 +93,71 @@ const UserTopItemsBox = ({
 
   return (
     <S.Wrapper ref={boxRef} $color={color} $enableGradient={enableGradient}>
+      {loading && (
+        <S.LoadingWrapper>
+          <Spinner size="large" />
+        </S.LoadingWrapper>
+      )}
+
       <>
         {enableBackgroundImage && (
           <S.GeneratedBoxImage src={backgroundImage} $enableBlur={enableBlur} />
         )}
-        {showProfileInfo && (
-          <S.Profile>
-            {userData.images[0] ? (
-              <S.ProfileImage src={userData.images[0]?.url} alt="" />
-            ) : (
-              <S.ProfileImagePlaceholder>
-                <UserIcon />
-              </S.ProfileImagePlaceholder>
-            )}
-            <S.ProfileName>{userData.display_name}</S.ProfileName>
-          </S.Profile>
-        )}
-        <S.Title>
-          Top {limit} {titleSufix}
-        </S.Title>
-        <S.Date>
-          {new Intl.DateTimeFormat('pt-BR', {
-            dateStyle: 'long'
-          }).format(new Date())}
-        </S.Date>
-        <S.ItemsList
-          $style={selectedItemsStyle}
-          $backgroundColor={color}
-          $itemsLength={trackItems?.length}
-        >
-          {trackItems &&
-            trackItems.length > 0 &&
-            trackItems.map((item, index) => (
-              <li key={item.id}>
-                <TrackItem
-                  itemsBoxColor={color}
-                  badgeNumber={
-                    enableBadgeHightlights
-                      ? index > 2
-                        ? undefined
-                        : index + 1
-                      : undefined
-                  }
-                  data={item}
-                  size={trackItemsSizeByLimit[limit as 3] as 'small'}
-                  style={selectedItemsStyle}
-                />
-              </li>
-            ))}
-        </S.ItemsList>
-        <S.CreatedBy>
-          Criado em <Logo />
-        </S.CreatedBy>
+        <S.Header>
+          {showProfileInfo && (
+            <S.Profile>
+              {userData.images[0] ? (
+                <S.ProfileImage src={userData.images[0]?.url} alt="" />
+              ) : (
+                <S.ProfileImagePlaceholder>
+                  <UserIcon />
+                </S.ProfileImagePlaceholder>
+              )}
+              <S.ProfileName>{userData.display_name}</S.ProfileName>
+            </S.Profile>
+          )}
+          <S.Title>
+            Top {limit} {titleSufix}
+          </S.Title>
+          <S.Date>
+            {new Intl.DateTimeFormat('pt-BR', {
+              dateStyle: 'long'
+            }).format(new Date())}
+          </S.Date>
+        </S.Header>
+        <S.Main>
+          <S.ItemsList
+            $style={selectedItemsStyle}
+            $backgroundColor={color}
+            $itemsLength={trackItems?.length}
+          >
+            {trackItems &&
+              trackItems.length > 0 &&
+              trackItems.map((item, index) => (
+                <li key={item.id}>
+                  <TrackItem
+                    itemsBoxColor={color}
+                    badgeNumber={
+                      enableBadgeHightlights
+                        ? index > 2
+                          ? undefined
+                          : index + 1
+                        : undefined
+                    }
+                    data={item}
+                    size={trackItemsSizeByLimit[limit as 3] as 'small'}
+                    style={selectedItemsStyle}
+                  />
+                </li>
+              ))}
+          </S.ItemsList>
+        </S.Main>
+        <S.Footer>
+          <S.CreatedByText $itemsBoxColor={color}>
+            Criado em <Logo />
+          </S.CreatedByText>
+          <S.CreatedByLink>{new URL(WEBSITE_URL).hostname}</S.CreatedByLink>
+        </S.Footer>
       </>
     </S.Wrapper>
   )
