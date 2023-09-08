@@ -77,11 +77,12 @@ export const CreatedBy = styled.span`
 export const ItemsList = styled.ul<{
   $style: TrackItemStyle
   $backgroundColor: string
+  $itemsLength?: number
 }>`
   display: flex;
   flex-direction: column;
 
-  ${({ $style, $backgroundColor }) => {
+  ${({ $style, $backgroundColor, $itemsLength }) => {
     switch ($style) {
       case 'spotify':
         return css`
@@ -91,10 +92,27 @@ export const ItemsList = styled.ul<{
       case 'apple-music':
         return css`
           list-style: none;
+          gap: ${$itemsLength && $itemsLength > 5
+            ? ''
+            : spacing.components.smaller};
 
           li:not(:last-child) {
-            border-bottom: 1px solid
-              ${readableColor($backgroundColor, '#00000020', '#ffffff20')};
+            &::after {
+              content: '';
+              display: block;
+              width: ${$itemsLength == 10
+                ? '83.5%'
+                : $itemsLength == 5
+                ? '80%'
+                : '76%'};
+              margin-left: auto;
+              height: 1px;
+              background: ${readableColor(
+                $backgroundColor,
+                '#00000020',
+                '#ffffff20'
+              )};
+            }
           }
         `
       default:

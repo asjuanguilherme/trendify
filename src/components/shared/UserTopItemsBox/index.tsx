@@ -118,7 +118,11 @@ const UserTopItemsBox = ({
             dateStyle: 'long'
           }).format(new Date())}
         </S.Date>
-        <S.ItemsList $style={selectedItemsStyle} $backgroundColor={color}>
+        <S.ItemsList
+          $style={selectedItemsStyle}
+          $backgroundColor={color}
+          $itemsLength={trackItems?.length}
+        >
           {trackItems &&
             trackItems.length > 0 &&
             trackItems.map((item, index) => (
