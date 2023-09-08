@@ -2,10 +2,18 @@ import * as S from './styles'
 import Section from 'components/shared/Section'
 import ButtonLink from 'components/shared/ButtonLink'
 import SpotifyLogo from 'components/shared/icons/SpotifyLogo'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export type HomeViewProps = {}
 
 const HomeView = ({}: HomeViewProps) => {
+  const router = useRouter()
+
+  useEffect(() => {
+    console.log(router.query)
+  }, [router.query])
+
   return (
     <S.Wrapper>
       <Section title="Gere seu sTopify">

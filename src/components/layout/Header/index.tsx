@@ -72,15 +72,15 @@ const Header = ({ userData }: HeaderProps) => {
                 </Button>
               </>
             )}
-            <Button
-              onClick={theme.themeToggle}
-              fillWidth
-              variant="basic"
-              size="small"
-            >
-              Tema {theme.title} {theme.icon}
-            </Button>
           </S.MenuOptionsGroup>
+          <Button
+            onClick={theme.themeToggle}
+            fillWidth
+            variant="basic"
+            size="small"
+          >
+            Tema {theme.title} {theme.icon}
+          </Button>
           <DevSign />
         </S.MenuOptions>
       )

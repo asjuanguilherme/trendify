@@ -1,4 +1,4 @@
-import { gothamFont } from 'fonts/gotham/config'
+import { circularFont } from 'fonts/circular/config'
 import { breakpoints } from 'styles/screens'
 
 export const layout = {
@@ -25,7 +25,7 @@ export const spacing = {
 
 export const font = {
   family: {
-    gotham: gothamFont.style.fontFamily
+    gotham: circularFont.style.fontFamily
   },
   sizes: {
     smaller: '.75rem',

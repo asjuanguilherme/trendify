@@ -10,7 +10,7 @@ const resets = css`
     user-select: none;
     scroll-behavior: smooth;
     box-sizing: border-box;
-    font-weight: ${font.weight.book};
+    font-weight: ${font.weight.light};
     font-family: ${font.family.gotham};
     color: inherit;
   }

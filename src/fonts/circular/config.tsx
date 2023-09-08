@@ -1,24 +1,24 @@
 import localFont from 'next/font/local'
 
-export const gothamFont = localFont({
+export const circularFont = localFont({
   src: [
     {
-      path: 'assets/GothamLight.ttf',
+      path: 'assets/CircularLight.otf',
       weight: '300',
       style: 'normal'
     },
     {
-      path: 'assets/GothamBook.ttf',
+      path: 'assets/CircularBook.otf',
       weight: '400',
       style: 'normal'
     },
     {
-      path: 'assets/GothamMedium.ttf',
+      path: 'assets/CircularMedium.otf',
       weight: '500',
       style: 'normal'
     },
     {
-      path: 'assets/GothamBold.ttf',
+      path: 'assets/CircularBold.otf',
       weight: '600',
       style: 'normal'
     }
