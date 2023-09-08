@@ -69,6 +69,7 @@ export const MenuButton = styled.button`
   justify-content: center;
   cursor: pointer;
   transition: ${transition.fast};
+  color: black;
 
   &:hover {
     color: ${props => props.theme.colors.main.secondary.normal};

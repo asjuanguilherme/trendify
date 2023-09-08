@@ -164,11 +164,18 @@ const TopTracksView = ({
             </S.StyleOptions>
           )}
         </S.SettingsForm>
-        <S.ActionButtons>
-          <Button variant="basic" fillWidth onClick={saveAsImage} size="small">
-            Salvar Imagem <DownloadIcon />
-          </Button>
-        </S.ActionButtons>
+        {items.length > 0 && (
+          <S.ActionButtons>
+            <Button
+              variant="basic"
+              fillWidth
+              onClick={saveAsImage}
+              size="small"
+            >
+              Salvar Imagem <DownloadIcon />
+            </Button>
+          </S.ActionButtons>
+        )}
       </Container>
       <Container>
         <S.Board>

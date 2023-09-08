@@ -12,9 +12,6 @@ const resets = css`
     box-sizing: border-box;
     font-weight: ${font.weight.book};
     font-family: ${font.family.gotham};
-  }
-
-  a {
     color: inherit;
   }
 
