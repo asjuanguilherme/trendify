@@ -6,7 +6,7 @@ import { SpotifyTrack } from 'services/spotify/types/Track'
 import { SpotifyUserProfile } from 'services/spotify/types'
 
 // Utils
-import html2canvas from 'html2canvas'
+import { toPng } from 'html-to-image'
 import dark from 'styles/themes/dark'
 
 // Services
@@ -72,17 +72,14 @@ const TopTracksView = ({
   const saveAsImage = async () => {
     if (!boxRef.current) return
 
-    const canvas = await html2canvas(boxRef.current, {
-      windowWidth: 350,
-      useCORS: true,
-      backgroundColor: 'transparent',
-      scale: 2
+    const dataUrl = await toPng(boxRef.current, {
+      quality: 1,
+      canvasWidth: 350,
+      backgroundColor: 'transparent'
     })
 
-    const generatedImageURL = canvas.toDataURL('image/png', 1)
-
     const downloadLink = document.createElement('a')
-    downloadLink.href = generatedImageURL
+    downloadLink.href = dataUrl
     downloadLink.download = 'top_tracks.png'
     downloadLink.click()
   }

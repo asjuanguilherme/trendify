@@ -88,15 +88,10 @@ const UserTopItemsBox = ({
     )
 
   return (
-    <S.Wrapper
-      ref={boxRef}
-      $color={color}
-      $enableGradient={enableGradient}
-      $enableBlur={enableBlur}
-    >
+    <S.Wrapper ref={boxRef} $color={color} $enableGradient={enableGradient}>
       <>
         {enableBackgroundImage && (
-          <S.GeneratedBoxImage $src={backgroundImage} />
+          <S.GeneratedBoxImage src={backgroundImage} $enableBlur={enableBlur} />
         )}
         {showProfileInfo && (
           <S.Profile>

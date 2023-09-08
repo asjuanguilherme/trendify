@@ -137,29 +137,33 @@ export const Title = styled.h2`
   margin-bottom: ${spacing.components.small};
 `
 
-export const GeneratedBoxImage = styled.span<{ $src: string }>`
+export const GeneratedBoxImage = styled.img<{ $enableBlur: boolean }>`
   position: absolute;
   height: 100%;
   width: 100%;
   left: 0;
   top: 0;
   z-index: -1;
-  background-image: url(${props => props.$src});
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   opacity: 0.1;
   animation: ${keyframes`
-          from {
-            opacity: 0;
-            transform: scale(1.5);
-          }
-        `} ${transition.default} ease;
+  from {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  `} ${transition.default} ease;
+
+  ${props =>
+    props.$enableBlur &&
+    css`
+      filter: blur(6px);
+    `}
 `
 
 export const Wrapper = styled.div<{
   $color: string
   $enableGradient: boolean
-  $enableBlur: boolean
 }>`
   background: ${props => props.$color};
   padding: ${spacing.components.medium};
@@ -197,7 +201,6 @@ export const Wrapper = styled.div<{
       ${props => readableColor(props.$color, '#00000070', '#ffffff70')}
     );
     opacity: 0;
-    backdrop-filter: ${props => (props.$enableBlur ? 'blur(5px)' : 'initial')};
   }
 
   ${props =>
