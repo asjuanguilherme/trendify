@@ -126,8 +126,6 @@ export const BadgeNumber = styled.span<{
     const backgroundLuminance = getLuminance(backgroundColorInitial)
     const rgbColor = parseToRgb(backgroundColorInitial)
 
-    console.log(backgroundLuminance)
-
     const backgroundColor = (() => {
       if (backgroundLuminance < 0.07) {
         if (rgbColor.blue < 70 && rgbColor.green < 70 && rgbColor.red < 70)

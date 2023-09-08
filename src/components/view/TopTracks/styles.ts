@@ -127,10 +127,13 @@ export const ActionButtons = styled.div`
   gap: ${spacing.components.small};
 `
 export const Container = styled(DefaultContainer)`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: ${spacing.sections.smaller};
 
   ${screens.laptop} {
+    display: grid;
+    flex-direction: initial;
     grid-template-columns: 1fr 360px;
   }
 `
