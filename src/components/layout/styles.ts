@@ -9,7 +9,7 @@ export const appLayoutConfig = {
 export const Main = styled.main`
   flex: 1;
   padding-top: calc(
-    ${appLayoutConfig.headerHeight} + ${spacing.components.medium}
+    ${appLayoutConfig.headerHeight} + ${spacing.sections.smaller}
   );
 `
 

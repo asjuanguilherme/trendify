@@ -1,5 +1,5 @@
 import * as S from './styles'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 // Types
 import { SpotifyTrack } from 'services/spotify/types/Track'
@@ -16,7 +16,7 @@ import {
 } from 'services/spotify/queries/getMyTopTracks'
 
 import Container from 'components/shared/Container'
-import Button from 'components/shared/Button'
+import Button, { ButtonProps } from 'components/shared/Button'
 import DownloadIcon from 'components/shared/icons/Download'
 import { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
@@ -27,6 +27,8 @@ import UserTopItemsBox from 'components/shared/UserTopItemsBox'
 import ColorPicker from 'components/shared/ColorPicker'
 import ColorOption from 'components/shared/ColorOption'
 import mainColors from 'styles/mainColors'
+import useScreen from 'hooks/useScreen'
+import { breakpoints } from 'styles/screens'
 
 export type TopTracksViewProps = {
   items: SpotifyTrack[]
@@ -49,6 +51,8 @@ const TopTracksView = ({
   items: initialItems,
   userData
 }: TopTracksViewProps) => {
+  const screen = useScreen()
+  const isLaptopUp = screen.width > breakpoints.laptop
   const [items, setItems] = useState(initialItems)
   const [loading, setLoading] = useState(false)
   const [limit, setLimit] = useState(5)
@@ -95,9 +99,23 @@ const TopTracksView = ({
     })()
   }, [limit, timeRange])
 
+  const SaveButton = useCallback(
+    (props: ButtonProps) => (
+      <Button onClick={saveAsImage} fillWidth {...props}>
+        Salvar <DownloadIcon />
+      </Button>
+    ),
+    []
+  )
+
   return (
     <S.Wrapper>
-      <Container>
+      {items.length > 0 && !isLaptopUp && (
+        <S.FloatingSaveButton>
+          <SaveButton />
+        </S.FloatingSaveButton>
+      )}
+      <S.Container>
         <S.SettingsForm>
           <S.SettingsFormSection>
             <S.SettingsFormSectionTitle>
@@ -219,38 +237,31 @@ const TopTracksView = ({
             </S.SettingsFormSectionCollapseButton>
           </S.SettingsFormSection>
         </S.SettingsForm>
-        {items.length > 0 && (
+        <div style={{ margin: '0 auto' }}>
+          <S.Board>
+            <UserTopItemsBox
+              type="tracks"
+              trackItems={items}
+              boxRef={boxRef}
+              color={color}
+              enableBackgroundImage={enableBackgroundImage}
+              enableBlur={enableBlur}
+              enableGradient={enableGradient}
+              enableBadgeHightlights={enableBadgeHightlights}
+              limit={limit}
+              selectedItemsStyle={selectedItemsStyle}
+              showProfileInfo={showProfileInfo}
+              timeRange={timeRange}
+              userData={userData}
+            />
+          </S.Board>
           <S.ActionButtons>
-            <Button
-              variant="basic"
-              fillWidth
-              onClick={saveAsImage}
-              size="small"
-            >
-              Salvar Imagem <DownloadIcon />
-            </Button>
+            {items.length > 0 && isLaptopUp && (
+              <SaveButton style={{ maxWidth: 350, marginTop: '1rem' }} />
+            )}
           </S.ActionButtons>
-        )}
-      </Container>
-      <Container>
-        <S.Board>
-          <UserTopItemsBox
-            type="tracks"
-            trackItems={items}
-            boxRef={boxRef}
-            color={color}
-            enableBackgroundImage={enableBackgroundImage}
-            enableBlur={enableBlur}
-            enableGradient={enableGradient}
-            enableBadgeHightlights={enableBadgeHightlights}
-            limit={limit}
-            selectedItemsStyle={selectedItemsStyle}
-            showProfileInfo={showProfileInfo}
-            timeRange={timeRange}
-            userData={userData}
-          />
-        </S.Board>
-      </Container>
+        </div>
+      </S.Container>
     </S.Wrapper>
   )
 }

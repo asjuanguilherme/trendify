@@ -21,7 +21,7 @@ type OptionsBoxProps = OptionsBoxConfig & {
 const screenDownForModalDropdownOptions = `@media screen and (max-width: ${breakpoints.tablet}px)`
 
 export const Option = styled.li<{ selected: boolean }>`
-  padding: ${spacing.components.small} ${spacing.components.larger};
+  padding: ${spacing.components.medium} ${spacing.components.larger};
   border-radius: ${borderRadius.small};
   cursor: pointer;
   font-size: ${font.sizes.default};
@@ -109,7 +109,8 @@ export const OptionsBox = styled.div<OptionsBoxProps>`
 
 export const OptionsBoxWrapper = styled.div<{ opened: boolean }>`
   ${screenDownForModalDropdownOptions} {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
     height: 100vh;
     max-height: 100%;
     width: 100%;

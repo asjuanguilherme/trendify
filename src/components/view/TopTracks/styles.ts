@@ -4,8 +4,20 @@ import {
   buttonSizes,
   font,
   spacing,
-  transition
+  transition,
+  zIndex
 } from 'styles/designSystemConfig'
+import DefaultContainer from 'components/shared/Container'
+import { screens } from 'styles/screens'
+
+export const FloatingSaveButton = styled.div`
+  position: fixed;
+  z-index: ${zIndex.navbar};
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: ${spacing.components.small};
+`
 
 export const SuggestedColors = styled.div`
   display: flex;
@@ -105,20 +117,24 @@ export const SettingsForm = styled.div`
 export const Board = styled.div`
   border-radius: ${borderRadius.small};
   overflow: hidden;
-  border: 1px solid ${props => props.theme.colors.layers[1].border};
-  margin-top: ${spacing.sections.smaller};
+  max-width: 360px;
 `
 
 export const ActionButtons = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: ${spacing.components.small};
-  margin-top: ${spacing.components.large};
-  margin-bottom: ${spacing.components.small};
+`
+export const Container = styled(DefaultContainer)`
+  display: grid;
+  gap: ${spacing.sections.smaller};
 
-  button {
-    flex: 1;
+  ${screens.laptop} {
+    grid-template-columns: 1fr 360px;
   }
 `
 
-export const Wrapper = styled.div``
+export const Wrapper = styled.div`
+  padding-bottom: ${spacing.sections.small};
+`

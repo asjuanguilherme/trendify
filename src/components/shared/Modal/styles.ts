@@ -9,6 +9,7 @@ import {
   zIndex
 } from 'styles/designSystemConfig'
 import { screens } from 'styles/screens'
+import { LayerIndex } from '../../../../styled'
 
 export const BoxContent = styled.div`
   flex: 1;
@@ -52,13 +53,14 @@ export const Box = styled.div<{
   width: number
   hasTitle: boolean
   positionY: string
+  $layer: LayerIndex
 }>`
   position: relative;
   width: 100%;
   max-height: 85vh;
   max-width: ${props => props.width}px;
-  background: ${props => props.theme.colors.layers[1].background};
-  border: 1px solid ${props => props.theme.colors.layers[1].border};
+  background: ${props => props.theme.colors.layers[props.$layer].background};
+  border: 1px solid ${props => props.theme.colors.layers[props.$layer].border};
   border-radius: ${borderRadius.medium};
   /* overflow: hidden; */
   animation: ${appearBoxKeyframes} ${transition.default} ease-out;
@@ -82,12 +84,7 @@ const modalStyleByVariants = (closed: boolean) => ({
     transition: ${transition.slow};
     transition-property: backdrop-filter, background, visibility;
     backdrop-filter: blur(6px);
-    background: rgba(
-      0,
-      0,
-      0,
-      ${props => (props.theme.name === 'dark' ? '0.1' : '0.3')}
-    );
+    background: rgba(0, 0, 0, 0.3);
 
     ${closed &&
     css`

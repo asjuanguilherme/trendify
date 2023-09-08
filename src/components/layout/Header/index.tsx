@@ -32,7 +32,8 @@ const Header = ({ userData }: HeaderProps) => {
   const menuModal = useModal('APP_MENU', {
     opened: false,
     title: 'Opções',
-    width: 400
+    width: 400,
+    layer: 0
   })
 
   const userProfilePhoto =
@@ -65,12 +66,7 @@ const Header = ({ userData }: HeaderProps) => {
                   )}
                   <S.ProfileName>{userData.display_name}</S.ProfileName>
                 </S.ProfileResume>{' '}
-                <Button
-                  onClick={logout}
-                  fillWidth
-                  color="secondary"
-                  size="smaller"
-                >
+                <Button onClick={logout} fillWidth size="small" variant="basic">
                   Sair da sua conta <RightFromBracketIcon />
                 </Button>
               </>
@@ -81,7 +77,6 @@ const Header = ({ userData }: HeaderProps) => {
               onClick={theme.themeToggle}
               fillWidth
               variant="basic"
-              layer={0}
               size="small"
             >
               Tema {theme.title} {theme.icon}
@@ -89,7 +84,6 @@ const Header = ({ userData }: HeaderProps) => {
             <ButtonLink
               fillWidth
               variant="basic"
-              layer={0}
               size="small"
               href="/my-top-tracks"
               onClick={menuModal.close}

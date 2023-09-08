@@ -2,6 +2,7 @@ import * as S from './styles'
 import { ReactNode } from 'react'
 import XMarkIcon from 'components/shared/icons/Xmark'
 import Button from 'components/shared/Button'
+import { LayerIndex } from '../../../../styled'
 
 export type ModalVariant = 'default' | 'discret'
 
@@ -16,6 +17,7 @@ export type ModalComponentProps = {
   showX?: boolean
   closeOnBlur?: boolean
   variant?: ModalVariant
+  layer?: LayerIndex
 }
 
 const Modal = ({
@@ -28,7 +30,8 @@ const Modal = ({
   showX = true,
   closeOnBlur = true,
   onClose,
-  variant = 'default'
+  variant = 'default',
+  layer = 0
 }: ModalComponentProps) => {
   return (
     <S.Wrapper
@@ -41,6 +44,7 @@ const Modal = ({
         onClick={e => e.stopPropagation()}
         hasTitle={Boolean(title)}
         positionY={positionY}
+        $layer={layer}
       >
         {(title || showX) && (
           <S.BoxHeader>
