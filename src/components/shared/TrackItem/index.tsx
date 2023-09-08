@@ -21,7 +21,7 @@ const TrackItem = ({
   itemsBoxColor
 }: TrackItemProps) => {
   return (
-    <S.Wrapper $size={size} $style={style}>
+    <S.Wrapper $size={size} $style={style} $itemsBoxColor={itemsBoxColor}>
       {badgeNumber && (
         <S.BadgeNumber
           $itemsBoxColor={itemsBoxColor}

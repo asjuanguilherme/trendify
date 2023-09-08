@@ -6,7 +6,8 @@ import {
   saturate,
   getLuminance,
   parseToRgb,
-  darken
+  darken,
+  rgba
 } from 'polished'
 import styled, { css } from 'styled-components'
 import { borderRadius, font, spacing } from 'styles/designSystemConfig'
@@ -173,12 +174,19 @@ export const BadgeNumber = styled.span<{
 export const Wrapper = styled.div<{
   $size: TrackItemSize
   $style: TrackItemStyle
+  $itemsBoxColor: string
 }>`
   display: flex;
   gap: ${spacing.components.small};
   position: relative;
 
-  ${({ $style }) => {
+  ${({ $style, $itemsBoxColor }) => {
+    const backgroundColor = readableColor(
+      $itemsBoxColor,
+      rgba(0, 0, 0, 0.05),
+      rgba(255, 255, 255, 0.08)
+    )
+
     switch ($style) {
       case 'spotify':
         return css``
@@ -189,8 +197,8 @@ export const Wrapper = styled.div<{
       default:
         return css`
           padding: ${rem(2)};
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: ${backgroundColor};
+          border: 1px solid ${backgroundColor};
           border-radius: ${borderRadius.small};
         `
     }

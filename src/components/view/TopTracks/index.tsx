@@ -38,6 +38,7 @@ export type TopTracksViewProps = {
 const limitOptions = [3, 5, 10]
 
 const suggestedColors = [
+  dark.colors.layers[1].background,
   mainColors.primary.normal,
   mainColors.secondary.normal,
   '#E5C02D',
