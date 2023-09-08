@@ -3,6 +3,7 @@ import {
   borderRadius,
   buttonSizes,
   font,
+  layout,
   spacing,
   transition,
   zIndex
@@ -43,7 +44,7 @@ export const FloatingSaveButton = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: ${spacing.components.small};
+  padding: ${layout.gutter};
 `
 
 export const SuggestedColors = styled.div`

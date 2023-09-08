@@ -19,7 +19,7 @@ import TriangleExclamationIcon from '../icons/TriangleExclamation'
 import Spinner from '../Spinner'
 
 export type UserTopItemsBoxProps = {
-  boxRef: MutableRefObject<HTMLDivElement | null>
+  boxRef?: MutableRefObject<HTMLDivElement | null>
   trackItems?: SpotifyTrack[]
   artistItems?: SpotifyArtist[]
   type: 'artists' | 'tracks'

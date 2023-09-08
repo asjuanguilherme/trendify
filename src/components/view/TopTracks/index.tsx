@@ -1,5 +1,12 @@
 import * as S from './styles'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 
 // Types
 import { SpotifyTrack } from 'services/spotify/types/Track'
@@ -109,18 +116,18 @@ const TopTracksView = ({
         onClick={downloadImage}
         disabled={loadingData}
       >
-        Salvar <DownloadIcon />
+        Salvar Imagem <DownloadIcon />
       </Button>
     ),
     [loadingData]
   )
 
-  const GeneratedTopItems = useMemo(
-    () => (
+  const GeneratedTopItems = useCallback(
+    (props: { boxRef?: MutableRefObject<HTMLDivElement | null> }) => (
       <UserTopItemsBox
+        boxRef={props?.boxRef}
         type="tracks"
         trackItems={items}
-        boxRef={boxRef}
         color={color}
         enableBackgroundImage={enableBackgroundImage}
         enableBlur={enableBlur}
@@ -152,7 +159,9 @@ const TopTracksView = ({
 
   return (
     <S.Wrapper>
-      <S.HiddenTopItemsBox>{GeneratedTopItems}</S.HiddenTopItemsBox>
+      <S.HiddenTopItemsBox>
+        <GeneratedTopItems boxRef={boxRef} />
+      </S.HiddenTopItemsBox>
 
       {items.length > 0 && !isLaptopUp && (
         <S.FloatingSaveButton>
@@ -282,7 +291,7 @@ const TopTracksView = ({
           </S.SettingsFormSection>
         </S.SettingsForm>
         <S.VisibleTopItemsBox>
-          {GeneratedTopItems}
+          <GeneratedTopItems />
           {items.length > 0 && isLaptopUp && (
             <SaveButton style={{ marginTop: '1rem' }} />
           )}
