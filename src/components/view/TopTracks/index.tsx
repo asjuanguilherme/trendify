@@ -66,7 +66,7 @@ const TopTracksView = ({
   const [enableGradient, setEnableGradient] = useState(true)
   const [enableBlur, setEnableBlur] = useState(true)
   const [showProfileInfo, setShowProfileInfo] = useState(true)
-  const [enableBadgeHightlights, setEnableBadgeHighlights] = useState(true)
+  const [enableBadgeHightlights, setEnableBadgeHighlights] = useState(false)
   const [showAdvancedStyles, setShowAdvancedStyles] = useState(false)
 
   const saveAsImage = async () => {
@@ -222,7 +222,7 @@ const TopTracksView = ({
                       layer={0}
                     />
                     <Switch
-                      label="Exibir numeração no top 3"
+                      label="Exibir numeração no top 3 (Experimental)"
                       checked={enableBadgeHightlights}
                       onChange={() => setEnableBadgeHighlights(state => !state)}
                       layer={0}
