@@ -164,5 +164,5 @@ export const Container = styled(DefaultContainer)`
 `
 
 export const Wrapper = styled.div`
-  padding-bottom: ${spacing.sections.small};
+  padding: ${spacing.sections.smaller} 0;
 `

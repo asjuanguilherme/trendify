@@ -1,6 +1,6 @@
 {
-  "name": "Stopify",
-  "short_name": "Stopify",
+  "name": "sTopify",
+  "short_name": "sTopify",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0D1816",

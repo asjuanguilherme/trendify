@@ -5,12 +5,12 @@ import { AppGlobalProps } from 'types'
 // Providers
 import { AppThemeProvider } from 'contexts/AppThemeContext'
 import { ModalProvider } from 'contexts/ModalContext'
+import { getThemeCookie } from 'contexts/AppThemeContext/utils'
 
 // Components
 import GlobalStyles from 'styles/GlobalStyles'
 import AppLayout from 'components/layout'
-import { getThemeCookie } from 'contexts/AppThemeContext/utils'
-import Head from 'next/head'
+import AppProgressBar from 'components/layout/AppProgressBar'
 
 const App = ({
   Component,
@@ -18,15 +18,13 @@ const App = ({
 }: AppProps<{ global?: AppGlobalProps }>) => {
   return (
     <>
-      <Head>
-        <title>Stopify</title>
-      </Head>
       <AppThemeProvider
         storedTheme={pageProps.global?.storedTheme || getThemeCookie()}
       >
         <ModalProvider>
           <GlobalStyles />
           <AppLayout userData={pageProps.global?.userData! || null}>
+            <AppProgressBar />
             <Component {...pageProps} />
           </AppLayout>
         </ModalProvider>

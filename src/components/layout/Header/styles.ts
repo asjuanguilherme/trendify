@@ -11,6 +11,7 @@ import {
   zIndex
 } from 'styles/designSystemConfig'
 import DefaultContainer from 'components/shared/Container'
+import { screens } from 'styles/screens'
 
 export const ProfilePhotoPlaceholder = styled.span`
   display: inline-block;
@@ -53,7 +54,6 @@ export const MenuOptionsGroup = styled.div`
   flex-direction: column;
   gap: ${spacing.components.smaller};
 `
-
 export const MenuOptions = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,11 +75,11 @@ export const MenuButton = styled.button`
   justify-content: center;
   cursor: pointer;
   transition: ${transition.fast};
-  color: ${props => props.theme.colors.layers[0].background};
-  background: ${props => props.theme.colors.text};
+  color: white;
+  background: ${props => props.theme.colors.main.primary.normal};
 
   &:hover {
-    color: ${props => props.theme.colors.main.secondary.normal};
+    transform: scale(1.2);
   }
 `
 
@@ -87,11 +87,70 @@ export const LogoWrapper = styled(Link)`
   font-size: 2rem;
 `
 
+export const PagesNavItem = styled.li<{ $active?: boolean }>`
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height: ${buttonSizes.small};
+    padding: ${spacing.components.medium};
+    border-radius: ${borderRadius.pill};
+    color: inherit;
+    font-size: ${font.sizes.small};
+    font-weight: ${font.weight.medium};
+    transition: ${transition.default};
+    transition-property: color, background-color;
+
+    ${props =>
+      props.$active
+        ? css`
+            color: white;
+            background-color: ${props =>
+              props.theme.colors.main.primary.normal};
+          `
+        : css`
+            &:hover {
+              background-color: ${props =>
+                props.theme.colors.main.primary.normal}10;
+              color: ${props => props.theme.colors.main.primary.normal};
+            }
+          `}
+  }
+`
+
+export const MenuPagesNavList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.components.small};
+
+  li {
+    a {
+      width: 100%;
+    }
+  }
+`
+
+export const PagesNavList = styled.ul`
+  display: none;
+
+  ${screens.laptop} {
+    display: flex;
+    gap: ${spacing.components.small};
+    list-style: none;
+  }
+`
+
 export const Container = styled(DefaultContainer)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: ${appLayoutConfig.headerHeight};
+  height: ${appLayoutConfig.headerHeight.mobile};
+
+  ${screens.laptop} {
+    height: ${appLayoutConfig.headerHeight.laptop};
+  }
 `
 
 export const Wrapper = styled.header`

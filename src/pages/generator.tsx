@@ -2,17 +2,17 @@ import { withGlobalData } from 'hoc/withGlobalData'
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
 import { SpotifyTrack } from 'services/spotify/types/Track'
 import { AppGlobalProps } from 'types'
-import TopItemsView from 'components/view/TopItems'
+import GeneratorView from 'components/view/Generator'
 
-export type MyTopTracksPageProps = {
+export type GeneratorPageProps = {
   global: AppGlobalProps
   items: SpotifyTrack[]
 }
 
-const MyTopTracksPage = ({ items, global }: MyTopTracksPageProps) => {
+const GeneratorPage = ({ items, global }: GeneratorPageProps) => {
   return (
     <>
-      <TopItemsView items={items} userData={global.userData!} />
+      <GeneratorView items={items} userData={global.userData!} />
     </>
   )
 }
@@ -25,4 +25,4 @@ export const getServerSideProps = withGlobalData(async ctx => {
   }
 })
 
-export default MyTopTracksPage
+export default GeneratorPage

@@ -4,6 +4,7 @@ import ButtonLink from 'components/shared/ButtonLink'
 import SpotifyLogo from 'components/shared/SpotifyLogo'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import BasicPageView from '../BasicPage'
 
 export type HomeViewProps = {}
 
@@ -16,16 +17,18 @@ const HomeView = ({}: HomeViewProps) => {
 
   return (
     <S.Wrapper>
-      <Section title="Gere seu sTopify">
+      <S.PageView showReturn={false}>
+        <h1>Descubra seu sTopify</h1>
         <p>
-          Descubra suas top músicas ou artistas ouvidos de um jeito fácil,
-          personalizável e elegante.
+          Descubra suas músicas e artistas favoritos com o sTopify. Uma
+          abordagem simples e personalizada para explorar sua música de maneira
+          elegante.
         </p>
-        <ButtonLink fillWidth style={{ marginTop: '1.5rem' }} href="/login">
+        <ButtonLink style={{ marginTop: '1.5rem' }} href="/login">
           Entrar com
           <SpotifyLogo style={{ fontSize: '1.35rem', marginLeft: '-.3rem' }} />
         </ButtonLink>
-      </Section>
+      </S.PageView>
     </S.Wrapper>
   )
 }

@@ -31,7 +31,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
           })
         : null
 
-      if (!userData && ctx.resolvedUrl.includes('/my-top'))
+      if (!userData && ctx.resolvedUrl.includes('/generator'))
         return {
           redirect: {
             destination: '/',
@@ -42,7 +42,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
       if (userData && ctx.resolvedUrl.split('?')[0] === '/') {
         return {
           redirect: {
-            destination: '/my-top',
+            destination: '/generator',
             permanent: true
           }
         }

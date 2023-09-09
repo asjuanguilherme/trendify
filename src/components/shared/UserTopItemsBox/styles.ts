@@ -37,7 +37,7 @@ export const CreatedByText = styled.span<{ $itemsBoxColor: string }>`
 `
 
 export const Footer = styled.footer`
-  margin-top: ${spacing.components.medium};
+  margin-top: ${spacing.sections.small};
 `
 
 export const LoadingWrapper = styled.div`
@@ -270,10 +270,6 @@ export const Wrapper = styled.div<{
   ${props =>
     props.$enableGradient &&
     css`
-      ${Footer} {
-        color: white;
-      }
-
       &::after {
         opacity: 1;
       }

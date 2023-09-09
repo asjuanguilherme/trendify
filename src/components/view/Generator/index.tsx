@@ -8,6 +8,9 @@ import { SpotifyUserProfile } from 'services/spotify/types'
 // Utils
 import { toPng } from 'html-to-image'
 import dark from 'styles/themes/dark'
+import { breakpoints } from 'styles/screens'
+import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
+import useScreen from 'hooks/useScreen'
 
 // Services
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
@@ -23,16 +26,16 @@ import UserTopItemsBox, {
 } from 'components/shared/UserTopItemsBox'
 import ColorPicker from 'components/shared/ColorPicker'
 import ColorOption from 'components/shared/ColorOption'
-import useScreen from 'hooks/useScreen'
-import { breakpoints } from 'styles/screens'
-import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
 
-export type TopItemsViewProps = {
+export type GeneratorViewProps = {
   items: SpotifyTrack[]
   userData: SpotifyUserProfile
 }
 
-const TopItemsView = ({ items: initialItems, userData }: TopItemsViewProps) => {
+const GeneratorView = ({
+  items: initialItems,
+  userData
+}: GeneratorViewProps) => {
   const screen = useScreen()
   const isLaptopUp = screen.width > breakpoints.laptop
 
@@ -293,4 +296,4 @@ const TopItemsView = ({ items: initialItems, userData }: TopItemsViewProps) => {
   )
 }
 
-export default TopItemsView
+export default GeneratorView

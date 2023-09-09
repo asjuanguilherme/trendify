@@ -8,6 +8,15 @@ const nextConfig = {
   reactStrictMode: true,
   compiler: {
     styledComponents: true
+  },
+  async redirects() {
+    return [
+      {
+        source: '/_error',
+        destination: '/home',
+        permanent: true
+      }
+    ]
   }
 }
 

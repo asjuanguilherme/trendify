@@ -1,16 +1,21 @@
 import { rem } from 'polished'
 import styled from 'styled-components'
-import { spacing } from 'styles/designSystemConfig'
+import { screens } from 'styles/screens'
 
 export const appLayoutConfig = {
-  headerHeight: rem(60)
+  headerHeight: {
+    mobile: rem(75),
+    laptop: rem(90)
+  }
 }
 
 export const Main = styled.main`
   flex: 1;
-  padding-top: calc(
-    ${appLayoutConfig.headerHeight} + ${spacing.sections.smaller}
-  );
+  padding-top: ${appLayoutConfig.headerHeight.mobile};
+
+  ${screens.laptop} {
+    padding-top: ${appLayoutConfig.headerHeight.laptop};
+  }
 `
 
 export const AppWrapper = styled.div`

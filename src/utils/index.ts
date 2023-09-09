@@ -1,3 +1,5 @@
 export * from './generateRandomString'
 export * from './throwEnvError'
 export * from './objectToQuerystring'
+export * from './isCurrentLinkActive'
+export * from './regex'

@@ -13,6 +13,9 @@ import { useCallback, useEffect } from 'react'
 import RightFromBracketIcon from 'components/shared/icons/RightFromBracket'
 import UserIcon from 'components/shared/icons/User'
 import DevSign from 'components/shared/DevSign'
+import { topNavList } from 'config/topNavList'
+import { isCurrentLinkActive } from 'utils'
+import Link from 'next/link'
 
 export type HeaderProps = {
   userData?: SpotifyUserProfile
@@ -70,17 +73,38 @@ const Header = ({ userData }: HeaderProps) => {
                   )}
                   <S.ProfileName>{userData.display_name}</S.ProfileName>
                 </S.ProfileResume>{' '}
-                <Button onClick={logout} fillWidth size="small" variant="basic">
-                  Sair da sua conta <RightFromBracketIcon />
+                <Button
+                  onClick={logout}
+                  fillWidth
+                  size="small"
+                  variant="outlined"
+                  layer={0}
+                  color="secondary"
+                >
+                  Sair da conta
+                  <RightFromBracketIcon />
                 </Button>
               </>
             )}
           </S.MenuOptionsGroup>
+          <S.MenuOptionsGroup>
+            <S.MenuPagesNavList>
+              {topNavList.map(item => (
+                <S.PagesNavItem
+                  key={item.path}
+                  $active={isCurrentLinkActive(item.path, router.asPath)}
+                  onClick={menuModal.close}
+                >
+                  <Link href={item.path}>{item.name}</Link>
+                </S.PagesNavItem>
+              ))}
+            </S.MenuPagesNavList>
+          </S.MenuOptionsGroup>
           <Button
             onClick={theme.themeToggle}
             fillWidth
-            variant="basic"
             size="small"
+            variant="basic"
           >
             Tema {theme.title} {theme.icon}
           </Button>
@@ -97,6 +121,16 @@ const Header = ({ userData }: HeaderProps) => {
         <S.LogoWrapper href="/">
           <Logo />
         </S.LogoWrapper>
+        <S.PagesNavList>
+          {topNavList.map(item => (
+            <S.PagesNavItem
+              key={item.path}
+              $active={isCurrentLinkActive(item.path, router.asPath)}
+            >
+              <Link href={item.path}>{item.name}</Link>
+            </S.PagesNavItem>
+          ))}
+        </S.PagesNavList>
         <S.MenuButton onClick={menuModal.open}>
           <EllipsisIcon />
         </S.MenuButton>
