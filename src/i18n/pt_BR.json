@@ -70,6 +70,7 @@
     ]
   },
   "GENERATOR_PAGE": {
+    "TITLE": "Gerador",
     "GENERATOR_SETTINGS": {
       "TITLE": "Configurações do Gerador",
       "TIME_RANGE_LABEL": "Intervalo de Tempo",
@@ -97,5 +98,6 @@
   "COLOR": "Cor",
   "ACCESS": "Acesse",
   "SAVE_BUTTON": "Salvar",
-  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "Não encontramos dados suficientes para gerar seu sTopify. Ouça músicas e volte depois."
+  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "Não encontramos dados suficientes para gerar seu sTopify. Ouça músicas e volte depois.",
+  "CLOSE": "Fechar"
 }

@@ -70,6 +70,7 @@
     ]
   },
   "GENERATOR_PAGE": {
+    "TITLE": "Generator",
     "GENERATOR_SETTINGS": {
       "TITLE": "Generator Settings",
       "TIME_RANGE_LABEL": "Time range",
@@ -97,5 +98,6 @@
   "COLOR": "Color",
   "ACCESS": "Access",
   "SAVE_BUTTON": "Save",
-  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "We couldn't find enough data to generate your sTopify. Listen to music and come back later."
+  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "We couldn't find enough data to generate your sTopify. Listen to music and come back later.",
+  "CLOSE": "Close"
 }

@@ -34,7 +34,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
       if (!userData && ctx.resolvedUrl.includes('/generator'))
         return {
           redirect: {
-            destination: '/',
+            destination: `/${ctx.locale}`,
             permanent: true
           }
         }
@@ -42,7 +42,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
       if (userData && ctx.resolvedUrl.split('?')[0] === '/') {
         return {
           redirect: {
-            destination: '/generator',
+            destination: `/${ctx.locale}/generator`,
             permanent: true
           }
         }
@@ -69,7 +69,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
           destroyAuthenticationCookie(ctx)
           return {
             redirect: {
-              destination: '/?sessionExpired',
+              destination: `${ctx.locale}/?sessionExpired`,
               permanent: true
             }
           }
@@ -78,7 +78,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
           destroyAuthenticationCookie(ctx)
           return {
             redirect: {
-              destination: '/?needsPermission',
+              destination: `${ctx.locale}/?needsPermission`,
               permanent: true
             }
           }

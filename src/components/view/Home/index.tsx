@@ -7,24 +7,46 @@ import { useModals } from 'contexts/ModalContext'
 import StateModalContent from 'components/shared/StateModalContent'
 import ModalIdentifiers from 'contexts/ModalContext/identifiers'
 import { useI18n } from 'hooks/useI18n'
+import { useLocale } from 'hooks/useLocale'
 
 export type HomeViewProps = {}
 
 const authStates = {
   unlogged: {
     type: 'success',
-    title: 'Sessão Encerrada',
-    text: 'Sua sessão foi encerrada com sucesso. Você pode fazer login novamente a qualquer momento.'
+    title: {
+      en: 'Session Ended',
+      'pt-BR': 'Sessão Encerrada'
+    },
+    text: {
+      en: 'Your session has ended successfully. You can log in again at any time.',
+      'pt-BR':
+        'Sua sessão foi encerrada com sucesso. Você pode fazer login novamente a qualquer momento.'
+    }
   },
   sessionExpired: {
     type: 'warning',
-    title: 'Sessão Expirada',
-    text: 'Sua sessão expirou. Por favor, faça o login novamente para continuar usando o aplicativo.'
+    title: {
+      en: 'Session Expired',
+      'pt-BR': 'Sessão Expirada'
+    },
+    text: {
+      en: 'Your session has expired. Please log in again to continue using the application.',
+      'pt-BR':
+        'Sua sessão expirou. Por favor, faça o login novamente para continuar usando o aplicativo.'
+    }
   },
   needsPermission: {
     type: 'error',
-    title: 'Acesso Restrito a Testadores',
-    text: 'Desculpe, você não possui autorização para acessar este aplicativo. Atualmente, ele está em fase de testes e o acesso é restrito aos testadores autorizados.'
+    title: {
+      en: 'Restricted Access for Testers',
+      'pt-BR': 'Acesso Restrito a Testadores'
+    },
+    text: {
+      en: 'Sorry, you do not have permission to access this application. It is currently in testing phase, and access is restricted to authorized testers.',
+      'pt-BR':
+        'Desculpe, você não possui autorização para acessar este aplicativo. Atualmente, ele está em fase de testes e o acesso é restrito aos testadores autorizados.'
+    }
   }
 } as const
 
@@ -33,6 +55,7 @@ const authStatesKeys = Object.keys(authStates)
 const HomeView = ({}: HomeViewProps) => {
   const router = useRouter()
   const i18n = useI18n()
+  const locale = useLocale()
   const { addModal, closeModal } = useModals()
 
   useEffect(() => {
@@ -48,11 +71,11 @@ const HomeView = ({}: HomeViewProps) => {
         content: (
           <StateModalContent
             type={authStateFeedbackData.type}
-            title={authStateFeedbackData.title}
-            description={authStateFeedbackData.text}
+            title={authStateFeedbackData.title[locale]}
+            description={authStateFeedbackData.text[locale]}
             buttons={[
               {
-                children: 'Entendi',
+                children: i18n.CLOSE,
                 onClick: () => closeModal(ModalIdentifiers.AUTH_STATE_MODAL)
               }
             ]}

@@ -17,7 +17,7 @@ const nextConfig = {
     return [
       {
         source: '/_error',
-        destination: '/home',
+        destination: '/[locale]',
         permanent: true
       }
     ]
