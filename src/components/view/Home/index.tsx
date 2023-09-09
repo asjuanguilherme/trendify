@@ -58,7 +58,7 @@ const HomeView = ({}: HomeViewProps) => {
         )
       })
 
-      router.push(router.pathname)
+      router.replace(router.pathname, undefined, { shallow: true })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
