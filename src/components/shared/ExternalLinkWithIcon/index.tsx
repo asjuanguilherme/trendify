@@ -1,5 +1,5 @@
 import * as S from './styles'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import ExternalLinkIcon from '../icons/ExternalLink'
 
 export type ExternalLinkWithIconProps = {

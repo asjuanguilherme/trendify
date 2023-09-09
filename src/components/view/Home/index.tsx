@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { useModals } from 'contexts/ModalContext'
 import StateModalContent from 'components/shared/StateModalContent'
 import ModalIdentifiers from 'contexts/ModalContext/identifiers'
+import { useI18n } from 'hooks/useI18n'
 
 export type HomeViewProps = {}
 
@@ -31,6 +32,7 @@ const authStatesKeys = Object.keys(authStates)
 
 const HomeView = ({}: HomeViewProps) => {
   const router = useRouter()
+  const i18n = useI18n()
   const { addModal, closeModal } = useModals()
 
   useEffect(() => {
@@ -66,14 +68,10 @@ const HomeView = ({}: HomeViewProps) => {
   return (
     <S.Wrapper>
       <S.PageView showReturn={false}>
-        <h1>Descubra seu sTopify</h1>
-        <p>
-          Descubra suas músicas e artistas favoritos com o sTopify. Uma
-          abordagem simples e personalizada para explorar sua música de maneira
-          elegante.
-        </p>
+        <h1>{i18n.HOME_PAGE.TITLE}</h1>
+        <p>{i18n.HOME_PAGE.SEO_DESCRIPTION}</p>
         <ButtonLink style={{ marginTop: '1.5rem' }} href="/login">
-          Entrar com
+          {i18n.LOGIN_WITH_BUTTON_LABEL}
           <SpotifyLogo style={{ fontSize: '1.35rem', marginLeft: '-.3rem' }} />
         </ButtonLink>
       </S.PageView>

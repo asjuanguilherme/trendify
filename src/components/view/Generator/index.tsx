@@ -20,12 +20,14 @@ import DownloadIcon from 'components/shared/icons/Download'
 import { TrackItemStyle } from 'components/shared/TrackItem'
 import Dropdown from 'components/shared/Dropdown'
 import Switch from 'components/shared/Switch'
-import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
 import UserTopItemsBox, {
   UserTopItemsBoxProps
 } from 'components/shared/UserTopItemsBox'
 import ColorPicker from 'components/shared/ColorPicker'
 import ColorOption from 'components/shared/ColorOption'
+import { useI18n } from 'hooks/useI18n'
+import { useLocale } from 'hooks/useLocale'
+import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
 
 export type GeneratorViewProps = {
   items: SpotifyTrack[]
@@ -36,6 +38,8 @@ const GeneratorView = ({
   items: initialItems,
   userData
 }: GeneratorViewProps) => {
+  const i18n = useI18n()
+  const locale = useLocale()
   const screen = useScreen()
   const isLaptopUp = screen.width > breakpoints.laptop
 
@@ -130,12 +134,12 @@ const GeneratorView = ({
         <S.SettingsForm>
           <S.SettingsFormSection>
             <S.SettingsFormSectionTitle>
-              Gerar Top Músicas Ouvidas
+              {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.TITLE}
             </S.SettingsFormSectionTitle>
             <S.SettingsFormSectionContent>
               <S.SettingsFormGroup>
                 <S.SettingsFormGroupLabel>
-                  Tempo de Referência
+                  {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.TIME_RANGE_LABEL}
                 </S.SettingsFormGroupLabel>
                 <S.TimeRangeOptions>
                   {Object.keys(topItemsGeneratorConfig.timeOptions).map(
@@ -151,7 +155,7 @@ const GeneratorView = ({
                           size="smaller"
                           layer={0}
                         >
-                          {label}
+                          {label[locale]}
                         </Button>
                       )
                     }
@@ -160,7 +164,7 @@ const GeneratorView = ({
               </S.SettingsFormGroup>
               <S.SettingsFormGroup>
                 <S.SettingsFormGroupLabel>
-                  Quantidade de Itens
+                  {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.LIMIT_LABEL}
                 </S.SettingsFormGroupLabel>
                 <S.LimitButtons>
                   {topItemsGeneratorConfig.limitOptions.map(option => (
@@ -181,12 +185,14 @@ const GeneratorView = ({
           </S.SettingsFormSection>
           <S.SettingsFormSection>
             <S.SettingsFormSectionTitle>
-              Ajuste de Estilos
+              {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.STYLES_SETTINGS}
             </S.SettingsFormSectionTitle>
             {items && items.length > 0 && (
               <S.SettingsFormSectionContent>
                 <S.SettingsFormGroup>
-                  <S.SettingsFormGroupLabel>Cor</S.SettingsFormGroupLabel>
+                  <S.SettingsFormGroupLabel>
+                    {i18n.COLOR}
+                  </S.SettingsFormGroupLabel>
                   <S.SuggestedColors>
                     {topItemsGeneratorConfig.suggestedColorsOptions.map(
                       color => (
@@ -198,7 +204,7 @@ const GeneratorView = ({
                       )
                     )}
                     <ColorPicker
-                      label="Personalizar"
+                      label={i18n.CUSTOM_COLOR}
                       value={color}
                       onChange={setColor}
                     />
@@ -207,7 +213,7 @@ const GeneratorView = ({
                 {showAdvancedStyles && (
                   <>
                     <Dropdown
-                      label="Estilo dos Itens"
+                      label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ITEMS_STYLE}
                       options={trackItemStyleVariantOptions}
                       selectedOptionValue={selectedItemsStyle}
                       onValueChange={value =>
@@ -221,7 +227,9 @@ const GeneratorView = ({
                     />
                     <S.Switches>
                       <Switch
-                        label="Exibir imagem de plano de fundo"
+                        label={
+                          i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.SHOW_BACKGROUND
+                        }
                         checked={enableBackgroundImage}
                         onChange={() =>
                           setEnableBackgroundImage(state => !state)
@@ -229,25 +237,33 @@ const GeneratorView = ({
                         layer={0}
                       />
                       <Switch
-                        label="Habilitar gradiente"
+                        label={
+                          i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ENABLE_GRADIENT
+                        }
                         checked={enableGradient}
                         onChange={() => setEnableGradient(state => !state)}
                         layer={0}
                       />
                       <Switch
-                        label="Desfocar plano de fundo"
+                        label={
+                          i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.BLUR_BACKGROUND
+                        }
                         checked={enableBlur}
                         onChange={() => setEnableBlur(state => !state)}
                         layer={0}
                       />
                       <Switch
-                        label="Exibir perfil"
+                        label={
+                          i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.SHOW_PROFILE
+                        }
                         checked={showProfileInfo}
                         onChange={() => setShowProfileInfo(state => !state)}
                         layer={0}
                       />
                       <Switch
-                        label="Exibir título longo"
+                        label={
+                          i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.LARGE_TITLE
+                        }
                         checked={titleType === 'large'}
                         onChange={() =>
                           setTitleType(state =>
@@ -257,13 +273,17 @@ const GeneratorView = ({
                         layer={0}
                       />
                       <Switch
-                        label="Arredondar cantos"
+                        label={
+                          i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ROUND_CORNERS
+                        }
                         checked={roundedCorners}
                         onChange={() => setRoundedCorners(state => !state)}
                         layer={0}
                       />
                       <Switch
-                        label="Exibir numeração no top 3 (Experimental)"
+                        label={
+                          i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.NUMBERED_TOP_3
+                        }
                         checked={enableBadgeHightlights}
                         onChange={() =>
                           setEnableBadgeHighlights(state => !state)
@@ -278,7 +298,7 @@ const GeneratorView = ({
             <S.SettingsFormSectionCollapseButton
               onClick={() => setShowAdvancedStyles(state => !state)}
             >
-              {showAdvancedStyles ? 'Menos opções' : 'Mais opções'}
+              {showAdvancedStyles ? i18n.LESS_OPTIONS : i18n.MORE_OPTIONS}
             </S.SettingsFormSectionCollapseButton>
           </S.SettingsFormSection>
         </S.SettingsForm>

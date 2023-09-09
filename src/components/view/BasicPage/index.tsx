@@ -4,6 +4,7 @@ import Container from 'components/shared/Container'
 import ArrowLeftIcon from 'components/shared/icons/ArrowLeft'
 import HtmlContent from 'components/shared/HtmlContent'
 import ButtonLink from 'components/shared/ButtonLink'
+import { useI18n } from 'hooks/useI18n'
 
 export type BasicPageViewProps = {
   children: ReactNode
@@ -17,6 +18,8 @@ const BasicPageView = ({
   showReturn = true,
   ...props
 }: BasicPageViewProps) => {
+  const i18n = useI18n()
+
   return (
     <S.Wrapper {...props}>
       <Container>
@@ -24,7 +27,7 @@ const BasicPageView = ({
           <S.Return>
             <ButtonLink href="/" size="small">
               <ArrowLeftIcon />
-              Voltar
+              {i18n.RETURN_BUTTON}
             </ButtonLink>
           </S.Return>
         )}

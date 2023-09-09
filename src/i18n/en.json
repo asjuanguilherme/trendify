@@ -1,0 +1,101 @@
+{
+  "LANGUAGES": {
+    "pt-BR": "Portuguese",
+    "en": "English"
+  },
+  "THEMES": {
+    "dark": "Dark Theme",
+    "light": "Light Theme"
+  },
+  "PAGES": {
+    "home": "Home",
+    "generator": "Generator",
+    "about": "About",
+    "privacy_policy": "Privacy Policy"
+  },
+  "HOME_PAGE": {
+    "TITLE": "Discover Your sTopify",
+    "SEO_DESCRIPTION": "Discover your favorite songs and artists with sTopify. A simple and personalized approach to explore your music in an elegant way."
+  },
+  "ABOUT_PAGE": {
+    "TITLE": "About sTopify App",
+    "SEO_DESCRIPTION": "Welcome to sTopify! Here, you will find an amazing tool to explore and discover your favorite music and artists on Spotify in a unique and engaging way.",
+    "HOW_IT_WORKS": {
+      "TITLE": "How It Works",
+      "SPOTIFY_CONNECTION": {
+        "TITLE": "Connecting to Spotify:",
+        "DESCRIPTION": "To get started, you connect to your Spotify account. sTopify respects the privacy of your data and uses only the necessary information to create your personalized lists."
+      },
+      "LIST_GENERATION": {
+        "TITLE": "List Generation:",
+        "DESCRIPTION": "Once connected, sTopify quickly analyzes and automatically generates your list of the most listened to artists and songs. This allows you to discover your musical preferences in a fun and informative way."
+      },
+      "EXPLORATION_AND_SHARING": {
+        "TITLE": "Exploration and Sharing:",
+        "DESCRIPTION": "With your lists in hand, you can easily explore your favorite artists and songs. Additionally, sTopify allows you to share your lists with friends, making music discovery a social experience."
+      }
+    },
+    "DEVELOPER_MESSAGE": {
+      "TITLE": "Developer's Words",
+      "INTRODUCTION": "My name is Juan Guilherme. My passion for technology and music inspired me to develop this tool. To me, music has the power to bring people together and enrich our lives, and sTopify is my way of contributing to that.",
+      "HOPE_YOU_ENJOY": "I hope you enjoy the app as much as I enjoyed creating it.",
+      "CONTACT_ME": "If you'd like to get in touch, please feel free to access the contact options available on my website."
+    }
+  },
+  "PRIVACY_POLICY_PAGE": {
+    "TITLE": "sTopify Privacy Policy",
+    "SEO_DESCRIPTION": "Check out the website's privacy policy and understand how your data is used.",
+    "CONTENT": [
+      {
+        "TYPE": "HEADER",
+        "TEXT": "sTopify Privacy Policy"
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "sTopify was developed as a private code application powered by the Spotify API. By choosing to use this application, you agree to the use of your Spotify username and account data to discover your top artists and tracks."
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "None of the data used by sTopify is stored or collected anywhere, and it is not shared with third parties. All information is used exclusively to display your sTopify."
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "While you can rest assured that your data is not being stored or used maliciously, if you wish to revoke sTopify's permissions, you can visit the applications page and click on 'Remove Access' for sTopify."
+      },
+      {
+        "TYPE": "LINK",
+        "TEXT": "More detailed instructions on how to remove access.",
+        "URL": "https://support.spotify.com/us/article/spotify-on-other-apps/"
+      }
+    ]
+  },
+  "GENERATOR_PAGE": {
+    "GENERATOR_SETTINGS": {
+      "TITLE": "Generator Settings",
+      "TIME_RANGE_LABEL": "Time range",
+      "LIMIT_LABEL": "Items Limit",
+      "STYLES_SETTINGS": "Styling",
+      "ITEMS_STYLE": "Items style",
+      "SHOW_BACKGROUND": "Show background",
+      "ENABLE_GRADIENT": "Enable gradient",
+      "BLUR_BACKGROUND": "Blur background",
+      "SHOW_PROFILE": "Show profile",
+      "LARGE_TITLE": "Large title",
+      "ROUND_CORNERS": "Round corners",
+      "NUMBERED_TOP_3": "Numbered top 3"
+    }
+  },
+  "PROFILE_PICTURE_ALT_TEXT": "User Profile Picture",
+  "LOGIN_WITH_BUTTON_LABEL": "Log in with ",
+  "LOGOUT_BUTTON_LABEL": "Log Out",
+  "DEVELOPED_BY": "Developed by",
+  "OPTIONS_MENU_TITLE": "Menu",
+  "RETURN_BUTTON": "Back",
+  "MORE_OPTIONS": "More options",
+  "LESS_OPTIONS": "Less options",
+  "CUSTOM_COLOR": "Custom color",
+  "COLOR": "Color",
+  "ACCESS": "Access",
+  "SAVE_BUTTON": "Save",
+  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "We couldn't find enough data to generate your sTopify. Listen to music and come back later."
+}

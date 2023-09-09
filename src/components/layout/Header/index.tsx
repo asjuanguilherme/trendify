@@ -16,12 +16,16 @@ import DevSign from 'components/shared/DevSign'
 import { topNavList } from 'config/topNavList'
 import { isCurrentLinkActive } from 'utils'
 import Link from 'next/link'
+import { useLocale } from 'hooks/useLocale'
+import { useI18n } from 'hooks/useI18n'
 
 export type HeaderProps = {
   userData?: SpotifyUserProfile
 }
 
 const Header = ({ userData }: HeaderProps) => {
+  const i18n = useI18n()
+  const locale = useLocale()
   const router = useRouter()
   const theme = useAppTheme()
   const { closeModal } = useModals()
@@ -34,7 +38,7 @@ const Header = ({ userData }: HeaderProps) => {
 
   const menuModal = useModal('APP_MENU', {
     opened: false,
-    title: 'Opções',
+    title: i18n.OPTIONS_MENU_TITLE,
     width: 400,
     layer: 1
   })
@@ -51,7 +55,7 @@ const Header = ({ userData }: HeaderProps) => {
           <S.MenuOptionsGroup>
             {!userData && (
               <ButtonLink href="/login" fillWidth>
-                Entrar com{' '}
+                {i18n.LOGIN_WITH_BUTTON_LABEL}
                 <SpotifyLogo
                   style={{ fontSize: '1.35rem', marginLeft: '-.3rem' }}
                 />
@@ -63,7 +67,7 @@ const Header = ({ userData }: HeaderProps) => {
                   {userProfilePhoto ? (
                     <S.ProfilePhoto
                       src={userProfilePhoto}
-                      alt="Foto de perfil do usuário"
+                      alt={i18n.PROFILE_PICTURE_ALT_TEXT}
                     />
                   ) : (
                     <S.ProfilePhotoPlaceholder>
@@ -79,7 +83,7 @@ const Header = ({ userData }: HeaderProps) => {
                   layer={0}
                   color="secondary"
                 >
-                  Sair da conta
+                  {i18n.LOGOUT_BUTTON_LABEL}
                   <RightFromBracketIcon />
                 </Button>
               </>
@@ -93,7 +97,7 @@ const Header = ({ userData }: HeaderProps) => {
                   $active={isCurrentLinkActive(item.path, router.asPath)}
                   onClick={menuModal.close}
                 >
-                  <Link href={item.path}>{item.name}</Link>
+                  <Link href={item.path}>{i18n.PAGES[item.name]}</Link>
                 </S.PagesNavItem>
               ))}
             </S.MenuPagesNavList>
@@ -104,14 +108,28 @@ const Header = ({ userData }: HeaderProps) => {
             size="small"
             variant="basic"
           >
-            Tema {theme.title} {theme.icon}
+            {i18n.THEMES[theme.name]} {theme.icon}
           </Button>
+          <S.LanguageOptions>
+            {router.locales!.map(localeOption => (
+              <Link
+                key={localeOption}
+                href={router.pathname}
+                locale={localeOption}
+              >
+                <S.LanguageOptionButton
+                  $active={localeOption === locale}
+                  $lang={localeOption}
+                />
+              </Link>
+            ))}
+          </S.LanguageOptions>
           <DevSign />
         </S.MenuOptions>
       )
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [logout, theme.icon, theme.themeToggle, theme.title, userData])
+  }, [logout, theme.icon, theme.themeToggle, theme.title, userData, i18n])
 
   return (
     <S.Wrapper>
@@ -125,7 +143,7 @@ const Header = ({ userData }: HeaderProps) => {
               key={item.path}
               $active={isCurrentLinkActive(item.path, router.asPath)}
             >
-              <Link href={item.path}>{item.name}</Link>
+              <Link href={item.path}>{i18n.PAGES[item.name]}</Link>
             </S.PagesNavItem>
           ))}
         </S.PagesNavList>

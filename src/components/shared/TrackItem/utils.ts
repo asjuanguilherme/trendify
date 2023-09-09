@@ -1,6 +1,6 @@
 export const trackItemStyleVariantOptions = [
   {
-    label: 'Padrão',
+    label: 'sTopify',
     value: 'default'
   },
   {

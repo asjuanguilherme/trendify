@@ -9,6 +9,10 @@ const nextConfig = {
   compiler: {
     styledComponents: true
   },
+  i18n: {
+    defaultLocale: 'pt-BR',
+    locales: ['pt-BR', 'en']
+  },
   async redirects() {
     return [
       {

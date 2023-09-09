@@ -1,14 +1,14 @@
 export const topNavList = [
   {
-    name: 'Gerador',
+    name: 'generator',
     path: '/generator'
   },
   {
-    name: 'Sobre',
+    name: 'about',
     path: '/about'
   },
   {
-    name: 'Política de Privacidade',
+    name: 'privacy_policy',
     path: '/privacy-policy'
   }
-]
+] as const

@@ -8,6 +8,8 @@ import { SpotifyTrack } from 'services/spotify/types/Track'
 
 // Utils
 import { WEBSITE_URL } from 'config/websiteUrl'
+import { useLocale } from 'hooks/useLocale'
+import { useI18n } from 'hooks/useI18n'
 
 // Components
 import TrackItem, { TrackItemStyle } from '../TrackItem'
@@ -64,6 +66,9 @@ const UserTopItemsBox = ({
   titleType,
   roundedCorners
 }: UserTopItemsBoxProps) => {
+  const locale = useLocale()
+  const i18n = useI18n()
+
   if (!trackItems && !artistItems)
     throw new Error('You must define trackItems or artistItems prop.')
 
@@ -84,10 +89,7 @@ const UserTopItemsBox = ({
     return (
       <S.Empty>
         <TriangleExclamationIcon />
-        <S.EmptyText>
-          Não encontramos dados suficientes para gerar seu sTopify. Ouça músicas
-          e volte depois.
-        </S.EmptyText>
+        <S.EmptyText>{i18n.INSUFICIENT_DATA_TO_GENERATE_TOP_LIST}</S.EmptyText>
       </S.Empty>
     )
 
@@ -131,13 +133,13 @@ const UserTopItemsBox = ({
           <S.Title>
             {topItemsGeneratorConfig.timeOptions[timeRange].text.tracks[
               titleType
-            ].replace('{{limit}}', limit + '')}
+            ][locale].replace('{{limit}}', limit + '')}
           </S.Title>
           <S.HeaderInfoRow>
             <SpotifyLogo />
             <S.HeaderInfoRowItem>
               <CalendarIcon size=".875rem" />
-              {new Intl.DateTimeFormat('pt-BR', {
+              {new Intl.DateTimeFormat(locale, {
                 dateStyle: 'full'
               }).format(new Date())}
             </S.HeaderInfoRowItem>
@@ -175,7 +177,7 @@ const UserTopItemsBox = ({
             <Logo />
           </S.CreatedByText>
           <S.CreatedByLink>
-            Acesse {new URL(WEBSITE_URL).hostname}
+            {i18n.ACCESS} {new URL(WEBSITE_URL).hostname}
           </S.CreatedByLink>
         </S.Footer>
       </>

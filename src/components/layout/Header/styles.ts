@@ -13,6 +13,44 @@ import {
 import DefaultContainer from 'components/shared/Container'
 import { screens } from 'styles/screens'
 
+export const LanguageOptionButton = styled.button<{
+  $active: boolean
+  $lang: string
+}>`
+  background-image: url(/assets/images/flags/${props => props.$lang}.png);
+  background-size: cover;
+  background-position: center;
+  height: ${buttonSizes.small};
+  width: ${buttonSizes.small};
+  border-radius: ${borderRadius.circle};
+  border: 4px solid white;
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
+  transition: ${transition.default};
+  transition-property: transform;
+  cursor: pointer;
+
+  ${props =>
+    props.$active
+      ? css`
+          transform: scale(1.2);
+          border-color: ${props => props.theme.colors.main.primary.light};
+        `
+      : css`
+          &:hover {
+            transform: scale(1.1);
+          }
+        `}
+`
+
+export const LanguageOptions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${spacing.components.medium};
+  margin-top: ${spacing.components.small};
+  margin-bottom: ${spacing.components.larger};
+`
+
 export const ProfilePhotoPlaceholder = styled.span`
   display: inline-block;
   flex-shrink: 0;

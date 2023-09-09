@@ -1,0 +1,101 @@
+{
+  "LANGUAGES": {
+    "pt-BR": "Português",
+    "en": "Inglês"
+  },
+  "THEMES": {
+    "dark": "Tema escuro",
+    "light": "Tema claro"
+  },
+  "PAGES": {
+    "home": "Início",
+    "generator": "Gerador",
+    "about": "Sobre",
+    "privacy_policy": "Política de Privacidade"
+  },
+  "HOME_PAGE": {
+    "TITLE": "Descubra seu sTopify",
+    "SEO_DESCRIPTION": "Descubra suas músicas e artistas favoritos com sTopify. Uma abordagem simples e personalizada para explorar sua música de maneira elegante."
+  },
+  "ABOUT_PAGE": {
+    "TITLE": "Sobre o App sTopify",
+    "SEO_DESCRIPTION": "Descubra suas músicas e artistas favoritos com o sTopify. Uma abordagem simples e personalizada para explorar sua música de maneira elegante.",
+    "HOW_IT_WORKS": {
+      "TITLE": "Como Funciona",
+      "SPOTIFY_CONNECTION": {
+        "TITLE": "Conexão ao Spotify:",
+        "DESCRIPTION": "Para começar, você se conecta à sua conta do Spotify. O sTopify respeita a privacidade dos seus dados e utiliza apenas as informações necessárias para criar suas listas personalizadas."
+      },
+      "LIST_GENERATION": {
+        "TITLE": "Geração das Listas:",
+        "DESCRIPTION": "Depois de conectado, o sTopify faz uma análise rápida e gera automaticamente sua lista dos artistas mais ouvidos e das músicas mais ouvidas. Isso permite que você descubra suas preferências musicais de uma maneira divertida e informativa."
+      },
+      "EXPLORATION_AND_SHARING": {
+        "TITLE": "Exploração e Compartilhamento:",
+        "DESCRIPTION": "Com suas listas em mãos, você pode explorar seus artistas e músicas favoritas com facilidade. Além disso, o sTopify permite que você compartilhe suas listas com amigos, tornando a descoberta musical uma experiência social."
+      }
+    },
+    "DEVELOPER_MESSAGE": {
+      "TITLE": "Palavras do Desenvolvedor",
+      "INTRODUCTION": "Meu nome é Juan Guilherme. Minha paixão pela tecnologia e pela música me inspirou a desenvolver esta ferramenta. Para mim a música tem o poder de unir as pessoas e enriquecer nossas vidas, e o sTopify é minha maneira de contribuir com isso.",
+      "HOPE_YOU_ENJOY": "Espero que você aproveite o app tanto quanto eu aproveitei ao criá-lo.",
+      "CONTACT_ME": "Caso queira entrar em contato comigo, sinta-se livre para acessar as formas de contato disponíveis no meu website."
+    }
+  },
+  "PRIVACY_POLICY_PAGE": {
+    "TITLE": "Política de Privacidade do sTopify",
+    "SEO_DESCRIPTION": "Confira a política de privacidade do site e entenda como seus dados são usados.",
+    "CONTENT": [
+      {
+        "TYPE": "HEADER",
+        "TEXT": "Política de Privacidade do sTopify"
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "O sTopify foi desenvolvido como um aplicativo de código privado alimentado pela API da Spotify. Ao escolher usar este aplicativo, você concorda com o uso do nome de usuário e dos dados de sua conta do Spotify para descobrir seus principais artistas e faixas."
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "Nenhum dos dados utilizados pelo sTopify é armazenado ou coletado em qualquer lugar, e não é compartilhado com terceiros. Todas as informações são usadas exclusivamente para exibir seu sTopify."
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "Embora você possa ter a certeza de que seus dados não estão sendo armazenados ou utilizados de forma maliciosa, se desejar revogar as permissões do sTopify, você pode visitar a página de aplicativos e clicar em remover acesso ao sTopify."
+      },
+      {
+        "TYPE": "LINK",
+        "TEXT": "Guia mais detalhado para como remover o acesso.",
+        "URL": "https://support.spotify.com/us/article/spotify-on-other-apps/"
+      }
+    ]
+  },
+  "GENERATOR_PAGE": {
+    "GENERATOR_SETTINGS": {
+      "TITLE": "Configurações do Gerador",
+      "TIME_RANGE_LABEL": "Intervalo de Tempo",
+      "LIMIT_LABEL": "Limite de Itens",
+      "STYLES_SETTINGS": "Estilo",
+      "ITEMS_STYLE": "Estilo dos Itens",
+      "SHOW_BACKGROUND": "Mostrar Fundo",
+      "ENABLE_GRADIENT": "Ativar Gradiente",
+      "BLUR_BACKGROUND": "Desfoque de Fundo",
+      "SHOW_PROFILE": "Mostrar Perfil",
+      "LARGE_TITLE": "Título Grande",
+      "ROUND_CORNERS": "Cantos Arredondados",
+      "NUMBERED_TOP_3": "Top 3 Numerado"
+    }
+  },
+  "PROFILE_PICTURE_ALT_TEXT": "Foto de perfil do usuário",
+  "LOGIN_WITH_BUTTON_LABEL": "Logar com ",
+  "LOGOUT_BUTTON_LABEL": "Sair da Conta",
+  "DEVELOPED_BY": "Desenvolvido por",
+  "OPTIONS_MENU_TITLE": "Menu",
+  "RETURN_BUTTON": "Voltar",
+  "MORE_OPTIONS": "Mais opções",
+  "LESS_OPTIONS": "Menos opções",
+  "CUSTOM_COLOR": "Cor personalizada",
+  "COLOR": "Cor",
+  "ACCESS": "Acesse",
+  "SAVE_BUTTON": "Salvar",
+  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "Não encontramos dados suficientes para gerar seu sTopify. Ouça músicas e volte depois."
+}
