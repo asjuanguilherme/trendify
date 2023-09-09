@@ -8,6 +8,43 @@
     "dark": "Tema escuro",
     "light": "Tema claro"
   },
+  "AUTH_STATUS_FEEDBACK": {
+    "unlogged": {
+      "TITLE": "Sessão Encerrada",
+      "DESCRIPTION": "Sua sessão foi encerrada com sucesso. Você pode fazer login novamente a qualquer momento."
+    },
+    "sessionExpired": {
+      "TITLE": "Sessão Expirada",
+      "DESCRIPTION": "Sua sessão expirou. Faça login novamente para continuar usando o aplicativo."
+    },
+    "needsPermission": {
+      "TITLE": "Acesso Restrito a Testadores",
+      "DESCRIPTION": "Desculpe, você não possui autorização para acessar este aplicativo. Atualmente, ele está em fase de testes e o acesso é restrito aos testadores autorizados."
+    }
+  },
+  "TIME_OPTIONS": {
+    "lastMonth": {
+      "title": "Último mês",
+      "tracks": {
+        "short": "As {{limit}} melhores no último mês",
+        "large": "Suas {{limit}} músicas mais ouvidas no último mês"
+      }
+    },
+    "lastSixMonths": {
+      "title": "Último semestre",
+      "tracks": {
+        "short": "As {{limit}} melhores do último semestre",
+        "large": "Suas {{limit}} músicas mais ouvidas no último semestre"
+      }
+    },
+    "allTime": {
+      "title": "Todos os tempos",
+      "tracks": {
+        "short": "As {{limit}} melhores de todos os tempos",
+        "large": "Suas {{limit}} músicas mais ouvidas de todos os tempos"
+      }
+    }
+  },
   "PAGES": {
     "home": "Início",
     "generator": "Gerador",
@@ -98,7 +135,7 @@
   "CUSTOM_COLOR": "Cor personalizada",
   "COLOR": "Cor",
   "ACCESS": "Acesse",
-  "SAVE_BUTTON": "Salvar",
+  "SAVE_IMAGE_BUTTON": "Salvar Imagem",
   "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "Não encontramos dados suficientes para gerar seu Trendify. Ouça músicas e volte depois.",
   "CLOSE": "Fechar"
 }

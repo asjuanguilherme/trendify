@@ -46,6 +46,7 @@ const GeneratorView = ({
   const [loadingData, setLoadingData] = useState(false)
   const [items, setItems] = useState(initialItems)
 
+  const [type, setType] = useState<'tracks'>('tracks')
   const [limit, setLimit] = useState(5)
   const [timeRange, setTimeRange] = useState<TimeRange>('lastMonth')
 
@@ -99,10 +100,10 @@ const GeneratorView = ({
         onClick={downloadImage}
         disabled={loadingData}
       >
-        {i18n.SAVE_BUTTON} <DownloadIcon />
+        {i18n.SAVE_IMAGE_BUTTON} <DownloadIcon />
       </Button>
     ),
-    [i18n.SAVE_BUTTON, loadingData]
+    [i18n.SAVE_IMAGE_BUTTON, loadingData]
   )
 
   const userTopItemsBoxProps: UserTopItemsBoxProps = {
@@ -142,23 +143,18 @@ const GeneratorView = ({
                   {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.TIME_RANGE_LABEL}
                 </S.SettingsFormGroupLabel>
                 <S.TimeRangeOptions>
-                  {Object.keys(topItemsGeneratorConfig.timeOptions).map(
-                    item => {
-                      const key = item as TimeRange
-                      const { label } = topItemsGeneratorConfig.timeOptions[key]
-
-                      return (
-                        <Button
-                          key={key}
-                          onClick={() => setTimeRange(key)}
-                          variant={key == timeRange ? 'filled' : 'basic'}
-                          size="smaller"
-                          layer={0}
-                        >
-                          {label[locale]}
-                        </Button>
-                      )
-                    }
+                  {Object.values(topItemsGeneratorConfig.timeOptions).map(
+                    key => (
+                      <Button
+                        key={key}
+                        onClick={() => setTimeRange(key)}
+                        variant={key == timeRange ? 'filled' : 'basic'}
+                        size="smaller"
+                        layer={0}
+                      >
+                        {i18n.TIME_OPTIONS[key][type][titleType]}
+                      </Button>
+                    )
                   )}
                 </S.TimeRangeOptions>
               </S.SettingsFormGroup>

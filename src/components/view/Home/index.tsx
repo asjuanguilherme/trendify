@@ -4,59 +4,22 @@ import SpotifyLogo from 'components/shared/SpotifyLogo'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useModals } from 'contexts/ModalContext'
-import StateModalContent from 'components/shared/StateModalContent'
+import StateModalContent, {
+  StateModalContentProps,
+  StateType
+} from 'components/shared/StateModalContent'
 import ModalIdentifiers from 'contexts/ModalContext/identifiers'
 import { useI18n } from 'hooks/useI18n'
 import { useLocale } from 'hooks/useLocale'
+import { AUTH_STATES_ENUM } from 'hoc/withGlobalData'
 
 export type HomeViewProps = {}
 
-const authStates = {
-  unlogged: {
-    type: 'success',
-    title: {
-      en: 'Session Ended',
-      'pt-BR': 'Sessão Encerrada',
-      es: 'Sesión Finalizada'
-    },
-    text: {
-      en: 'Your session has ended successfully. You can log in again at any time.',
-      'pt-BR':
-        'Sua sessão foi encerrada com sucesso. Você pode fazer login novamente a qualquer momento.',
-      es: 'Tu sesión ha finalizado con éxito. Puedes iniciar sesión de nuevo en cualquier momento.'
-    }
-  },
-  sessionExpired: {
-    type: 'warning',
-    title: {
-      en: 'Session Expired',
-      'pt-BR': 'Sessão Expirada',
-      es: 'Sesión Caducada'
-    },
-    text: {
-      en: 'Your session has expired. Please log in again to continue using the application.',
-      'pt-BR':
-        'Sua sessão expirou. Por favor, faça o login novamente para continuar usando o aplicativo.',
-      es: 'Tu sesión ha caducado. Por favor, inicia sesión de nuevo para seguir utilizando la aplicación.'
-    }
-  },
-  needsPermission: {
-    type: 'error',
-    title: {
-      en: 'Restricted Access for Testers',
-      'pt-BR': 'Acesso Restrito a Testadores',
-      es: 'Acceso Restringido para Probadores'
-    },
-    text: {
-      en: 'Sorry, you do not have permission to access this application. It is currently in testing phase, and access is restricted to authorized testers.',
-      'pt-BR':
-        'Desculpe, você não possui autorização para acessar este aplicativo. Atualmente, ele está em fase de testes e o acesso é restrito aos testadores autorizados.',
-      es: 'Lo siento, no tienes permiso para acceder a esta aplicación. Actualmente se encuentra en fase de pruebas y el acceso está restringido a probadores autorizados.'
-    }
-  }
-} as const
-
-const authStatesKeys = Object.keys(authStates)
+const statusTypeByStateName: Record<AUTH_STATES_ENUM, StateType> = {
+  needsPermission: 'error',
+  sessionExpired: 'warning',
+  unlogged: 'success'
+}
 
 const HomeView = ({}: HomeViewProps) => {
   const router = useRouter()
@@ -66,19 +29,19 @@ const HomeView = ({}: HomeViewProps) => {
 
   useEffect(() => {
     const queryKeys = Object.keys(router.query)
-    const authStateName = queryKeys[0] as 'unlogged'
+    const authStateName = queryKeys[0] as AUTH_STATES_ENUM
 
-    if (authStatesKeys.includes(authStateName)) {
-      const authStateFeedbackData = authStates[authStateName]
+    if (Object.keys(AUTH_STATES_ENUM).includes(authStateName)) {
+      const authStateFeedbackData = i18n.AUTH_STATUS_FEEDBACK[authStateName]
 
       addModal({
         identifier: ModalIdentifiers.AUTH_STATE_MODAL,
         showX: false,
         content: (
           <StateModalContent
-            type={authStateFeedbackData.type}
-            title={authStateFeedbackData.title[locale]}
-            description={authStateFeedbackData.text[locale]}
+            type={statusTypeByStateName[authStateName]}
+            title={authStateFeedbackData.TITLE}
+            description={authStateFeedbackData.DESCRIPTION}
             buttons={[
               {
                 children: i18n.CLOSE,

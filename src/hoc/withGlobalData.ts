@@ -16,6 +16,12 @@ import {
 import { getCurrentUserProfile } from 'services/spotify/queries/getCurrentUserProfile'
 import { AxiosError } from 'axios'
 
+export enum AUTH_STATES_ENUM {
+  unlogged = 'unlogged',
+  needsPermission = 'needsPermission',
+  sessionExpired = 'sessionExpired'
+}
+
 export const withGlobalData = <P extends { [key: string]: unknown }>(
   callback: GetServerSideProps<P>
 ) => {
@@ -69,7 +75,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
           destroyAuthenticationCookie(ctx)
           return {
             redirect: {
-              destination: `/?sessionExpired`,
+              destination: `/?${AUTH_STATES_ENUM.sessionExpired}`,
               permanent: true
             }
           }
@@ -78,7 +84,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
           destroyAuthenticationCookie(ctx)
           return {
             redirect: {
-              destination: `/?needsPermission`,
+              destination: `/?${AUTH_STATES_ENUM.needsPermission}`,
               permanent: true
             }
           }

@@ -131,9 +131,10 @@ const UserTopItemsBox = ({
             </S.SpotifyInfo>
           )}
           <S.Title>
-            {topItemsGeneratorConfig.timeOptions[timeRange].text.tracks[
-              titleType
-            ][locale].replace('{{limit}}', limit + '')}
+            {i18n.TIME_OPTIONS[timeRange].tracks[titleType].replace(
+              '{{limit}}',
+              limit + ''
+            )}
           </S.Title>
           <S.HeaderInfoRow>
             <SpotifyLogo />

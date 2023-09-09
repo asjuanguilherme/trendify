@@ -8,6 +8,43 @@
     "dark": "Dark Theme",
     "light": "Light Theme"
   },
+  "AUTH_STATUS_FEEDBACK": {
+    "unlogged": {
+      "TITLE": "Session Ended",
+      "DESCRIPTION": "Your session has ended successfully. You can log in again at any time."
+    },
+    "sessionExpired": {
+      "TITLE": "Session Expired",
+      "DESCRIPTION": "Your session has expired. Please log in again to continue using the application."
+    },
+    "needsPermission": {
+      "TITLE": "Restricted Access for Testers",
+      "DESCRIPTION": "Sorry, you do not have permission to access this application. It is currently in the testing phase, and access is restricted to authorized testers."
+    }
+  },
+  "TIME_OPTIONS": {
+    "lastMonth": {
+      "title": "Last Month",
+      "tracks": {
+        "short": "Top {{limit}} in the last month",
+        "large": "Your top {{limit}} songs in the last month"
+      }
+    },
+    "lastSixMonths": {
+      "title": "Last Six Months",
+      "tracks": {
+        "short": "Top {{limit}} in the last six months",
+        "large": "Your top {{limit}} songs in the last six months"
+      }
+    },
+    "allTime": {
+      "title": "All Time",
+      "tracks": {
+        "short": "Top {{limit}} of all time",
+        "large": "Your top {{limit}} songs of all time"
+      }
+    }
+  },
   "PAGES": {
     "home": "Home",
     "generator": "Generator",
@@ -98,7 +135,7 @@
   "CUSTOM_COLOR": "Custom color",
   "COLOR": "Color",
   "ACCESS": "Access",
-  "SAVE_BUTTON": "Save",
+  "SAVE_IMAGE_BUTTON": "Save Image",
   "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "We couldn't find enough data to generate your Trendify. Listen to music and come back later.",
   "CLOSE": "Close"
 }
