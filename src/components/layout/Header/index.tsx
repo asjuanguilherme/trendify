@@ -29,8 +29,7 @@ const Header = ({ userData }: HeaderProps) => {
   const logout = useCallback(() => {
     closeModal('APP_MENU')
     destroyAuthenticationCookie(null)
-    router.push('/')
-    router.reload()
+    router.push('/?unlogged')
   }, [closeModal, router])
 
   const menuModal = useModal('APP_MENU', {
@@ -77,7 +76,6 @@ const Header = ({ userData }: HeaderProps) => {
                   onClick={logout}
                   fillWidth
                   size="small"
-                  variant="outlined"
                   layer={0}
                   color="secondary"
                 >

@@ -1,6 +1,5 @@
 const ModalIdentifiers = {
-  TOP_TRACKS_SETTINGS: 'TOP_TRACKS_SETTINGS'
-  // Define global modal identifiers here
+  AUTH_STATE_MODAL: 'AUTH_STATE_MODAL'
 }
 
 export default ModalIdentifiers
