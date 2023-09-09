@@ -12,7 +12,7 @@ export type AppHeadProps = {
 const AppHead = ({
   twitterCard = 'summary',
   twitterAltImage = '',
-  image = '/assets/images/icons/icon-512x512.png',
+  image = '/assets/icons/icon-512x512.png',
   ...props
 }: AppHeadProps) => {
   return (
