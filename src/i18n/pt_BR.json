@@ -14,53 +14,53 @@
     "privacy_policy": "Política de Privacidade"
   },
   "HOME_PAGE": {
-    "TITLE": "Descubra seu sTopify",
-    "SEO_DESCRIPTION": "Descubra suas músicas e artistas favoritos com sTopify. Uma abordagem simples e personalizada para explorar sua música de maneira elegante."
+    "TITLE": "Descubra seu Trendify",
+    "SEO_DESCRIPTION": "Descubra suas músicas e artistas favoritos com Trendify. Uma abordagem simples e personalizada para explorar sua música de maneira elegante."
   },
   "ABOUT_PAGE": {
-    "TITLE": "Sobre o App sTopify",
-    "SEO_DESCRIPTION": "Descubra suas músicas e artistas favoritos com o sTopify. Uma abordagem simples e personalizada para explorar sua música de maneira elegante.",
+    "TITLE": "Sobre o App Trendify",
+    "SEO_DESCRIPTION": "Descubra suas músicas e artistas favoritos com o Trendify. Uma abordagem simples e personalizada para explorar sua música de maneira elegante.",
     "HOW_IT_WORKS": {
       "TITLE": "Como Funciona",
       "SPOTIFY_CONNECTION": {
         "TITLE": "Conexão ao Spotify:",
-        "DESCRIPTION": "Para começar, você se conecta à sua conta do Spotify. O sTopify respeita a privacidade dos seus dados e utiliza apenas as informações necessárias para criar suas listas personalizadas."
+        "DESCRIPTION": "Para começar, você se conecta à sua conta do Spotify. O Trendify respeita a privacidade dos seus dados e utiliza apenas as informações necessárias para criar suas listas personalizadas."
       },
       "LIST_GENERATION": {
         "TITLE": "Geração das Listas:",
-        "DESCRIPTION": "Depois de conectado, o sTopify faz uma análise rápida e gera automaticamente sua lista dos artistas mais ouvidos e das músicas mais ouvidas. Isso permite que você descubra suas preferências musicais de uma maneira divertida e informativa."
+        "DESCRIPTION": "Depois de conectado, o Trendify faz uma análise rápida e gera automaticamente sua lista dos artistas mais ouvidos e das músicas mais ouvidas. Isso permite que você descubra suas preferências musicais de uma maneira divertida e informativa."
       },
       "EXPLORATION_AND_SHARING": {
         "TITLE": "Exploração e Compartilhamento:",
-        "DESCRIPTION": "Com suas listas em mãos, você pode explorar seus artistas e músicas favoritas com facilidade. Além disso, o sTopify permite que você compartilhe suas listas com amigos, tornando a descoberta musical uma experiência social."
+        "DESCRIPTION": "Com suas listas em mãos, você pode explorar seus artistas e músicas favoritas com facilidade. Além disso, o Trendify permite que você compartilhe suas listas com amigos, tornando a descoberta musical uma experiência social."
       }
     },
     "DEVELOPER_MESSAGE": {
       "TITLE": "Palavras do Desenvolvedor",
-      "INTRODUCTION": "Meu nome é Juan Guilherme. Minha paixão pela tecnologia e pela música me inspirou a desenvolver esta ferramenta. Para mim a música tem o poder de unir as pessoas e enriquecer nossas vidas, e o sTopify é minha maneira de contribuir com isso.",
+      "INTRODUCTION": "Meu nome é Juan Guilherme. Minha paixão pela tecnologia e pela música me inspirou a desenvolver esta ferramenta. Para mim a música tem o poder de unir as pessoas e enriquecer nossas vidas, e o Trendify é minha maneira de contribuir com isso.",
       "HOPE_YOU_ENJOY": "Espero que você aproveite o app tanto quanto eu aproveitei ao criá-lo.",
       "CONTACT_ME": "Caso queira entrar em contato comigo, sinta-se livre para acessar as formas de contato disponíveis no meu website."
     }
   },
   "PRIVACY_POLICY_PAGE": {
-    "TITLE": "Política de Privacidade do sTopify",
+    "TITLE": "Política de Privacidade do Trendify",
     "SEO_DESCRIPTION": "Confira a política de privacidade do site e entenda como seus dados são usados.",
     "CONTENT": [
       {
         "TYPE": "HEADER",
-        "TEXT": "Política de Privacidade do sTopify"
+        "TEXT": "Política de Privacidade do Trendify"
       },
       {
         "TYPE": "PARAGRAPH",
-        "TEXT": "O sTopify foi desenvolvido como um aplicativo de código privado alimentado pela API da Spotify. Ao escolher usar este aplicativo, você concorda com o uso do nome de usuário e dos dados de sua conta do Spotify para descobrir seus principais artistas e faixas."
+        "TEXT": "O Trendify foi desenvolvido como um aplicativo de código privado alimentado pela API da Spotify. Ao escolher usar este aplicativo, você concorda com o uso do nome de usuário e dos dados de sua conta do Spotify para descobrir seus principais artistas e faixas."
       },
       {
         "TYPE": "PARAGRAPH",
-        "TEXT": "Nenhum dos dados utilizados pelo sTopify é armazenado ou coletado em qualquer lugar, e não é compartilhado com terceiros. Todas as informações são usadas exclusivamente para exibir seu sTopify."
+        "TEXT": "Nenhum dos dados utilizados pelo Trendify é armazenado ou coletado em qualquer lugar, e não é compartilhado com terceiros. Todas as informações são usadas exclusivamente para exibir seu Trendify."
       },
       {
         "TYPE": "PARAGRAPH",
-        "TEXT": "Embora você possa ter a certeza de que seus dados não estão sendo armazenados ou utilizados de forma maliciosa, se desejar revogar as permissões do sTopify, você pode visitar a página de aplicativos e clicar em remover acesso ao sTopify."
+        "TEXT": "Embora você possa ter a certeza de que seus dados não estão sendo armazenados ou utilizados de forma maliciosa, se desejar revogar as permissões do Trendify, você pode visitar a página de aplicativos e clicar em remover acesso ao Trendify."
       },
       {
         "TYPE": "LINK",
@@ -98,6 +98,6 @@
   "COLOR": "Cor",
   "ACCESS": "Acesse",
   "SAVE_BUTTON": "Salvar",
-  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "Não encontramos dados suficientes para gerar seu sTopify. Ouça músicas e volte depois.",
+  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "Não encontramos dados suficientes para gerar seu Trendify. Ouça músicas e volte depois.",
   "CLOSE": "Fechar"
 }

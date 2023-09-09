@@ -17,7 +17,7 @@ const AppHead = ({
 }: AppHeadProps) => {
   return (
     <Head>
-      <title>sTopify{props.title && ` | ${props.title}`}</title>
+      <title>Trendify{props.title && ` | ${props.title}`}</title>
       <meta name="description" content={props.description} />
       <meta property="og:title" content={props.title} />
       <meta property="og:type" content="article" />
@@ -28,7 +28,7 @@ const AppHead = ({
       <meta property="og:image" content={image} />
       <meta property="og:description" content={props.description} />
 
-      <meta property="og:site_name" content="sTopify" />
+      <meta property="og:site_name" content="Trendify" />
 
       {twitterAltImage && (
         <meta name="twitter:image:alt" content={twitterCard} />

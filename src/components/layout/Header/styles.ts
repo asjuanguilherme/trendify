@@ -123,6 +123,7 @@ export const MenuButton = styled.button`
 
 export const LogoWrapper = styled(Link)`
   font-size: 2rem;
+  display: inline-flex;
 `
 
 export const PagesNavItem = styled.li<{ $active?: boolean }>`
