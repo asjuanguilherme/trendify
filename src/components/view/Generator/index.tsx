@@ -11,6 +11,9 @@ import dark from 'styles/themes/dark'
 import { breakpoints } from 'styles/screens'
 import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
 import useScreen from 'hooks/useScreen'
+import { useI18n } from 'hooks/useI18n'
+import { useLocale } from 'hooks/useLocale'
+import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
 
 // Services
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
@@ -25,9 +28,6 @@ import UserTopItemsBox, {
 } from 'components/shared/UserTopItemsBox'
 import ColorPicker from 'components/shared/ColorPicker'
 import ColorOption from 'components/shared/ColorOption'
-import { useI18n } from 'hooks/useI18n'
-import { useLocale } from 'hooks/useLocale'
-import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
 
 export type GeneratorViewProps = {
   items: SpotifyTrack[]
@@ -99,10 +99,10 @@ const GeneratorView = ({
         onClick={downloadImage}
         disabled={loadingData}
       >
-        Salvar Imagem <DownloadIcon />
+        {i18n.SAVE_BUTTON} <DownloadIcon />
       </Button>
     ),
-    [loadingData]
+    [i18n.SAVE_BUTTON, loadingData]
   )
 
   const userTopItemsBoxProps: UserTopItemsBoxProps = {
