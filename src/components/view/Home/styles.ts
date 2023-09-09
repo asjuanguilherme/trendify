@@ -9,7 +9,13 @@ export const PageView = styled(BasicPageView)`
   margin: 0 auto;
 
   h1 {
-    font-size: ${font.sizes.xlarger};
+    font-size: ${font.sizes.larger};
+  }
+
+  ${screens.mobileM} {
+    h1 {
+      font-size: ${font.sizes.xlarger};
+    }
   }
 
   ${screens.tablet} {

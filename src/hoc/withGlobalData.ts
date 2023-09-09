@@ -69,7 +69,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
           destroyAuthenticationCookie(ctx)
           return {
             redirect: {
-              destination: `${ctx.locale}/?sessionExpired`,
+              destination: `/?sessionExpired`,
               permanent: true
             }
           }
@@ -78,7 +78,7 @@ export const withGlobalData = <P extends { [key: string]: unknown }>(
           destroyAuthenticationCookie(ctx)
           return {
             redirect: {
-              destination: `${ctx.locale}/?needsPermission`,
+              destination: `/?needsPermission`,
               permanent: true
             }
           }
