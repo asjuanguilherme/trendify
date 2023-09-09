@@ -152,7 +152,7 @@ const GeneratorView = ({
                         size="smaller"
                         layer={0}
                       >
-                        {i18n.TIME_OPTIONS[key][type][titleType]}
+                        {i18n.TIME_OPTIONS[key].title}
                       </Button>
                     )
                   )}
