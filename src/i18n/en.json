@@ -22,26 +22,42 @@
       "DESCRIPTION": "Sorry, you do not have permission to access this application. It is currently in the testing phase, and access is restricted to authorized testers."
     }
   },
+  "TYPE_OPTIONS": {
+    "artists": "Artists",
+    "tracks": "Tracks"
+  },
   "TIME_OPTIONS": {
     "lastMonth": {
       "title": "Last Month",
       "tracks": {
-        "short": "Top {{limit}} in the last month",
-        "large": "Your top {{limit}} songs in the last month"
+        "short": "Top {{limit}} from last month",
+        "large": "Your {{limit}} most listened songs from last month"
+      },
+      "artists": {
+        "short": "Top artists from last month",
+        "large": "Your {{limit}} most listened artists from last month"
       }
     },
     "lastSixMonths": {
       "title": "Last Six Months",
       "tracks": {
-        "short": "Top {{limit}} in the last six months",
-        "large": "Your top {{limit}} songs in the last six months"
+        "short": "Top {{limit}} from the last six months",
+        "large": "Your {{limit}} most listened songs from the last six months"
+      },
+      "artists": {
+        "short": "Top artists from the last six months",
+        "large": "Your {{limit}} most listened artists from the last six months"
       }
     },
     "allTime": {
       "title": "All Time",
       "tracks": {
         "short": "Top {{limit}} of all time",
-        "large": "Your top {{limit}} songs of all time"
+        "large": "Your {{limit}} most listened songs of all time"
+      },
+      "artists": {
+        "short": "Top artists of all time",
+        "large": "Your {{limit}} most listened artists of all time"
       }
     }
   },
@@ -111,6 +127,7 @@
     "TITLE": "Generator",
     "GENERATOR_SETTINGS": {
       "TITLE": "Generator Settings",
+      "TYPE_LABEL": "Type",
       "TIME_RANGE_LABEL": "Time range",
       "LIMIT_LABEL": "Items Limit",
       "STYLES_SETTINGS": "Styling",

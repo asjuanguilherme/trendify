@@ -2,14 +2,18 @@ import * as S from './styles'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 // Types
-import { SpotifyTrack } from 'services/spotify/types/Track'
 import { SpotifyUserProfile } from 'services/spotify/types'
+import { GlobalTrackItem } from 'types/TrackItem'
 
 // Utils
 import { toPng } from 'html-to-image'
 import dark from 'styles/themes/dark'
 import { breakpoints } from 'styles/screens'
-import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
+import {
+  GeneratorType,
+  TimeRange,
+  topItemsGeneratorConfig
+} from 'config/topItemsGenerator'
 import useScreen from 'hooks/useScreen'
 import { useI18n } from 'hooks/useI18n'
 import { useLocale } from 'hooks/useLocale'
@@ -17,7 +21,9 @@ import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
 
 // Services
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
+import { getMyTopArtists } from 'services/spotify/queries'
 
+// Components
 import Button, { ButtonProps } from 'components/shared/Button'
 import DownloadIcon from 'components/shared/icons/Download'
 import { TrackItemStyle } from 'components/shared/TrackItem'
@@ -30,7 +36,7 @@ import ColorPicker from 'components/shared/ColorPicker'
 import ColorOption from 'components/shared/ColorOption'
 
 export type GeneratorViewProps = {
-  items: SpotifyTrack[]
+  items: GlobalTrackItem[]
   userData: SpotifyUserProfile
 }
 
@@ -46,7 +52,7 @@ const GeneratorView = ({
   const [loadingData, setLoadingData] = useState(false)
   const [items, setItems] = useState(initialItems)
 
-  const [type, setType] = useState<'tracks'>('tracks')
+  const [type, setType] = useState<GeneratorType>('tracks')
   const [limit, setLimit] = useState(5)
   const [timeRange, setTimeRange] = useState<TimeRange>('lastMonth')
 
@@ -69,14 +75,17 @@ const GeneratorView = ({
     setLoadingData(true)
     ;(async () => {
       try {
-        const reqData = await getMyTopTracks({ limit, timeRange, ctx: null })
+        const reqData =
+          type == 'tracks'
+            ? await getMyTopTracks({ limit, timeRange, ctx: null })
+            : await getMyTopArtists({ limit, timeRange, ctx: null })
         setItems(reqData)
       } catch (err) {
       } finally {
         setLoadingData(false)
       }
     })()
-  }, [limit, timeRange])
+  }, [limit, timeRange, type])
 
   const downloadImage = async () => {
     if (!boxRef.current) return
@@ -107,7 +116,6 @@ const GeneratorView = ({
   )
 
   const userTopItemsBoxProps: UserTopItemsBoxProps = {
-    type: 'tracks',
     timeRange,
     limit,
     userData,
@@ -121,7 +129,8 @@ const GeneratorView = ({
     selectedItemsStyle,
     showProfileInfo,
     titleType,
-    roundedCorners
+    roundedCorners,
+    type
   }
 
   return (
@@ -138,6 +147,26 @@ const GeneratorView = ({
               {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.TITLE}
             </S.SettingsFormSectionTitle>
             <S.SettingsFormSectionContent>
+              <S.SettingsFormGroup>
+                <S.SettingsFormGroupLabel>
+                  {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.TYPE_LABEL}
+                </S.SettingsFormGroupLabel>
+                <S.TimeRangeOptions>
+                  {Object.values(topItemsGeneratorConfig.typeOptions).map(
+                    key => (
+                      <Button
+                        key={key}
+                        onClick={() => setType(key)}
+                        variant={key == type ? 'filled' : 'basic'}
+                        size="smaller"
+                        layer={0}
+                      >
+                        {i18n.TYPE_OPTIONS[key]}
+                      </Button>
+                    )
+                  )}
+                </S.TimeRangeOptions>
+              </S.SettingsFormGroup>
               <S.SettingsFormGroup>
                 <S.SettingsFormGroupLabel>
                   {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.TIME_RANGE_LABEL}

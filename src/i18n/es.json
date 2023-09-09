@@ -22,26 +22,42 @@
       "DESCRIPTION": "Lo siento, no tienes permiso para acceder a esta aplicación. Actualmente se encuentra en fase de pruebas y el acceso está restringido a probadores autorizados."
     }
   },
+  "TYPE_OPTIONS": {
+    "artists": "Artistas",
+    "tracks": "Canciones"
+  },
   "TIME_OPTIONS": {
     "lastMonth": {
-      "title": "Último mes",
+      "title": "Último Mes",
       "tracks": {
-        "short": "Las mejores {{limit}} del último mes",
-        "large": "Tus mejores {{limit}} canciones del último mes"
+        "short": "Lo mejor de {{limit}} del último mes",
+        "large": "Tus {{limit}} canciones más escuchadas del último mes"
+      },
+      "artists": {
+        "short": "Los mejores artistas del último mes",
+        "large": "Tus {{limit}} artistas más escuchados del último mes"
       }
     },
     "lastSixMonths": {
-      "title": "Último semestre",
+      "title": "Últimos Seis Meses",
       "tracks": {
-        "short": "Las mejores {{limit}} del último semestre",
-        "large": "Tus mejores {{limit}} canciones del último semestre"
+        "short": "Lo mejor de {{limit}} de los últimos seis meses",
+        "large": "Tus {{limit}} canciones más escuchadas de los últimos seis meses"
+      },
+      "artists": {
+        "short": "Los mejores artistas de los últimos seis meses",
+        "large": "Tus {{limit}} artistas más escuchados de los últimos seis meses"
       }
     },
     "allTime": {
-      "title": "Todos los tiempos",
+      "title": "Todos los Tiempos",
       "tracks": {
-        "short": "Las mejores {{limit}} de todos los tiempos",
-        "large": "Tus mejores {{limit}} canciones de todos los tiempos"
+        "short": "Lo mejor de {{limit}} de todos los tiempos",
+        "large": "Tus {{limit}} canciones más escuchadas de todos los tiempos"
+      },
+      "artists": {
+        "short": "Los mejores artistas de todos los tiempos",
+        "large": "Tus {{limit}} artistas más escuchados de todos los tiempos"
       }
     }
   },
@@ -111,6 +127,7 @@
     "TITLE": "Generador",
     "GENERATOR_SETTINGS": {
       "TITLE": "Configuración del Generador",
+      "TYPE_LABEL": "Tipo",
       "TIME_RANGE_LABEL": "Rango de Tiempo",
       "LIMIT_LABEL": "Límite de Elementos",
       "STYLES_SETTINGS": "Estilo",

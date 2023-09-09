@@ -12,57 +12,117 @@ import {
 import styled, { css } from 'styled-components'
 import { borderRadius, font, spacing } from 'styles/designSystemConfig'
 import { TrackItemSize, TrackItemStyle } from '.'
+import { GeneratorType } from 'config/topItemsGenerator'
 
 const configBySize: Record<
   TrackItemSize,
-  {
-    imageSize: number
-    titleFontSize: string
-    artistNameFontSize: string
-  }
+  Record<
+    GeneratorType,
+    {
+      imageSize: number
+      titleFontSize: string
+      descriptionFontSize: string
+    }
+  >
 > = {
   small: {
-    imageSize: 40,
-    titleFontSize: font.sizes.small,
-    artistNameFontSize: font.sizes.smaller
+    artists: {
+      imageSize: 50,
+      titleFontSize: font.sizes.small,
+      descriptionFontSize: font.sizes.smaller
+    },
+    tracks: {
+      imageSize: 40,
+      titleFontSize: font.sizes.small,
+      descriptionFontSize: font.sizes.smaller
+    }
   },
   medium: {
-    imageSize: 52,
-    titleFontSize: font.sizes.small,
-    artistNameFontSize: font.sizes.small
+    artists: {
+      imageSize: 60,
+      titleFontSize: font.sizes.default,
+      descriptionFontSize: font.sizes.small
+    },
+    tracks: {
+      imageSize: 52,
+      titleFontSize: font.sizes.small,
+      descriptionFontSize: font.sizes.small
+    }
   },
   large: {
-    imageSize: 64,
-    titleFontSize: font.sizes.default,
-    artistNameFontSize: font.sizes.small
+    artists: {
+      imageSize: 70,
+      titleFontSize: font.sizes.large,
+      descriptionFontSize: font.sizes.small
+    },
+    tracks: {
+      imageSize: 64,
+      titleFontSize: font.sizes.default,
+      descriptionFontSize: font.sizes.small
+    }
   }
 }
 
-export const ArtistName = styled.span<{ $size: TrackItemSize }>`
-  font-size: ${props => configBySize[props.$size].artistNameFontSize};
+export const Description = styled.span<{
+  $size: TrackItemSize
+  $generatorType: GeneratorType
+  $itemsBoxColor: string
+}>`
+  font-size: ${props =>
+    configBySize[props.$size][props.$generatorType].descriptionFontSize};
   opacity: 0.75;
+
+  ${props => {
+    const color = readableColor(props.$itemsBoxColor, '#000000', '#ffffff')
+    const isLight = color === '#000000'
+
+    return css`
+      font-weight: ${isLight ? font.weight.bold : font.weight.light};
+    `
+  }}
 `
 
 export const Title = styled.span<{
   $size: TrackItemSize
   $nameLength: number
+  $generatorType: GeneratorType
 }>`
-  font-size: ${props => configBySize[props.$size].titleFontSize};
+  font-size: ${props =>
+    configBySize[props.$size][props.$generatorType].titleFontSize};
   font-weight: ${font.weight.bold};
   text-overflow: ellipsis;
 
   ${props =>
-    props.$nameLength > 35 &&
+    props.$nameLength > 40 &&
     css`
-      font-size: calc(${configBySize[props.$size].titleFontSize} - 0.2rem);
+      font-size: calc(
+        ${configBySize[props.$size][props.$generatorType].titleFontSize} -
+          0.1rem
+      );
+    `}
+
+  ${props =>
+    props.$nameLength > 60 &&
+    css`
+      font-size: calc(
+        ${configBySize[props.$size][props.$generatorType].titleFontSize} -
+          0.25rem
+      );
     `}
 `
 
 export const Info = styled.div<{
   $style: TrackItemStyle
+  $generatorType: GeneratorType
 }>`
   display: flex;
   flex-direction: column;
+
+  ${props =>
+    props.$generatorType &&
+    css`
+      justify-content: center;
+    `}
 
   ${({ $style }) => {
     switch ($style) {
@@ -91,12 +151,16 @@ export const Info = styled.div<{
   }}
 `
 
-export const AlbumImage = styled.img<{
+export const Image = styled.img<{
   $size: TrackItemSize
   $style: TrackItemStyle
+  $generatorType: GeneratorType
 }>`
-  width: ${({ $size }) => rem(configBySize[$size].imageSize)};
-  height: ${({ $size }) => rem(configBySize[$size].imageSize)};
+  width: ${({ $size, $generatorType }) =>
+    rem(configBySize[$size][$generatorType].imageSize)};
+
+  height: ${({ $size, $generatorType }) =>
+    rem(configBySize[$size][$generatorType].imageSize)};
 
   ${({ $style }) => {
     switch ($style) {
@@ -110,6 +174,17 @@ export const AlbumImage = styled.img<{
         return css`
           border-radius: ${borderRadius.small};
         `
+    }
+  }}
+
+  ${({ $generatorType }) => {
+    switch ($generatorType) {
+      case 'artists':
+        return css`
+          border-radius: ${borderRadius.circle};
+        `
+      case 'tracks':
+        return css``
     }
   }}
 `
@@ -174,6 +249,7 @@ export const Wrapper = styled.div<{
   $size: TrackItemSize
   $style: TrackItemStyle
   $itemsBoxColor: string
+  $generatorType: GeneratorType
 }>`
   display: flex;
   gap: ${spacing.components.small};
@@ -199,6 +275,17 @@ export const Wrapper = styled.div<{
           background: ${backgroundColor};
           border-radius: ${borderRadius.small};
         `
+    }
+  }}
+
+  ${({ $generatorType }) => {
+    switch ($generatorType) {
+      case 'artists':
+        return css`
+          border-radius: ${borderRadius.pill} !important;
+        `
+      case 'tracks':
+        return css``
     }
   }}
 `

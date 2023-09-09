@@ -175,10 +175,21 @@ export const ItemsList = styled.ul<{
 
 export const Main = styled.main``
 
-export const HeaderInfoRowItem = styled.span`
+export const HeaderInfoRowItem = styled.span<{
+  $itemsBoxColor: string
+}>`
   display: flex;
   align-items: flex;
   gap: ${spacing.components.smaller};
+
+  ${props => {
+    const color = readableColor(props.$itemsBoxColor, '#000000', '#ffffff')
+    const isLight = color === '#000000'
+
+    return css`
+      font-weight: ${isLight ? font.weight.bold : font.weight.light};
+    `
+  }}
 `
 
 export const HeaderInfoRow = styled.div`

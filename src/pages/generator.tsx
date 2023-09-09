@@ -1,14 +1,14 @@
 import { withGlobalData } from 'hoc/withGlobalData'
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
-import { SpotifyTrack } from 'services/spotify/types/Track'
 import { AppGlobalProps } from 'types'
 import GeneratorView from 'components/view/Generator'
 import { useI18n } from 'hooks/useI18n'
 import AppHead from 'components/infra/AppHead'
+import { GlobalTrackItem } from 'types/TrackItem'
 
 export type GeneratorPageProps = {
   global: AppGlobalProps
-  items: SpotifyTrack[]
+  items: GlobalTrackItem[]
 }
 
 const GeneratorPage = ({ items, global }: GeneratorPageProps) => {

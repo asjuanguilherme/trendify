@@ -4,6 +4,7 @@ import { AxiosError } from 'axios'
 import { objectToQuerystring } from 'utils'
 import { SpotifyTrack } from '../types/Track'
 import { TimeRange } from 'config/topItemsGenerator'
+import { GlobalTrackItem } from 'types/TrackItem'
 
 export type GetMyTopTracksParams = {
   timeRange: TimeRange
@@ -21,7 +22,7 @@ export const getMyTopTracks = async ({
   ctx,
   timeRange = 'lastMonth',
   limit = 5
-}: GetMyTopTracksParams) => {
+}: GetMyTopTracksParams): Promise<GlobalTrackItem[]> => {
   try {
     if (limit <= 0) throw new Error('The minimum accepted value for limit is 1')
     if (limit >= 50)
@@ -36,7 +37,13 @@ export const getMyTopTracks = async ({
           limit
         })
     )
-    return data.items
+    return data.items.map(item => ({
+      id: item.id,
+      title: item.name,
+      image: item.album.images[0].url,
+      description: item.artists.map(artist => artist.name).join(', '),
+      type: 'tracks'
+    }))
   } catch (err) {
     if (err instanceof AxiosError) {
       if (Number(err.response?.status) == 401) {

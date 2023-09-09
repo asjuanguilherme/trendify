@@ -3,6 +3,9 @@ import dark from 'styles/themes/dark'
 
 export type TimeRange = keyof (typeof topItemsGeneratorConfig)['timeOptions']
 
+export type GeneratorType =
+  keyof (typeof topItemsGeneratorConfig)['typeOptions']
+
 export const topItemsGeneratorConfig = {
   boxWidth: 420,
   limitOptions: [3, 5, 10],
@@ -16,6 +19,10 @@ export const topItemsGeneratorConfig = {
     '#000000',
     '#ffffff'
   ],
+  typeOptions: {
+    tracks: 'tracks',
+    artists: 'artists'
+  },
   timeOptions: {
     lastMonth: 'lastMonth',
     lastSixMonths: 'lastSixMonths',

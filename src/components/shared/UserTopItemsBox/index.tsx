@@ -17,15 +17,15 @@ import Logo from '../Logo'
 import UserIcon from '../icons/User'
 import TriangleExclamationIcon from '../icons/TriangleExclamation'
 import Spinner from '../Spinner'
-import { TimeRange, topItemsGeneratorConfig } from 'config/topItemsGenerator'
+import { GeneratorType, TimeRange } from 'config/topItemsGenerator'
 import SpotifyLogo from 'components/shared/SpotifyLogo'
 import CalendarIcon from '../icons/Calendar'
+import { GlobalTrackItem } from 'types/TrackItem'
 
 export type UserTopItemsBoxProps = {
   boxRef?: MutableRefObject<HTMLDivElement | null>
-  trackItems?: SpotifyTrack[]
-  artistItems?: SpotifyArtist[]
-  type: 'artists' | 'tracks'
+  type: GeneratorType
+  trackItems?: GlobalTrackItem[]
   color: string
   limit: number
   enableGradient: boolean
@@ -49,7 +49,6 @@ const trackItemsSizeByLimit = {
 
 const UserTopItemsBox = ({
   boxRef,
-  type,
   color,
   limit,
   enableBlur,
@@ -58,34 +57,24 @@ const UserTopItemsBox = ({
   showProfileInfo,
   userData,
   trackItems,
-  artistItems,
   timeRange,
   selectedItemsStyle,
   enableBadgeHightlights,
   loading,
   titleType,
-  roundedCorners
+  roundedCorners,
+  type
 }: UserTopItemsBoxProps) => {
   const locale = useLocale()
   const i18n = useI18n()
 
-  if (!trackItems && !artistItems)
-    throw new Error('You must define trackItems or artistItems prop.')
-
   const backgroundImage = (() => {
-    if (type === 'tracks' && trackItems && trackItems.length > 0)
-      return trackItems![0].album.images[0].url
-
-    if (type === 'artists' && artistItems && artistItems.length > 0)
-      return artistItems![0].images[0].url
+    if (trackItems && trackItems.length > 0) return trackItems[0].image
 
     return '/assets/images/photo_placeholder.png'
   })()
 
-  if (
-    (type == 'tracks' && (!trackItems || trackItems.length === 0)) ||
-    (type == 'artists' && (!artistItems || artistItems.length === 0))
-  )
+  if (!trackItems || trackItems.length === 0)
     return (
       <S.Empty>
         <TriangleExclamationIcon />
@@ -131,14 +120,14 @@ const UserTopItemsBox = ({
             </S.SpotifyInfo>
           )}
           <S.Title>
-            {i18n.TIME_OPTIONS[timeRange].tracks[titleType].replace(
+            {i18n.TIME_OPTIONS[timeRange][type][titleType].replace(
               '{{limit}}',
               limit + ''
             )}
           </S.Title>
           <S.HeaderInfoRow>
             <SpotifyLogo />
-            <S.HeaderInfoRowItem>
+            <S.HeaderInfoRowItem $itemsBoxColor={color}>
               <CalendarIcon size=".875rem" />
               {new Intl.DateTimeFormat(locale, {
                 dateStyle: 'full'
@@ -157,6 +146,7 @@ const UserTopItemsBox = ({
               trackItems.map((item, index) => (
                 <li key={item.id}>
                   <TrackItem
+                    {...item}
                     itemsBoxColor={color}
                     badgeNumber={
                       enableBadgeHightlights
@@ -165,7 +155,6 @@ const UserTopItemsBox = ({
                           : index + 1
                         : undefined
                     }
-                    data={item}
                     size={trackItemsSizeByLimit[limit as 3] as 'small'}
                     style={selectedItemsStyle}
                   />

@@ -1,27 +1,34 @@
-import { SpotifyTrack } from 'services/spotify/types/Track'
 import * as S from './styles'
+import { GlobalTrackItem } from 'types/TrackItem'
 
 export type TrackItemSize = 'small' | 'medium' | 'large'
 
 export type TrackItemStyle = 'default' | 'spotify' | 'apple-music'
 
-export type TrackItemProps = {
+export type TrackItemProps = GlobalTrackItem & {
   itemsBoxColor: string
-  data: SpotifyTrack
   size?: TrackItemSize
   style?: TrackItemStyle
   badgeNumber?: number
 }
 
 const TrackItem = ({
-  data,
+  title,
+  description,
+  image,
   size = 'medium',
   style = 'default',
   badgeNumber,
-  itemsBoxColor
+  itemsBoxColor,
+  type
 }: TrackItemProps) => {
   return (
-    <S.Wrapper $size={size} $style={style} $itemsBoxColor={itemsBoxColor}>
+    <S.Wrapper
+      $size={size}
+      $style={style}
+      $itemsBoxColor={itemsBoxColor}
+      $generatorType={type}
+    >
       {badgeNumber && (
         <S.BadgeNumber
           $itemsBoxColor={itemsBoxColor}
@@ -30,16 +37,18 @@ const TrackItem = ({
           {badgeNumber}
         </S.BadgeNumber>
       )}
-      <S.AlbumImage
-        src={data.album.images[0].url}
-        $size={size}
-        $style={style}
-      />
-      <S.Info $style={style}>
-        <S.Title $size={size} $nameLength={data.name.length}>
-          {data.name}
+      <S.Image src={image} $size={size} $style={style} $generatorType={type} />
+      <S.Info $style={style} $generatorType={type}>
+        <S.Title $size={size} $nameLength={title.length} $generatorType={type}>
+          {title}
         </S.Title>
-        <S.ArtistName $size={size}>{data.artists[0].name}</S.ArtistName>
+        <S.Description
+          $size={size}
+          $generatorType={type}
+          $itemsBoxColor={itemsBoxColor}
+        >
+          {description}
+        </S.Description>
       </S.Info>
     </S.Wrapper>
   )
