@@ -1,0 +1,104 @@
+{
+  "LANGUAGES": {
+    "pt-BR": "Portugués",
+    "en": "Inglés",
+    "es": "Español"
+  },
+  "THEMES": {
+    "dark": "Tema oscuro",
+    "light": "Tema claro"
+  },
+  "PAGES": {
+    "home": "Inicio",
+    "generator": "Generador",
+    "about": "Acerca de",
+    "privacy_policy": "Política de privacidad"
+  },
+  "HOME_PAGE": {
+    "TITLE": "Descubre tu Tendencia Musical",
+    "SEO_DESCRIPTION": "Descubre tus canciones y artistas favoritos con Trendify. Un enfoque simple y personalizado para explorar tu música de manera elegante."
+  },
+  "ABOUT_PAGE": {
+    "TITLE": "Acerca de la App Trendify",
+    "SEO_DESCRIPTION": "Descubre tus canciones y artistas favoritos con Trendify. Un enfoque simple y personalizado para explorar tu música de manera elegante.",
+    "HOW_IT_WORKS": {
+      "TITLE": "Cómo Funciona",
+      "SPOTIFY_CONNECTION": {
+        "TITLE": "Conexión a Spotify:",
+        "DESCRIPTION": "Para comenzar, te conectas a tu cuenta de Spotify. Trendify respeta la privacidad de tus datos y utiliza solo la información necesaria para crear tus listas personalizadas."
+      },
+      "LIST_GENERATION": {
+        "TITLE": "Generación de Listas:",
+        "DESCRIPTION": "Una vez conectado, Trendify analiza rápidamente y genera automáticamente tu lista de los artistas y canciones más escuchados. Esto te permite descubrir tus preferencias musicales de manera divertida e informativa."
+      },
+      "EXPLORATION_AND_SHARING": {
+        "TITLE": "Exploración y Compartir:",
+        "DESCRIPTION": "Con tus listas en mano, puedes explorar tus artistas y canciones favoritas con facilidad. Además, Trendify te permite compartir tus listas con amigos, convirtiendo el descubrimiento musical en una experiencia social."
+      }
+    },
+    "DEVELOPER_MESSAGE": {
+      "TITLE": "Palabras del Desarrollador",
+      "INTRODUCTION": "Mi nombre es Juan Guilherme. Mi pasión por la tecnología y la música me inspiró a desarrollar esta herramienta. Para mí, la música tiene el poder de unir a las personas y enriquecer nuestras vidas, y Trendify es mi forma de contribuir a eso.",
+      "HOPE_YOU_ENJOY": "Espero que disfrutes de la aplicación tanto como yo disfruté creándola.",
+      "CONTACT_ME": "Si deseas ponerte en contacto conmigo, no dudes en acceder a las formas de contacto disponibles en mi sitio web."
+    }
+  },
+  "PRIVACY_POLICY_PAGE": {
+    "TITLE": "Política de Privacidad de Trendify",
+    "SEO_DESCRIPTION": "Consulta la política de privacidad del sitio y comprende cómo se utilizan tus datos.",
+    "CONTENT": [
+      {
+        "TYPE": "HEADER",
+        "TEXT": "Política de Privacidad de Trendify"
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "Trendify se desarrolló como una aplicación de código privado alimentada por la API de Spotify. Al optar por utilizar esta aplicación, aceptas el uso de tu nombre de usuario y tus datos de cuenta de Spotify para descubrir tus artistas y canciones principales."
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "Ninguno de los datos utilizados por Trendify se almacena o recopila en ningún lugar, ni se comparte con terceros. Toda la información se utiliza exclusivamente para mostrar tu Trendify."
+      },
+      {
+        "TYPE": "PARAGRAPH",
+        "TEXT": "Si bien puedes estar seguro de que tus datos no se almacenan ni se utilizan de manera maliciosa, si deseas revocar los permisos de Trendify, puedes visitar la página de aplicaciones y hacer clic en 'eliminar acceso a Trendify'."
+      },
+      {
+        "TYPE": "LINK",
+        "TEXT": "Guía más detallada sobre cómo eliminar el acceso.",
+        "URL": "https://support.spotify.com/us/article/spotify-on-other-apps/"
+      }
+    ]
+  },
+  "GENERATOR_PAGE": {
+    "TITLE": "Generador",
+    "GENERATOR_SETTINGS": {
+      "TITLE": "Configuración del Generador",
+      "TIME_RANGE_LABEL": "Rango de Tiempo",
+      "LIMIT_LABEL": "Límite de Elementos",
+      "STYLES_SETTINGS": "Estilo",
+      "ITEMS_STYLE": "Estilo de Elementos",
+      "SHOW_BACKGROUND": "Mostrar Fondo",
+      "ENABLE_GRADIENT": "Habilitar Gradiente",
+      "BLUR_BACKGROUND": "Desenfocar Fondo",
+      "SHOW_PROFILE": "Mostrar Perfil",
+      "LARGE_TITLE": "Título Grande",
+      "ROUND_CORNERS": "Esquinas Redondeadas",
+      "NUMBERED_TOP_3": "Top 3 Numerado"
+    }
+  },
+  "PROFILE_PICTURE_ALT_TEXT": "Foto de Perfil del Usuario",
+  "LOGIN_WITH_BUTTON_LABEL": "Iniciar sesión con",
+  "LOGOUT_BUTTON_LABEL": "Cerrar Sesión",
+  "DEVELOPED_BY": "Desarrollado por",
+  "OPTIONS_MENU_TITLE": "Menú",
+  "RETURN_BUTTON": "Volver",
+  "MORE_OPTIONS": "Más opciones",
+  "LESS_OPTIONS": "Menos opciones",
+  "CUSTOM_COLOR": "Color Personalizado",
+  "COLOR": "Color",
+  "ACCESS": "Acceso",
+  "SAVE_BUTTON": "Guardar",
+  "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "No encontramos datos suficientes para generar tu Trendify. Escucha música y vuelve más tarde.",
+  "CLOSE": "Cerrar"
+}

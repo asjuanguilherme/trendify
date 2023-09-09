@@ -16,36 +16,42 @@ const authStates = {
     type: 'success',
     title: {
       en: 'Session Ended',
-      'pt-BR': 'Sessão Encerrada'
+      'pt-BR': 'Sessão Encerrada',
+      es: 'Sesión Finalizada'
     },
     text: {
       en: 'Your session has ended successfully. You can log in again at any time.',
       'pt-BR':
-        'Sua sessão foi encerrada com sucesso. Você pode fazer login novamente a qualquer momento.'
+        'Sua sessão foi encerrada com sucesso. Você pode fazer login novamente a qualquer momento.',
+      es: 'Tu sesión ha finalizado con éxito. Puedes iniciar sesión de nuevo en cualquier momento.'
     }
   },
   sessionExpired: {
     type: 'warning',
     title: {
       en: 'Session Expired',
-      'pt-BR': 'Sessão Expirada'
+      'pt-BR': 'Sessão Expirada',
+      es: 'Sesión Caducada'
     },
     text: {
       en: 'Your session has expired. Please log in again to continue using the application.',
       'pt-BR':
-        'Sua sessão expirou. Por favor, faça o login novamente para continuar usando o aplicativo.'
+        'Sua sessão expirou. Por favor, faça o login novamente para continuar usando o aplicativo.',
+      es: 'Tu sesión ha caducado. Por favor, inicia sesión de nuevo para seguir utilizando la aplicación.'
     }
   },
   needsPermission: {
     type: 'error',
     title: {
       en: 'Restricted Access for Testers',
-      'pt-BR': 'Acesso Restrito a Testadores'
+      'pt-BR': 'Acesso Restrito a Testadores',
+      es: 'Acceso Restringido para Probadores'
     },
     text: {
       en: 'Sorry, you do not have permission to access this application. It is currently in testing phase, and access is restricted to authorized testers.',
       'pt-BR':
-        'Desculpe, você não possui autorização para acessar este aplicativo. Atualmente, ele está em fase de testes e o acesso é restrito aos testadores autorizados.'
+        'Desculpe, você não possui autorização para acessar este aplicativo. Atualmente, ele está em fase de testes e o acesso é restrito aos testadores autorizados.',
+      es: 'Lo siento, no tienes permiso para acceder a esta aplicación. Actualmente se encuentra en fase de pruebas y el acceso está restringido a probadores autorizados.'
     }
   }
 } as const
