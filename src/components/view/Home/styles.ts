@@ -4,20 +4,24 @@ import { breakpoints, screens } from 'styles/screens'
 import BasicPageView from '../BasicPage'
 
 export const PageView = styled(BasicPageView)`
-  padding-top: ${spacing.components.medium};
+  padding-top: ${spacing.sections.large};
   max-width: ${breakpoints.tablet}px;
   margin: 0 auto;
 
+  h1 {
+    font-size: ${font.sizes.xlarger};
+  }
+
   ${screens.tablet} {
     padding-top: ${spacing.sections.larger};
-  }
 
-  h1 {
-    font-size: ${font.sizes.xxlarger};
-  }
-
-  * {
-    font-size: ${font.sizes.large};
+    h1 {
+      font-size: ${font.sizes.xxlarger};
+      margin-bottom: ${spacing.components.medium};
+    }
+    * {
+      font-size: ${font.sizes.large};
+    }
   }
 `
 

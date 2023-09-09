@@ -105,9 +105,7 @@ export const PagesNavItem = styled.li<{ $active?: boolean }>`
     ${props =>
       props.$active
         ? css`
-            color: white;
-            background-color: ${props =>
-              props.theme.colors.main.primary.normal};
+            color: ${props => props.theme.colors.main.primary.normal};
           `
         : css`
             &:hover {

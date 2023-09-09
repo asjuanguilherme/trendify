@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
   }
 
   h1 {
-    line-height: 1em;
+    line-height: 1.3em;
     font-weight: ${font.weight.bold};
     font-size: ${font.sizes.larger};
     margin-bottom: ${spacing.sections.small};
@@ -30,12 +30,14 @@ export const Wrapper = styled.div`
   }
 
   h2 {
+    line-height: 1.3em;
     font-weight: ${font.weight.bold};
     font-size: ${font.sizes.larger};
     margin-bottom: ${spacing.components.medium};
   }
 
   h3 {
+    line-height: 1.3em;
     font-weight: ${font.weight.bold};
     font-size: ${font.sizes.default};
   }

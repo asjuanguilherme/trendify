@@ -37,7 +37,7 @@ const Header = ({ userData }: HeaderProps) => {
     opened: false,
     title: 'Opções',
     width: 400,
-    layer: 0
+    layer: 1
   })
 
   const userProfilePhoto =
