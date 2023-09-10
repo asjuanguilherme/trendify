@@ -24,7 +24,8 @@
   },
   "TYPE_OPTIONS": {
     "artists": "Artistas",
-    "tracks": "Músicas"
+    "tracks": "Músicas",
+    "genres": "Gêneros"
   },
   "TIME_OPTIONS": {
     "lastMonth": {
@@ -36,6 +37,10 @@
       "artists": {
         "short": "Principais artistas no último mês",
         "large": "Seus {{limit}} artistas mais ouvidos no último mês"
+      },
+      "genres": {
+        "short": "Principais gêneros no último mês",
+        "large": "Seus {{limit}} gêneros mais ouvidos no último mês"
       }
     },
     "lastSixMonths": {
@@ -47,6 +52,10 @@
       "artists": {
         "short": "Principais artistas no último semestre",
         "large": "Seus {{limit}} artistas mais ouvidos no último semestre"
+      },
+      "genres": {
+        "short": "Principais gêneros no último semestre",
+        "large": "Seus {{limit}} gêneros mais ouvidos no último semestre"
       }
     },
     "allTime": {
@@ -58,6 +67,10 @@
       "artists": {
         "short": "Principais artistas de todos os tempos",
         "large": "Seus {{limit}} artistas mais ouvidos de todos os tempos"
+      },
+      "genres": {
+        "short": "Principais gêneros de todos os tempos",
+        "large": "Seus {{limit}} gêneros mais ouvidos de todos os tempos"
       }
     }
   },

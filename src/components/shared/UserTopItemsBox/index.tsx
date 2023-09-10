@@ -140,6 +140,7 @@ const UserTopItemsBox = ({
             $style={selectedItemsStyle}
             $backgroundColor={color}
             $itemsLength={trackItems?.length}
+            $generatorType={type}
           >
             {trackItems &&
               trackItems.length > 0 &&

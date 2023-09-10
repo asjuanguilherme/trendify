@@ -46,7 +46,7 @@ export const getMyTopArtists = async ({
     }))
   } catch (err) {
     if (err instanceof AxiosError) {
-      if (Number(err.response?.status) >= 400) {
+      if (Number(err.response?.status) >= 401) {
         destroyAuthenticationCookie(ctx)
         throw err
       }

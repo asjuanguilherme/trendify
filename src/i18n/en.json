@@ -24,40 +24,53 @@
   },
   "TYPE_OPTIONS": {
     "artists": "Artists",
-    "tracks": "Tracks"
+    "tracks": "Tracks",
+    "genres": "Genres"
   },
   "TIME_OPTIONS": {
     "lastMonth": {
       "title": "Last Month",
       "tracks": {
-        "short": "Top {{limit}} from last month",
-        "large": "Your {{limit}} most listened songs from last month"
+        "short": "Top {{limit}} from Last Month",
+        "large": "Your Top {{limit}} Tracks from Last Month"
       },
       "artists": {
-        "short": "Top artists from last month",
-        "large": "Your {{limit}} most listened artists from last month"
+        "short": "Top Artists in Last Month",
+        "large": "Your Top {{limit}} Artists from Last Month"
+      },
+      "genres": {
+        "short": "Top Genres in Last Month",
+        "large": "Your Top {{limit}} Genres from Last Month"
       }
     },
     "lastSixMonths": {
       "title": "Last Six Months",
       "tracks": {
-        "short": "Top {{limit}} from the last six months",
-        "large": "Your {{limit}} most listened songs from the last six months"
+        "short": "Top {{limit}} from Last Six Months",
+        "large": "Your Top {{limit}} Tracks from Last Six Months"
       },
       "artists": {
-        "short": "Top artists from the last six months",
-        "large": "Your {{limit}} most listened artists from the last six months"
+        "short": "Top Artists in Last Six Months",
+        "large": "Your Top {{limit}} Artists from Last Six Months"
+      },
+      "genres": {
+        "short": "Top Genres in Last Six Months",
+        "large": "Your Top {{limit}} Genres from Last Six Months"
       }
     },
     "allTime": {
       "title": "All Time",
       "tracks": {
-        "short": "Top {{limit}} of all time",
-        "large": "Your {{limit}} most listened songs of all time"
+        "short": "Top {{limit}} of All Time",
+        "large": "Your Top {{limit}} Tracks of All Time"
       },
       "artists": {
-        "short": "Top artists of all time",
-        "large": "Your {{limit}} most listened artists of all time"
+        "short": "Top Artists of All Time",
+        "large": "Your Top {{limit}} Artists of All Time"
+      },
+      "genres": {
+        "short": "Top Genres of All Time",
+        "large": "Your Top {{limit}} Genres of All Time"
       }
     }
   },

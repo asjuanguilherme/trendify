@@ -7,7 +7,10 @@ import {
   transition
 } from 'styles/designSystemConfig'
 import { TrackItemStyle } from '../TrackItem'
-import { topItemsGeneratorConfig } from 'config/topItemsGenerator'
+import {
+  GeneratorType,
+  topItemsGeneratorConfig
+} from 'config/topItemsGenerator'
 
 export const CreatedByLink = styled.span`
   display: flex;
@@ -127,11 +130,12 @@ export const ItemsList = styled.ul<{
   $style: TrackItemStyle
   $backgroundColor: string
   $itemsLength?: number
+  $generatorType: GeneratorType
 }>`
   display: flex;
   flex-direction: column;
 
-  ${({ $style, $backgroundColor, $itemsLength }) => {
+  ${({ $style, $backgroundColor, $itemsLength, $generatorType }) => {
     switch ($style) {
       case 'spotify':
         return css`
@@ -149,7 +153,9 @@ export const ItemsList = styled.ul<{
             &::after {
               content: '';
               display: block;
-              width: ${$itemsLength == 10
+              width: ${$generatorType == 'genres'
+                ? '100%'
+                : $itemsLength == 10
                 ? '86.5%'
                 : $itemsLength == 5
                 ? '83%'

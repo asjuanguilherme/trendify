@@ -24,40 +24,53 @@
   },
   "TYPE_OPTIONS": {
     "artists": "Artistas",
-    "tracks": "Canciones"
+    "tracks": "Canciones",
+    "genres": "Géneros"
   },
   "TIME_OPTIONS": {
     "lastMonth": {
       "title": "Último Mes",
       "tracks": {
-        "short": "Lo mejor de {{limit}} del último mes",
-        "large": "Tus {{limit}} canciones más escuchadas del último mes"
+        "short": "Top {{limit}} del Último Mes",
+        "large": "Tus {{limit}} Canciones Más Escuchadas del Último Mes"
       },
       "artists": {
-        "short": "Los mejores artistas del último mes",
-        "large": "Tus {{limit}} artistas más escuchados del último mes"
+        "short": "Artistas Principales del Último Mes",
+        "large": "Tus {{limit}} Artistas Más Escuchados del Último Mes"
+      },
+      "genres": {
+        "short": "Géneros Principales del Último Mes",
+        "large": "Tus {{limit}} Géneros Más Escuchados del Último Mes"
       }
     },
     "lastSixMonths": {
       "title": "Últimos Seis Meses",
       "tracks": {
-        "short": "Lo mejor de {{limit}} de los últimos seis meses",
-        "large": "Tus {{limit}} canciones más escuchadas de los últimos seis meses"
+        "short": "Top {{limit}} de los Últimos Seis Meses",
+        "large": "Tus {{limit}} Canciones Más Escuchadas de los Últimos Seis Meses"
       },
       "artists": {
-        "short": "Los mejores artistas de los últimos seis meses",
-        "large": "Tus {{limit}} artistas más escuchados de los últimos seis meses"
+        "short": "Artistas Principales de los Últimos Seis Meses",
+        "large": "Tus {{limit}} Artistas Más Escuchados de los Últimos Seis Meses"
+      },
+      "genres": {
+        "short": "Géneros Principales de los Últimos Seis Meses",
+        "large": "Tus {{limit}} Géneros Más Escuchados de los Últimos Seis Meses"
       }
     },
     "allTime": {
-      "title": "Todos los Tiempos",
+      "title": "Todo el Tiempo",
       "tracks": {
-        "short": "Lo mejor de {{limit}} de todos los tiempos",
-        "large": "Tus {{limit}} canciones más escuchadas de todos los tiempos"
+        "short": "Top {{limit}} de Todos los Tiempos",
+        "large": "Tus {{limit}} Canciones Más Escuchadas de Todos los Tiempos"
       },
       "artists": {
-        "short": "Los mejores artistas de todos los tiempos",
-        "large": "Tus {{limit}} artistas más escuchados de todos los tiempos"
+        "short": "Artistas Principales de Todos los Tiempos",
+        "large": "Tus {{limit}} Artistas Más Escuchados de Todos los Tiempos"
+      },
+      "genres": {
+        "short": "Géneros Principales de Todos los Tiempos",
+        "large": "Tus {{limit}} Géneros Más Escuchados de Todos los Tiempos"
       }
     }
   },

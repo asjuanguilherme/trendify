@@ -34,6 +34,7 @@ import UserTopItemsBox, {
 } from 'components/shared/UserTopItemsBox'
 import ColorPicker from 'components/shared/ColorPicker'
 import ColorOption from 'components/shared/ColorOption'
+import { getMyTopGenres } from 'services/spotify/queries/getMyTopGenres'
 
 export type GeneratorViewProps = {
   items: GlobalTrackItem[]
@@ -78,6 +79,8 @@ const GeneratorView = ({
         const reqData =
           type == 'tracks'
             ? await getMyTopTracks({ limit, timeRange, ctx: null })
+            : type == 'genres'
+            ? await getMyTopGenres({ limit, timeRange, ctx: null })
             : await getMyTopArtists({ limit, timeRange, ctx: null })
         setItems(reqData)
       } catch (err) {

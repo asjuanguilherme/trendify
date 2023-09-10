@@ -21,7 +21,8 @@ export const topItemsGeneratorConfig = {
   ],
   typeOptions: {
     tracks: 'tracks',
-    artists: 'artists'
+    artists: 'artists',
+    genres: 'genres'
   },
   timeOptions: {
     lastMonth: 'lastMonth',

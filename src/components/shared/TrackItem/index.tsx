@@ -37,18 +37,27 @@ const TrackItem = ({
           {badgeNumber}
         </S.BadgeNumber>
       )}
-      <S.Image src={image} $size={size} $style={style} $generatorType={type} />
+      {image && (
+        <S.Image
+          src={image}
+          $size={size}
+          $style={style}
+          $generatorType={type}
+        />
+      )}
       <S.Info $style={style} $generatorType={type}>
         <S.Title $size={size} $nameLength={title.length} $generatorType={type}>
           {title}
         </S.Title>
-        <S.Description
-          $size={size}
-          $generatorType={type}
-          $itemsBoxColor={itemsBoxColor}
-        >
-          {description}
-        </S.Description>
+        {description && (
+          <S.Description
+            $size={size}
+            $generatorType={type}
+            $itemsBoxColor={itemsBoxColor}
+          >
+            {description}
+          </S.Description>
+        )}
       </S.Info>
     </S.Wrapper>
   )

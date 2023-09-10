@@ -35,6 +35,11 @@ const configBySize: Record<
       imageSize: 40,
       titleFontSize: font.sizes.small,
       descriptionFontSize: font.sizes.smaller
+    },
+    genres: {
+      imageSize: 40,
+      titleFontSize: font.sizes.large,
+      descriptionFontSize: font.sizes.smaller
     }
   },
   medium: {
@@ -47,6 +52,11 @@ const configBySize: Record<
       imageSize: 52,
       titleFontSize: font.sizes.small,
       descriptionFontSize: font.sizes.small
+    },
+    genres: {
+      imageSize: 52,
+      titleFontSize: font.sizes.larger,
+      descriptionFontSize: font.sizes.small
     }
   },
   large: {
@@ -58,6 +68,11 @@ const configBySize: Record<
     tracks: {
       imageSize: 64,
       titleFontSize: font.sizes.default,
+      descriptionFontSize: font.sizes.small
+    },
+    genres: {
+      imageSize: 85,
+      titleFontSize: font.sizes.xlarger,
       descriptionFontSize: font.sizes.small
     }
   }
@@ -283,6 +298,10 @@ export const Wrapper = styled.div<{
       case 'artists':
         return css`
           border-radius: ${borderRadius.pill} !important;
+        `
+      case 'genres':
+        return css`
+          padding: ${spacing.components.small};
         `
       case 'tracks':
         return css``
