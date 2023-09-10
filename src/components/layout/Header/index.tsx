@@ -97,7 +97,9 @@ const Header = ({ userData }: HeaderProps) => {
                   $active={isCurrentLinkActive(item.path, router.asPath)}
                   onClick={menuModal.close}
                 >
-                  <Link href={item.path}>{i18n.PAGES[item.name]}</Link>
+                  <Link href={item.path} shallow>
+                    {i18n.PAGES[item.name]}
+                  </Link>
                 </S.PagesNavItem>
               ))}
             </S.MenuPagesNavList>
@@ -116,6 +118,7 @@ const Header = ({ userData }: HeaderProps) => {
                 key={localeOption}
                 href={router.pathname}
                 locale={localeOption}
+                shallow
               >
                 <S.LanguageOptionButton
                   $active={localeOption === locale}
@@ -143,7 +146,9 @@ const Header = ({ userData }: HeaderProps) => {
               key={item.path}
               $active={isCurrentLinkActive(item.path, router.asPath)}
             >
-              <Link href={item.path}>{i18n.PAGES[item.name]}</Link>
+              <Link href={item.path} shallow>
+                {i18n.PAGES[item.name]}
+              </Link>
             </S.PagesNavItem>
           ))}
         </S.PagesNavList>

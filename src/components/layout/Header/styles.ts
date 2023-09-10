@@ -13,10 +13,11 @@ import {
 import DefaultContainer from 'components/shared/Container'
 import { screens } from 'styles/screens'
 
-export const LanguageOptionButton = styled.button<{
+export const LanguageOptionButton = styled.span<{
   $active: boolean
   $lang: string
 }>`
+  display: block;
   background-image: url(/assets/images/flags/${props => props.$lang}.png);
   background-size: cover;
   background-position: center;
