@@ -42,29 +42,24 @@ export const getMyTopGenres = async ({
   timeRange
 }: GetMyTopArtistsParams): Promise<GlobalTrackItem[]> => {
   try {
-    if (limit <= 0) throw new Error('The minimum accepted value for limit is 1')
-    if (limit >= 50)
-      throw new Error('The maximum accepted value for limit is 50')
-
     const spotifyClient = setupSpotifyApiClient(ctx)
     const { data } = await spotifyClient.get<{ items: SpotifyArtist[] }>(
       'v1/me/top/artists?' +
         objectToQuerystring({
           time_range: spotifyAcceptedTimeRange[timeRange],
           offset: 0,
-          limit
+          limit: 50
         })
     )
-    const genres = getMostListenedGenresFromSpotifyArtistsList(data.items)
+    const genres = getMostListenedGenresFromSpotifyArtistsList(
+      data.items
+    ).slice(0, limit)
 
-    // @ts-expect-error
-    return genres
-      .map(item => ({
-        id: item,
-        title: '# ' + uppercaseWholeText(item),
-        type: 'genres'
-      }))
-      .slice(0, limit)
+    return genres.map(item => ({
+      id: item,
+      title: '# ' + uppercaseWholeText(item),
+      type: 'genres'
+    }))
   } catch (err) {
     if (err instanceof AxiosError) {
       if (Number(err.response?.status) >= 401) {

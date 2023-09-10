@@ -152,7 +152,7 @@ export const DropdownLabelWrapper = styled.span`
 
 export const Button = styled(DefaultButton)`
   border-radius: ${borderRadius.medium} !important;
-  justify-content: space-between;
+  justify-content: space-between !important;
 `
 
 export const Label = styled.span`

@@ -59,7 +59,7 @@ export const Switches = styled.div`
 export const SuggestedColors = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: ${spacing.components.small};
+  gap: ${spacing.components.medium};
 `
 
 export const SettingsFormGroupLabel = styled.span`
@@ -83,7 +83,7 @@ export const TimeRangeOptions = styled.div`
   gap: ${spacing.components.small};
 
   button {
-    border-radius: ${borderRadius.pill} !important;
+    transform: scale(1) !important;
   }
 `
 
@@ -93,7 +93,7 @@ export const LimitButtons = styled.div`
   flex-wrap: wrap;
 
   button {
-    border-radius: ${borderRadius.pill} !important;
+    transform: scale(1) !important;
   }
 `
 

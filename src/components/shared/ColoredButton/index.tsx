@@ -1,13 +1,13 @@
-import { MouseEventHandler } from 'react'
 import * as S from './styles'
 import { COLOR_HEXADECIMAL_REGEX } from 'utils/regex'
+import { ButtonProps } from '../Button'
 
-export type ColorOptionProps = {
+export type ColoredButtonProps = ButtonProps & {
   hexColor: string
-  onClick?: MouseEventHandler
+  active: boolean
 }
 
-const ColorOption = ({ hexColor, onClick }: ColorOptionProps) => {
+const ColoredButton = ({ hexColor, active, ...props }: ColoredButtonProps) => {
   if (hexColor.length < 6)
     throw new Error('hexColor prop must contain at least 6 characters')
   if (hexColor.length > 8)
@@ -15,7 +15,7 @@ const ColorOption = ({ hexColor, onClick }: ColorOptionProps) => {
   if (!COLOR_HEXADECIMAL_REGEX.test(hexColor))
     throw new Error('hexColor prop is invalid')
 
-  return <S.Wrapper onClick={onClick} $color={hexColor}></S.Wrapper>
+  return <S.Wrapper $color={hexColor} $active={active} {...props} />
 }
 
-export default ColorOption
+export default ColoredButton

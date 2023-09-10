@@ -22,6 +22,7 @@ import { trackItemStyleVariantOptions } from 'components/shared/TrackItem/utils'
 // Services
 import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
 import { getMyTopArtists } from 'services/spotify/queries'
+import { getMyTopGenres } from 'services/spotify/queries/getMyTopGenres'
 
 // Components
 import Button, { ButtonProps } from 'components/shared/Button'
@@ -32,9 +33,7 @@ import Switch from 'components/shared/Switch'
 import UserTopItemsBox, {
   UserTopItemsBoxProps
 } from 'components/shared/UserTopItemsBox'
-import ColorPicker from 'components/shared/ColorPicker'
-import ColorOption from 'components/shared/ColorOption'
-import { getMyTopGenres } from 'services/spotify/queries/getMyTopGenres'
+import ColoredButton from 'components/shared/ColoredButton'
 
 export type GeneratorViewProps = {
   items: GlobalTrackItem[]
@@ -70,6 +69,7 @@ const GeneratorView = ({
     useState<UserTopItemsBoxProps['titleType']>('large')
   const [roundedCorners, setRoundedCorners] = useState(true)
 
+  const customColorInputRef = useRef<HTMLInputElement | null>(null)
   const boxRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -223,18 +223,32 @@ const GeneratorView = ({
                   </S.SettingsFormGroupLabel>
                   <S.SuggestedColors>
                     {topItemsGeneratorConfig.suggestedColorsOptions.map(
-                      color => (
-                        <ColorOption
-                          key={color}
-                          hexColor={color}
-                          onClick={() => setColor(color)}
+                      colorOption => (
+                        <ColoredButton
+                          key={colorOption}
+                          hexColor={colorOption}
+                          onClick={() => setColor(colorOption)}
+                          active={colorOption === color}
+                          size="small"
+                          onlyIcon
                         />
                       )
                     )}
-                    <ColorPicker
-                      label={i18n.CUSTOM_COLOR}
+                    <Button
+                      size="small"
+                      onClick={() => {
+                        customColorInputRef.current?.click()
+                      }}
+                      variant="outlined"
+                    >
+                      {i18n.CUSTOM_COLOR}
+                    </Button>
+                    <input
+                      ref={customColorInputRef}
                       value={color}
-                      onChange={setColor}
+                      onChange={e => setColor(e.target.value)}
+                      type="color"
+                      hidden
                     />
                   </S.SuggestedColors>
                 </S.SettingsFormGroup>

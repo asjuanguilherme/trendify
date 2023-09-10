@@ -29,7 +29,7 @@ export const Wrapper = styled.button<WrapperProps>`
   font-weight: ${font.weight.medium};
   cursor: pointer;
   transition: ${transition.fast};
-  transition-property: color, background-color, border;
+  transition-property: color, background-color, border, transform;
   text-decoration: none;
   border-radius: ${borderRadius.pill};
 
@@ -67,7 +67,7 @@ export const Wrapper = styled.button<WrapperProps>`
     `}
 
   // Handle with colors by variant
-  ${({ theme, $color, $variant, $layer, disabled }) => {
+  ${({ theme, $color, $variant, $layer, disabled, $size }) => {
     switch ($variant) {
       case 'filled':
         return css`
@@ -81,7 +81,13 @@ export const Wrapper = styled.button<WrapperProps>`
               `
             : css`
                 &:hover {
-                  background-color: ${theme.colors.main[$color].light};
+                  transform: scale(
+                    ${$size === 'smaller'
+                      ? '1.2'
+                      : $size === 'small'
+                      ? '1.1'
+                      : '1.03'}
+                  );
                 }
 
                 &:active {
@@ -119,6 +125,11 @@ export const Wrapper = styled.button<WrapperProps>`
           color: ${theme.colors.main[$color].normal};
           border: 1px solid ${theme.colors.main[$color].normal};
           background-color: ${theme.colors.layers[$layer].background};
+
+          &:hover {
+            color: white;
+            background-color: ${theme.colors.main[$color].normal};
+          }
         `
       case 'white':
         return css`
