@@ -165,7 +165,7 @@
   "CUSTOM_COLOR": "Custom color",
   "COLOR": "Color",
   "ACCESS": "Access",
-  "SAVE_IMAGE_BUTTON": "Save Image",
+  "SHARE_BUTTON_LABEL": "Share",
   "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "We couldn't find enough data to generate your Trendify. Listen to music and come back later.",
   "CLOSE": "Close"
 }

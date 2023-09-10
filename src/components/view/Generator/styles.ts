@@ -38,13 +38,29 @@ export const HiddenTopItemsBox = styled.div`
   top: -500%;
 `
 
-export const FloatingSaveButton = styled.div`
+export const SharingButtons = styled.div`
   position: fixed;
   z-index: ${zIndex.navbar};
   bottom: 0;
   left: 0;
   width: 100%;
   padding: ${layout.gutter};
+  display: flex;
+  gap: ${spacing.components.medium};
+
+  button {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  }
+
+  ${screens.laptop} {
+    position: static;
+    margin-top: ${spacing.components.medium};
+    padding: 0;
+
+    button {
+      box-shadow: initial;
+    }
+  }
 `
 
 export const Switches = styled.div`

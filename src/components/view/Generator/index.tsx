@@ -1,12 +1,12 @@
 import * as S from './styles'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 // Types
 import { SpotifyUserProfile } from 'services/spotify/types'
 import { GlobalTrackItem } from 'types/TrackItem'
 
 // Utils
-import { toPng } from 'html-to-image'
+import { toBlob, toPng } from 'html-to-image'
 import dark from 'styles/themes/dark'
 import { breakpoints } from 'styles/screens'
 import {
@@ -34,6 +34,8 @@ import UserTopItemsBox, {
   UserTopItemsBoxProps
 } from 'components/shared/UserTopItemsBox'
 import ColoredButton from 'components/shared/ColoredButton'
+import { blob } from 'stream/consumers'
+import ShareNodesIcon from 'components/shared/icons/ShareNodes'
 
 export type GeneratorViewProps = {
   items: GlobalTrackItem[]
@@ -107,19 +109,35 @@ const GeneratorView = ({
     downloadLink.click()
   }
 
-  const SaveButton = useCallback(
-    (props: ButtonProps) => (
-      <Button
-        fillWidth
-        {...props}
-        onClick={downloadImage}
-        disabled={loadingData}
-      >
-        {i18n.SAVE_IMAGE_BUTTON} <DownloadIcon />
-      </Button>
-    ),
-    [i18n.SAVE_IMAGE_BUTTON, loadingData]
-  )
+  const shareImage = async () => {
+    if (!boxRef.current) return
+    if (!('share' in navigator)) return
+
+    const blobImage = await toBlob(boxRef.current, {
+      quality: 1,
+      canvasWidth: topItemsGeneratorConfig.boxWidth,
+      backgroundColor: 'transparent'
+    })
+
+    if (!blobImage) throw new Error('Fail to generate image')
+
+    const shareData = {
+      title: i18n.TIME_OPTIONS[timeRange][type].short,
+      files: [new File([blobImage], 'image.png', { type: blobImage.type })]
+    }
+
+    if (navigator.canShare(shareData)) {
+      try {
+        await navigator.share(shareData)
+      } catch (err) {
+        if (err instanceof Error && err.name !== 'AbortError') {
+          console.log(err.name, err.message)
+        }
+      }
+    } else {
+      console.warn('Sharing not supported', shareData)
+    }
+  }
 
   const userTopItemsBoxProps: UserTopItemsBoxProps = {
     timeRange,
@@ -141,11 +159,6 @@ const GeneratorView = ({
 
   return (
     <S.Wrapper>
-      {items.length > 0 && !isLaptopUp && (
-        <S.FloatingSaveButton>
-          <SaveButton />
-        </S.FloatingSaveButton>
-      )}
       <S.Container>
         <S.SettingsForm>
           <S.SettingsFormSection>
@@ -352,8 +365,16 @@ const GeneratorView = ({
         </S.HiddenTopItemsBox>
         <S.VisibleTopItemsBox>
           <UserTopItemsBox {...userTopItemsBoxProps} />
-          {items.length > 0 && isLaptopUp && (
-            <SaveButton style={{ marginTop: '1rem' }} />
+          {items.length > 0 && (
+            <S.SharingButtons>
+              <Button fillWidth onClick={shareImage} disabled={loadingData}>
+                {i18n.SHARE_BUTTON_LABEL}
+                <ShareNodesIcon />
+              </Button>
+              <Button onClick={downloadImage} disabled={loadingData}>
+                <DownloadIcon />
+              </Button>
+            </S.SharingButtons>
           )}
         </S.VisibleTopItemsBox>
       </S.Container>

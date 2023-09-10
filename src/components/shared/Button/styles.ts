@@ -21,7 +21,6 @@ type WrapperProps = {
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  flex-shrink: 0;
   display: ${props => (props.$fillWidth ? 'flex' : 'inline-flex')};
   width: ${props => (props.$fillWidth ? '100%' : 'max-content')};
   align-items: center;
@@ -32,6 +31,12 @@ export const Wrapper = styled.button<WrapperProps>`
   transition-property: color, background-color, border, transform;
   text-decoration: none;
   border-radius: ${borderRadius.pill};
+
+  ${({ $onlyIcon }) =>
+    $onlyIcon &&
+    css`
+      flex-shrink: 0;
+    `}
 
   svg {
     font-size: inherit;
