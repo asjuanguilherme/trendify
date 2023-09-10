@@ -50,7 +50,7 @@ const Modal = ({
           <S.BoxHeader>
             <S.Title>{title}</S.Title>
             {showX && (
-              <Button onlyIcon variant="basic" onClick={onClose}>
+              <Button onlyIcon variant="basic" onClick={onClose} size="small">
                 <XMarkIcon />
               </Button>
             )}

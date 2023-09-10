@@ -147,9 +147,9 @@ const Header = ({ userData }: HeaderProps) => {
             </S.PagesNavItem>
           ))}
         </S.PagesNavList>
-        <S.MenuButton onClick={menuModal.open}>
+        <Button onClick={menuModal.open} onlyIcon size="small">
           <EllipsisIcon />
-        </S.MenuButton>
+        </Button>
       </S.Container>
     </S.Wrapper>
   )

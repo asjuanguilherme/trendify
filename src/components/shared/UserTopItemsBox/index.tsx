@@ -71,7 +71,7 @@ const UserTopItemsBox = ({
   const backgroundImage = (() => {
     if (trackItems && trackItems.length > 0) return trackItems[0].image
 
-    return '/assets/images/photo_placeholder.png'
+    return undefined
   })()
 
   if (!trackItems || trackItems.length === 0)
@@ -96,7 +96,7 @@ const UserTopItemsBox = ({
       )}
 
       <>
-        {enableBackgroundImage && (
+        {enableBackgroundImage && backgroundImage && (
           <S.GeneratedBoxImage src={backgroundImage} $enableBlur={enableBlur} />
         )}
         <S.Header>

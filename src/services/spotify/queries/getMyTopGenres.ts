@@ -55,8 +55,8 @@ export const getMyTopGenres = async ({
       data.items
     ).slice(0, limit)
 
-    return genres.map(item => ({
-      id: item,
+    return genres.map((item, index) => ({
+      id: index,
       title: '# ' + uppercaseWholeText(item),
       type: 'genres'
     }))

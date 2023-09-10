@@ -1,7 +1,7 @@
 import { GeneratorType } from 'config/topItemsGenerator'
 
 export type GlobalTrackItem = {
-  id: string
+  id: string | number
   title: string
   type: GeneratorType
   description?: string

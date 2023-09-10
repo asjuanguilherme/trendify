@@ -198,6 +198,8 @@ export const Image = styled.img<{
         return css`
           border-radius: ${borderRadius.circle};
         `
+      case 'genres':
+        return css``
       case 'tracks':
         return css``
     }

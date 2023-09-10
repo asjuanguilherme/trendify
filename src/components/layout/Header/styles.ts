@@ -103,24 +103,6 @@ export const MenuOptions = styled.div`
   }
 `
 
-export const MenuButton = styled.button`
-  width: ${buttonSizes.small};
-  height: ${buttonSizes.small};
-  font-size: ${font.sizes.large};
-  border-radius: ${borderRadius.circle};
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: ${transition.fast};
-  color: white;
-  background: ${props => props.theme.colors.main.primary.normal};
-
-  &:hover {
-    transform: scale(1.2);
-  }
-`
-
 export const LogoWrapper = styled(Link)`
   font-size: 2rem;
   display: inline-flex;

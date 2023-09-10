@@ -84,6 +84,7 @@ const GeneratorView = ({
             : await getMyTopArtists({ limit, timeRange, ctx: null })
         setItems(reqData)
       } catch (err) {
+        console.log(err)
       } finally {
         setLoadingData(false)
       }
@@ -98,9 +99,11 @@ const GeneratorView = ({
       canvasWidth: topItemsGeneratorConfig.boxWidth
     })
 
+    console.log(dataUrl)
+
     const downloadLink = document.createElement('a')
     downloadLink.href = dataUrl
-    downloadLink.download = 'top_tracks.png'
+    downloadLink.download = 'image.png'
     downloadLink.click()
   }
 
