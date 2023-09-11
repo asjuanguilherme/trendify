@@ -74,7 +74,12 @@ const Header = ({ userData }: HeaderProps) => {
                       <UserIcon />
                     </S.ProfilePhotoPlaceholder>
                   )}
-                  <S.ProfileName>{userData.display_name}</S.ProfileName>
+                  <S.ProfileInfo>
+                    <S.ProfileName>{userData.display_name}</S.ProfileName>
+                    {userData.email && (
+                      <S.ProfileEmail>{userData.email}</S.ProfileEmail>
+                    )}
+                  </S.ProfileInfo>
                 </S.ProfileResume>{' '}
                 <Button
                   onClick={logout}

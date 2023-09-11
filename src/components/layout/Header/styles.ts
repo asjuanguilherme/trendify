@@ -76,9 +76,21 @@ export const ProfilePhoto = styled.img`
   border-radius: ${borderRadius.circle};
 `
 
+export const ProfileEmail = styled.span`
+  font-size: ${font.sizes.smaller};
+  margin-top: -${spacing.components.smaller};
+`
+
 export const ProfileName = styled.span`
   font-size: ${font.sizes.larger};
   font-weight: ${font.weight.bold};
+`
+
+export const ProfileInfo = styled.div`
+  padding-top: ${spacing.components.small};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 export const ProfileResume = styled.div`
