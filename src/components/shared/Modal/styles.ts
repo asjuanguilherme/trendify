@@ -125,6 +125,7 @@ export const Wrapper = styled.div<{ opened: boolean; variant: ModalVariant }>`
   width: 100vw;
   padding: ${layout.gutter};
   display: flex;
+  color: ${props => props.theme.colors.title};
 
   ${props => modalStyleByVariants(!props.opened)[props.variant]}
 `

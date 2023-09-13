@@ -1,9 +1,16 @@
 import { objectToQuerystring, uppercaseWholeText } from 'utils'
-import { destroyAuthenticationCookie, setupSpotifyApiClient } from '../config'
+import {
+  destroyAuthenticationCookie,
+  getAuthenticationCookie,
+  setupSpotifyApiClient
+} from '../config'
 import { SpotifyArtist } from '../types'
-import { GetMyTopArtistsParams } from './getMyTopArtists'
+import {
+  GetMyTopArtistsForClientSideParams,
+  GetMyTopArtistsParams
+} from './getMyTopArtists'
 import { TimeRange } from 'config/topItemsGenerator'
-import { AxiosError } from 'axios'
+import axios, { AxiosError } from 'axios'
 import { GlobalTrackItem } from 'types/TrackItem'
 
 const spotifyAcceptedTimeRange: Record<TimeRange, string> = {
@@ -38,11 +45,11 @@ const getMostListenedGenresFromSpotifyArtistsList = (
 
 export const getMyTopGenres = async ({
   limit,
-  ctx,
-  timeRange
+  timeRange,
+  accessToken
 }: GetMyTopArtistsParams): Promise<GlobalTrackItem[]> => {
   try {
-    const spotifyClient = setupSpotifyApiClient(ctx)
+    const spotifyClient = setupSpotifyApiClient(accessToken)
     const { data } = await spotifyClient.get<{ items: SpotifyArtist[] }>(
       'v1/me/top/artists?' +
         objectToQuerystring({
@@ -61,11 +68,27 @@ export const getMyTopGenres = async ({
       type: 'genres'
     }))
   } catch (err) {
+    throw err
+  }
+}
+
+export const getMyTopGenresForClientSide = async ({
+  ctx,
+  ...props
+}: GetMyTopArtistsForClientSideParams) => {
+  try {
+    const token = getAuthenticationCookie(ctx)
+
+    const { data } = await axios.get(
+      process.env.NEXT_PUBLIC_WEBSITE_URL +
+        '/api/genres?' +
+        objectToQuerystring({ ...props, token })
+    )
+    return data as GlobalTrackItem[]
+  } catch (err) {
     if (err instanceof AxiosError) {
-      if (Number(err.response?.status) >= 401) {
-        destroyAuthenticationCookie(ctx)
-        throw err
-      }
+      destroyAuthenticationCookie(ctx)
+      throw err
     }
     throw err
   }

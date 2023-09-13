@@ -10,7 +10,7 @@ export const topItemsGeneratorConfig = {
   boxWidth: 420,
   limitOptions: [3, 5, 10],
   suggestedColorsOptions: [
-    '#000000',
+    '#191414',
     '#ffffff',
     dark.colors.layers[1].background,
     '#A9E400',

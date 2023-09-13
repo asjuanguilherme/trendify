@@ -1,5 +1,9 @@
 import { AxiosError } from 'axios'
-import { destroyAuthenticationCookie, setupSpotifyApiClient } from '../config'
+import {
+  destroyAuthenticationCookie,
+  getAuthenticationCookie,
+  setupSpotifyApiClient
+} from '../config'
 import { SpotifyUserProfile } from '../types'
 import { GetServerSidePropsContext } from 'next'
 
@@ -7,7 +11,8 @@ export const getCurrentUserProfile = async (
   ctx: GetServerSidePropsContext | null
 ) => {
   try {
-    const spotifyApiClient = setupSpotifyApiClient(ctx)
+    const accessToken = getAuthenticationCookie(ctx)
+    const spotifyApiClient = setupSpotifyApiClient(accessToken)
     const { data } = await spotifyApiClient.get<SpotifyUserProfile>('v1/me')
 
     return data

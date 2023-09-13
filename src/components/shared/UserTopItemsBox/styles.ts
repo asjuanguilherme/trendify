@@ -189,8 +189,8 @@ export const HeaderInfoRowItem = styled.span<{
   gap: ${spacing.components.smaller};
 
   ${props => {
-    const color = readableColor(props.$itemsBoxColor, '#000000', '#ffffff')
-    const isLight = color === '#000000'
+    const color = readableColor(props.$itemsBoxColor, '#191414', '#ffffff')
+    const isLight = color === '#191414'
 
     return css`
       font-weight: ${isLight ? font.weight.bold : font.weight.light};
@@ -201,12 +201,15 @@ export const HeaderInfoRowItem = styled.span<{
 export const HeaderInfoRow = styled.div`
   display: flex;
   font-size: ${font.sizes.small};
-  opacity: 0.75;
   align-items: flex-end;
   gap: ${spacing.components.large};
 
   svg {
     font-size: ${font.sizes.large};
+  }
+
+  span {
+    opacity: 0.75;
   }
 `
 
@@ -255,7 +258,7 @@ export const Wrapper = styled.div<{
 }>`
   background: ${props => props.$color};
   padding: ${spacing.components.larger};
-  color: ${props => readableColor(props.$color, '#000000', 'white')};
+  color: ${props => readableColor(props.$color, '#191414', 'white')};
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -279,7 +282,7 @@ export const Wrapper = styled.div<{
     background: linear-gradient(
       transparent,
       ${props =>
-        opacify(-0.7, readableColor(props.$color, '#ffffff', '#000000'))}
+        opacify(-0.7, readableColor(props.$color, '#ffffff', '#191414'))}
     );
     opacity: 0;
   }

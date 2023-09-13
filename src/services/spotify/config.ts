@@ -50,11 +50,7 @@ export const destroyAuthenticationCookie = (
   })
 }
 
-export const setupSpotifyApiClient = (
-  ctx: GetServerSidePropsContext | null
-) => {
-  const accessToken = getAuthenticationCookie(ctx)
-
+export const setupSpotifyApiClient = (accessToken: string) => {
   const spotifyApiClient = axios.create({
     baseURL: SPOTIFY_API_URL
   })

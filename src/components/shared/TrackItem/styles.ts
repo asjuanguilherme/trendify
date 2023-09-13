@@ -88,8 +88,8 @@ export const Description = styled.span<{
   opacity: 0.75;
 
   ${props => {
-    const color = readableColor(props.$itemsBoxColor, '#000000', '#ffffff')
-    const isLight = color === '#000000'
+    const color = readableColor(props.$itemsBoxColor, '#191414', '#ffffff')
+    const isLight = color === '#191414'
 
     return css`
       font-weight: ${isLight ? font.weight.bold : font.weight.light};
@@ -250,7 +250,7 @@ export const BadgeNumber = styled.span<{
       font-size: ${font.sizes.default};
       font-weight: bold;
       border-radius: ${borderRadius.small};
-      color: ${readableColor(backgroundColor, '#000000', '#ffffff')};
+      color: ${readableColor(backgroundColor, '#191414', '#ffffff')};
       padding-bottom: 0.2rem;
 
       &::before {

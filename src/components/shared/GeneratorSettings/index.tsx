@@ -122,26 +122,26 @@ const tabs = {
         </S.BoxSection>
         <S.BoxSection>
           <S.Switches>
-            <Switch
+            {/* <Switch
               label={
                 i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.SHOW_BACKGROUND_IMAGE
               }
               checked={props.enableBackgroundImage}
               onChange={() => props.setEnableBackgroundImage(state => !state)}
               layer={0}
-            />
+            /> */}
             <Switch
               label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ENABLE_GRADIENT}
               checked={props.enableGradient}
               onChange={() => props.setEnableGradient(state => !state)}
               layer={0}
             />
-            <Switch
+            {/* <Switch
               label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.BLUR_BACKGROUND}
               checked={props.enableBlur}
               onChange={() => props.setEnableBlur(state => !state)}
               layer={0}
-            />
+            /> */}
           </S.Switches>
         </S.BoxSection>
       </>
@@ -157,7 +157,7 @@ const tabs = {
             onChange={() => props.setShowProfileInfo(state => !state)}
             layer={0}
           />
-          <Switch
+          {/* <Switch
             label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.LARGE_TITLE}
             checked={props.titleType === 'large'}
             onChange={() =>
@@ -166,19 +166,19 @@ const tabs = {
               )
             }
             layer={0}
-          />
+          /> */}
           <Switch
             label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ROUND_CORNERS}
             checked={props.roundedCorners}
             onChange={() => props.setRoundedCorners(state => !state)}
             layer={0}
           />
-          <Switch
+          {/* <Switch
             label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.NUMBERED_TOP_3}
             checked={props.enableBadgeHightlights}
             onChange={() => props.setEnableBadgeHighlights(state => !state)}
             layer={0}
-          />
+          /> */}
         </S.Switches>
       </>
     )

@@ -1,10 +1,14 @@
 import { withGlobalData } from 'hoc/withGlobalData'
-import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
+import {
+  getMyTopTracks,
+  getMyTopTracksForClientSide
+} from 'services/spotify/queries/getMyTopTracks'
 import { AppGlobalProps } from 'types'
 import GeneratorView from 'components/view/Generator'
 import { useI18n } from 'hooks/useI18n'
 import AppHead from 'components/infra/AppHead'
 import { GlobalTrackItem } from 'types/TrackItem'
+import { getAuthenticationCookie } from 'services/spotify/config'
 
 export type GeneratorPageProps = {
   global: AppGlobalProps
@@ -27,9 +31,15 @@ const GeneratorPage = ({ items, global }: GeneratorPageProps) => {
 }
 
 export const getServerSideProps = withGlobalData(async ctx => {
+  const token = getAuthenticationCookie(ctx)
+
   return {
     props: {
-      items: await getMyTopTracks({ ctx, limit: 5, timeRange: 'lastMonth' })
+      items: await getMyTopTracks({
+        limit: 5,
+        timeRange: 'lastMonth',
+        accessToken: token
+      })
     }
   }
 })

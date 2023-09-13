@@ -1,5 +1,5 @@
 import * as S from './styles'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Types
 import { SpotifyUserProfile } from 'services/spotify/types'
@@ -16,9 +16,9 @@ import {
 import { useI18n } from 'hooks/useI18n'
 
 // Services
-import { getMyTopTracks } from 'services/spotify/queries/getMyTopTracks'
-import { getMyTopArtists } from 'services/spotify/queries'
-import { getMyTopGenres } from 'services/spotify/queries/getMyTopGenres'
+import { getMyTopTracksForClientSide } from 'services/spotify/queries/getMyTopTracks'
+import { getMyTopArtistsForClientSide } from 'services/spotify/queries'
+import { getMyTopGenresForClientSide } from 'services/spotify/queries/getMyTopGenres'
 
 // Components
 import Button from 'components/shared/Button'
@@ -31,8 +31,6 @@ import ShareNodesIcon from 'components/shared/icons/ShareNodes'
 import GeneratorSettings from 'components/shared/GeneratorSettings'
 import { breakpoints } from 'styles/screens'
 import useScreen from 'hooks/useScreen'
-import MaximizeIcon from 'components/shared/icons/Maximize'
-import MinimizeIcon from 'components/shared/icons/Minimize'
 
 export type GeneratorViewProps = {
   items: GlobalTrackItem[]
@@ -92,9 +90,9 @@ const GeneratorView = ({
   const [selectedItemsStyle, setSelectedItemsStyle] =
     useState<TrackItemStyle>('default')
   const [color, setColor] = useState<string>(dark.colors.layers[1].background)
-  const [enableBackgroundImage, setEnableBackgroundImage] = useState(true)
+  const [enableBackgroundImage, setEnableBackgroundImage] = useState(false)
+  const [enableBlur, setEnableBlur] = useState(false)
   const [enableGradient, setEnableGradient] = useState(true)
-  const [enableBlur, setEnableBlur] = useState(true)
   const [showProfileInfo, setShowProfileInfo] = useState(true)
   const [enableBadgeHightlights, setEnableBadgeHighlights] = useState(false)
   const [titleType, setTitleType] =
@@ -109,10 +107,14 @@ const GeneratorView = ({
       try {
         const reqData =
           type == 'tracks'
-            ? await getMyTopTracks({ limit, timeRange, ctx: null })
+            ? await getMyTopTracksForClientSide({ limit, timeRange, ctx: null })
             : type == 'genres'
-            ? await getMyTopGenres({ limit, timeRange, ctx: null })
-            : await getMyTopArtists({ limit, timeRange, ctx: null })
+            ? await getMyTopGenresForClientSide({ limit, timeRange, ctx: null })
+            : await getMyTopArtistsForClientSide({
+                limit,
+                timeRange,
+                ctx: null
+              })
         setItems(reqData)
       } catch (err) {
         console.log(err)
@@ -145,7 +147,7 @@ const GeneratorView = ({
     const blobImage = await toBlob(boxRef.current, {
       quality: 1,
       canvasWidth: topItemsGeneratorConfig.boxWidth,
-      backgroundColor: 'transparent'
+      backgroundColor: color
     })
 
     if (!blobImage) throw new Error('Fail to generate image')

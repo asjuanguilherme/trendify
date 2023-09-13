@@ -109,6 +109,7 @@ export const MenuOptions = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${spacing.components.medium};
+  color: ${props => props.theme.colors.title};
 
   ${MenuOptionsGroup}:not(:last-child) {
     padding-bottom: ${spacing.components.medium};
