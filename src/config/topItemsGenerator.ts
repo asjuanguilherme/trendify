@@ -10,14 +10,18 @@ export const topItemsGeneratorConfig = {
   boxWidth: 420,
   limitOptions: [3, 5, 10],
   suggestedColorsOptions: [
-    dark.colors.layers[1].background,
-    mainColors.primary.normal,
-    mainColors.secondary.normal,
-    '#E5C02D',
-    '#2B2382',
-    '#E253EF',
     '#000000',
-    '#ffffff'
+    '#ffffff',
+    dark.colors.layers[1].background,
+    '#A9E400',
+    mainColors.primary.normal,
+    '#1DA6B9',
+    '#1D49B9',
+    '#4A15E2',
+    '#A115E2',
+    '#E21590',
+    mainColors.secondary.normal,
+    '#FFC700'
   ],
   typeOptions: {
     tracks: 'tracks',

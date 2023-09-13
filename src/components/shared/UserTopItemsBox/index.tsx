@@ -25,7 +25,7 @@ import { GlobalTrackItem } from 'types/TrackItem'
 export type UserTopItemsBoxProps = {
   boxRef?: MutableRefObject<HTMLDivElement | null>
   type: GeneratorType
-  trackItems?: GlobalTrackItem[]
+  items?: GlobalTrackItem[]
   color: string
   limit: number
   enableGradient: boolean
@@ -41,7 +41,7 @@ export type UserTopItemsBoxProps = {
   roundedCorners: boolean
 }
 
-const trackItemsSizeByLimit = {
+const itemsSizeByLimit = {
   3: 'large',
   5: 'medium',
   10: 'small'
@@ -56,7 +56,7 @@ const UserTopItemsBox = ({
   enableBackgroundImage,
   showProfileInfo,
   userData,
-  trackItems,
+  items,
   timeRange,
   selectedItemsStyle,
   enableBadgeHightlights,
@@ -69,12 +69,12 @@ const UserTopItemsBox = ({
   const i18n = useI18n()
 
   const backgroundImage = (() => {
-    if (trackItems && trackItems.length > 0) return trackItems[0].image
+    if (items && items.length > 0) return items[0].image
 
     return undefined
   })()
 
-  if (!trackItems || trackItems.length === 0)
+  if (!items || items.length === 0)
     return (
       <S.Empty>
         <TriangleExclamationIcon />
@@ -84,6 +84,7 @@ const UserTopItemsBox = ({
 
   return (
     <S.Wrapper
+      className="userTopItemsBox"
       ref={boxRef}
       $color={color}
       $enableGradient={enableGradient}
@@ -139,12 +140,12 @@ const UserTopItemsBox = ({
           <S.ItemsList
             $style={selectedItemsStyle}
             $backgroundColor={color}
-            $itemsLength={trackItems?.length}
+            $itemsLength={items?.length}
             $generatorType={type}
           >
-            {trackItems &&
-              trackItems.length > 0 &&
-              trackItems.map((item, index) => (
+            {items &&
+              items.length > 0 &&
+              items.map((item, index) => (
                 <li key={item.id}>
                   <TrackItem
                     {...item}
@@ -156,7 +157,7 @@ const UserTopItemsBox = ({
                           : index + 1
                         : undefined
                     }
-                    size={trackItemsSizeByLimit[limit as 3] as 'small'}
+                    size={itemsSizeByLimit[limit as 3] as 'small'}
                     style={selectedItemsStyle}
                   />
                 </li>

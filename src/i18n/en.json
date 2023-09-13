@@ -140,12 +140,16 @@
     "TITLE": "Generator",
     "GENERATOR_SETTINGS": {
       "TITLE": "Generator Settings",
+      "BASIC_TAB": "Basic",
+      "COLOR_TAB": "Color",
+      "STYLE_TAB": "Style",
+      "EXTRA_TAB": "Extra",
       "TYPE_LABEL": "Type",
       "TIME_RANGE_LABEL": "Time range",
       "LIMIT_LABEL": "Items Limit",
       "STYLES_SETTINGS": "Styling",
       "ITEMS_STYLE": "Items style",
-      "SHOW_BACKGROUND": "Show background",
+      "SHOW_BACKGROUND_IMAGE": "Show background image",
       "ENABLE_GRADIENT": "Enable gradient",
       "BLUR_BACKGROUND": "Blur background",
       "SHOW_PROFILE": "Show profile",
@@ -167,5 +171,6 @@
   "ACCESS": "Access",
   "SHARE_BUTTON_LABEL": "Share",
   "INSUFICIENT_DATA_TO_GENERATE_TOP_LIST": "We couldn't find enough data to generate your Trendify. Listen to music and come back later.",
-  "CLOSE": "Close"
+  "CLOSE": "Close",
+  "ITEMS": "Items"
 }

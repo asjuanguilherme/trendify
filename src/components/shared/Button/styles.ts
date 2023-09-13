@@ -85,16 +85,6 @@ export const Wrapper = styled.button<WrapperProps>`
                 color: ${theme.colors.detail};
               `
             : css`
-                &:hover {
-                  transform: scale(
-                    ${$size === 'smaller'
-                      ? '1.2'
-                      : $size === 'small'
-                      ? '1.1'
-                      : '1.03'}
-                  );
-                }
-
                 &:active {
                   background-color: ${theme.colors.main[$color].dark};
                 }
