@@ -187,7 +187,7 @@ export const Image = styled.img<{
         `
       default:
         return css`
-          border-radius: ${borderRadius.small};
+          border-radius: ${borderRadius.smaller};
         `
     }
   }}

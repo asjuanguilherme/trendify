@@ -265,7 +265,7 @@ export const Wrapper = styled.div<{
   margin: 0 auto;
   width: ${topItemsGeneratorConfig.boxWidth}px;
   border-radius: ${props =>
-    props.$roundedCorners ? borderRadius.large : 'initial'};
+    props.$roundedCorners ? borderRadius.larger : 'initial'};
 
   transition: ${transition.default};
   transition-property: background, border-radius;

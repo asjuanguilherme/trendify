@@ -45,11 +45,11 @@ export const font = {
 } as const
 
 export const borderRadius = {
-  smaller: '.25rem',
-  small: '.5rem',
+  smaller: '.125rem',
+  small: '.35rem',
   medium: '.75rem',
   large: '1rem',
-  larger: '1.25rem',
+  larger: '1.5rem',
   pill: '9999px',
   circle: '100%'
 } as const
