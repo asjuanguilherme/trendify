@@ -20,10 +20,13 @@ const TrackItem = ({
   style = 'default',
   badgeNumber,
   itemsBoxColor,
-  type
+  type,
+  href
 }: TrackItemProps) => {
   return (
     <S.Wrapper
+      as={href ? 'a' : 'div'}
+      href={href}
       $size={size}
       $style={style}
       $itemsBoxColor={itemsBoxColor}

@@ -64,6 +64,9 @@ export const VisibleTopItemsBox = styled.div<{ $isMaximized: boolean }>`
   ${screens.laptop} {
     position: fixed;
     pointer-events: none;
+    a {
+      pointer-events: all;
+    }
     & > ${SharingButtons} {
       pointer-events: all;
     }

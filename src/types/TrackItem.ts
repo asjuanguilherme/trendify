@@ -6,4 +6,5 @@ export type GlobalTrackItem = {
   type: GeneratorType
   description?: string
   image?: string
+  href?: string
 }

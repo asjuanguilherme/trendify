@@ -52,7 +52,8 @@ export const getMyTopArtists = async ({
       title: item.name,
       description: item.genres.slice(0, 2).map(uppercaseWholeText).join(', '),
       image: item.images[0].url,
-      type: 'artists'
+      type: 'artists',
+      href: item.uri
     }))
   } catch (err) {
     throw err

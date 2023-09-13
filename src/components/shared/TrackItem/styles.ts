@@ -86,15 +86,7 @@ export const Description = styled.span<{
   font-size: ${props =>
     configBySize[props.$size][props.$generatorType].descriptionFontSize};
   opacity: 0.75;
-
-  ${props => {
-    const color = readableColor(props.$itemsBoxColor, '#191414', '#ffffff')
-    const isLight = color === '#191414'
-
-    return css`
-      font-weight: ${isLight ? font.weight.bold : font.weight.light};
-    `
-  }}
+  font-weight: ${font.weight.book};
 `
 
 export const Title = styled.span<{
@@ -268,6 +260,7 @@ export const Wrapper = styled.div<{
   $itemsBoxColor: string
   $generatorType: GeneratorType
 }>`
+  text-decoration: none;
   display: flex;
   gap: ${spacing.components.small};
   position: relative;

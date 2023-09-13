@@ -52,7 +52,8 @@ export const getMyTopTracks = async ({
       title: item.name,
       image: item.album.images[0].url,
       description: item.artists.map(artist => artist.name).join(', '),
-      type: 'tracks'
+      type: 'tracks',
+      href: item.uri
     }))
   } catch (err) {
     throw err
