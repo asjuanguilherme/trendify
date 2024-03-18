@@ -88,7 +88,7 @@ const GeneratorView = ({
   const [timeRange, setTimeRange] = useState<TimeRange>('lastMonth')
 
   const [selectedItemsStyle, setSelectedItemsStyle] =
-    useState<TrackItemStyle>('default')
+    useState<TrackItemStyle>('spotify')
   const [color, setColor] = useState<string>(dark.colors.layers[1].background)
   const [enableBackgroundImage, setEnableBackgroundImage] = useState(false)
   const [enableBlur, setEnableBlur] = useState(false)

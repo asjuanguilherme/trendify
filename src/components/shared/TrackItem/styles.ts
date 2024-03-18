@@ -165,9 +165,10 @@ export const Image = styled.img<{
 }>`
   width: ${({ $size, $generatorType }) =>
     rem(configBySize[$size][$generatorType].imageSize)};
-
   height: ${({ $size, $generatorType }) =>
     rem(configBySize[$size][$generatorType].imageSize)};
+  object-fit: cover;
+  object-position: center;
 
   ${({ $style }) => {
     switch ($style) {

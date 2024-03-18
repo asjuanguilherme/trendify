@@ -94,59 +94,59 @@ const tabs = {
             />
           </Button>
         </S.BoxSection>
+        <Switch
+          label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ENABLE_GRADIENT}
+          checked={props.enableGradient}
+          onChange={() => props.setEnableGradient(state => !state)}
+          layer={0}
+        />
       </>
     )
   },
-  STYLE: {
-    render: (props: GeneratorSettingsProps, i18n: I18nObject) => (
-      <>
-        <S.BoxSection>
-          <S.BoxSectionTitle>
-            {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ITEMS_STYLE}
-          </S.BoxSectionTitle>
-          {trackItemStyleVariantOptions.map(item => (
-            <Button
-              key={item.value}
-              onClick={() =>
-                props.setSelectedItemsStyle(item.value as 'spotify')
-              }
-              variant={
-                props.selectedItemsStyle === item.value ? 'filled' : 'basic'
-              }
-              size="smaller"
-              layer={0}
-            >
-              {item.label}
-            </Button>
-          ))}
-        </S.BoxSection>
-        <S.BoxSection>
-          <S.Switches>
-            {/* <Switch
-              label={
-                i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.SHOW_BACKGROUND_IMAGE
-              }
-              checked={props.enableBackgroundImage}
-              onChange={() => props.setEnableBackgroundImage(state => !state)}
-              layer={0}
-            /> */}
-            <Switch
-              label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ENABLE_GRADIENT}
-              checked={props.enableGradient}
-              onChange={() => props.setEnableGradient(state => !state)}
-              layer={0}
-            />
-            {/* <Switch
-              label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.BLUR_BACKGROUND}
-              checked={props.enableBlur}
-              onChange={() => props.setEnableBlur(state => !state)}
-              layer={0}
-            /> */}
-          </S.Switches>
-        </S.BoxSection>
-      </>
-    )
-  },
+  // STYLE: {
+  //   render: (props: GeneratorSettingsProps, i18n: I18nObject) => (
+  //     <>
+  //       <S.BoxSection>
+  //         <S.BoxSectionTitle>
+  //           {i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.ITEMS_STYLE}
+  //         </S.BoxSectionTitle>
+  //         {trackItemStyleVariantOptions.map(item => (
+  //           <Button
+  //             key={item.value}
+  //             onClick={() =>
+  //               props.setSelectedItemsStyle(item.value as 'spotify')
+  //             }
+  //             variant={
+  //               props.selectedItemsStyle === item.value ? 'filled' : 'basic'
+  //             }
+  //             size="smaller"
+  //             layer={0}
+  //           >
+  //             {item.label}
+  //           </Button>
+  //         ))}
+  //       </S.BoxSection>
+  //       <S.BoxSection>
+  //         <S.Switches>
+  //           {/* <Switch
+  //             label={
+  //               i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.SHOW_BACKGROUND_IMAGE
+  //             }
+  //             checked={props.enableBackgroundImage}
+  //             onChange={() => props.setEnableBackgroundImage(state => !state)}
+  //             layer={0}
+  //           /> */}
+  //           {/* <Switch
+  //             label={i18n.GENERATOR_PAGE.GENERATOR_SETTINGS.BLUR_BACKGROUND}
+  //             checked={props.enableBlur}
+  //             onChange={() => props.setEnableBlur(state => !state)}
+  //             layer={0}
+  //           /> */}
+  //         </S.Switches>
+  //       </S.BoxSection>
+  //     </>
+  //   )
+  // },
   EXTRA: {
     render: (props: GeneratorSettingsProps, i18n: I18nObject) => (
       <>

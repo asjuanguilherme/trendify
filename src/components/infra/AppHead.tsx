@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useMemo } from 'react'
 
 export type AppHeadProps = {
   title: string
@@ -15,9 +16,15 @@ const AppHead = ({
   image = '/assets/icons/icon-512x512.png',
   ...props
 }: AppHeadProps) => {
+  const title = useMemo(() => {
+    if (props.title) return `Trendify | ${props.title}`
+
+    return 'Trendify'
+  }, [props.title])
+
   return (
     <Head>
-      <title>Trendify{props.title && ` | ${props.title}`}</title>
+      <title>{title}</title>
       <meta name="description" content={props.description} />
       <meta property="og:title" content={props.title} />
       <meta property="og:type" content="article" />
