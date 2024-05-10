@@ -112,7 +112,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${spacing.components.small};
-  background: red;
 
   ${screens.laptop} {
     position: static;
