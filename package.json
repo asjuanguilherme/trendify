@@ -1,4 +1,15 @@
 {
+  "name": "trendify",
+  "version": "1.0.0",
+  "description": "A spotify user top lists generator.",
+  "keywords": [
+    "spotify",
+    "track",
+    "artists",
+    "musics",
+    "generator",
+    "top"
+  ],
   "private": true,
   "author": {
     "email": "asjuanguilherme@gmail.com",
